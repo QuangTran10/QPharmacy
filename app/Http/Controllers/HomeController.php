@@ -21,10 +21,19 @@ class HomeController extends Controller
 
     	$all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+
+        $bestsell = DB::table('chitietdathang')
+        ->select(DB::raw('COUNT(MSHH) as sl', 'MSHH'),'MSHH')->groupBy('MSHH')->orderBy('sl','Desc')
+        ->limit(6)->get();
+        $pro_best_seller=array();
+        foreach ($bestsell as $key => $value) {
+            $pro_best_seller[]=DB::table('hanghoa')->where('MSHH',$value->MSHH)->first();
+        }
     	return view('pages.home')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('pro_best_seller',$pro_best_seller);
     }
 
     public function search(Request $re){

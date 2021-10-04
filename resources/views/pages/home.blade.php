@@ -518,195 +518,50 @@
                     <div class="col-lg-12">
                         <div class="product-carousel--4 slick-row-15 slick-sm-row-10 slick-arrow-style">
                             <!-- product single item start -->
+                            @foreach($pro_best_seller as $pro_val)
                             <div class="product-item">
                                 <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img" src="{{('public/frontend/assets/img/product/product-9.jpg')}}" alt="product">
-                                        <img class="sec-img" src="{{('public/frontend/assets/img/product/product-6.jpg')}}" alt="product">
+                                    <a href="">
+                                        <img class="pri-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
+                                        <img class="sec-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
                                     </a>
                                     <div class="product-badge">
                                         <div class="product-label new">
                                             <span>new</span>
                                         </div>
                                     </div>
+                                    <form>
+                                        {{csrf_field()}}
+                                        <div class="quantity-cart-box d-flex align-items-center">
+                                            <input type="hidden" name="Id_{{$pro_val->MSHH}}" value="{{$pro_val->MSHH}}" class="cart_product_id_{{$pro_val->MSHH}}">
+                                            <input type="hidden" name="Name" value="{{$pro_val->TenHH}}" class="cart_product_name_{{$pro_val->MSHH}}">
+                                            <input type="hidden" name="Image" value="{{$pro_val->hinhanh1}}" class="cart_product_image_{{$pro_val->MSHH}}">
+                                            <input type="hidden" name="Price" value="{{$pro_val->Gia}}" class="cart_product_price_{{$pro_val->MSHH}}">
+                                            <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_{{$pro_val->MSHH}}">
+                                        </div>    
+                                    </form>
                                     <div class="button-group">
-                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a>
+                                        <a href="" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
+                                        <a href="#" class="quick_view" data-toggle="modal" data-target="#quick_view" data-id_product={{$pro_val->MSHH}}><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
+                                        <button><a data-id="{{$pro_val->MSHH}}" data-toggle="tooltip" data-placement="left" class="add_cart" ><i class="lnr lnr-cart"></i></a></button>
                                     </div>
                                 </figure>
                                 <div class="product-caption">
                                     <p class="product-name">
-                                        <a href="product-details.html">Blossom bouquet flower</a>
+                                        <a href="{{URL::to('/product_details/'.$pro_val->MSHH)}}">{{$pro_val->TenHH}}</a>
                                     </p>
                                     <div class="price-box">
-                                        <span class="price-regular">$50.00</span>
-                                        <span class="price-old"><del>$80.00</del></span>
+                                        <span class="price-regular">
+                                         <?php
+                                         $GiaSP = number_format($pro_val->Gia, 0, ',', ' ');
+                                         echo $GiaSP." đ";
+                                         ?>
+                                        </span>
+                                        {{-- <span class="price-old"><del>$80.00</del></span> --}}
                                     </div>
                                 </div>
                             </div>
-                            <!-- product single item end -->
-
-                            <!-- product single item start -->
-                            <div class="product-item">
-                                <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img" src="{{('public/frontend/assets/img/product/product-10.jpg')}}" alt="product">
-                                        <img class="sec-img" src="{{('public/frontend/assets/img/product/product-1.jpg')}}" alt="product">
-                                    </a>
-                                    <div class="product-badge">
-                                        <div class="product-label new">
-                                            <span>new</span>
-                                        </div>
-                                        <div class="product-label discount">
-                                            <span>10%</span>
-                                        </div>
-                                    </div>
-                                    <div class="button-group">
-                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a>
-                                    </div>
-                                </figure>
-                                <div class="product-caption">
-                                    <p class="product-name">
-                                        <a href="product-details.html">Rose bouquet white</a>
-                                    </p>
-                                    <div class="price-box">
-                                        <span class="price-regular">$55.00</span>
-                                        <span class="price-old"><del>$80.00</del></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product single item end -->
-
-                            <!-- product single item start -->
-                            <div class="product-item">
-                                <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img" src="{{('public/frontend/assets/img/product/product-11.jpg')}}" alt="product">
-                                        <img class="sec-img" src="{{('public/frontend/assets/img/product/product-8.jpg')}}" alt="product">
-                                    </a>
-                                    <div class="product-badge">
-                                        <div class="product-label new">
-                                            <span>new</span>
-                                        </div>
-                                        <div class="product-label discount">
-                                            <span>15%</span>
-                                        </div>
-                                    </div>
-                                    <div class="button-group">
-                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a>
-                                    </div>
-                                </figure>
-                                <div class="product-caption">
-                                    <p class="product-name">
-                                        <a href="product-details.html">Hyacinth white stick</a>
-                                    </p>
-                                    <div class="price-box">
-                                        <span class="price-regular">$30.00</span>
-                                        <span class="price-old"><del>$55.00</del></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product single item end -->
-
-                            <!-- product single item start -->
-                            <div class="product-item">
-                                <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img" src="{{('public/frontend/assets/img/product/product-12.jpg')}}" alt="product">
-                                        <img class="sec-img" src="{{('public/frontend/assets/img/product/product-2.jpg')}}" alt="product">
-                                    </a>
-                                    <div class="product-badge">
-                                        <div class="product-label new">
-                                            <span>new</span>
-                                        </div>
-                                        <div class="product-label discount">
-                                            <span>10%</span>
-                                        </div>
-                                    </div>
-                                    <div class="button-group">
-                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a>
-                                    </div>
-                                </figure>
-                                <div class="product-caption">
-                                    <p class="product-name">
-                                        <a href="product-details.html">Flowers bouquet pink</a>
-                                    </p>
-                                    <div class="price-box">
-                                        <span class="price-regular">$60.00</span>
-                                        <span class="price-old"><del>$70.00</del></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product single item end -->
-
-                            <!-- product single item start -->
-                            <div class="product-item">
-                                <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img" src="{{('public/frontend/assets/img/product/product-4.jpg')}}" alt="product">
-                                        <img class="sec-img" src="{{('public/frontend/assets/img/product/product-3.jpg')}}" alt="product">
-                                    </a>
-                                    <div class="product-badge">
-                                        <div class="product-label discount">
-                                            <span>10%</span>
-                                        </div>
-                                    </div>
-                                    <div class="button-group">
-                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a>
-                                    </div>
-                                </figure>
-                                <div class="product-caption">
-                                    <p class="product-name">
-                                        <a href="product-details.html">Bouquet flowers pink</a>
-                                    </p>
-                                    <div class="price-box">
-                                        <span class="price-regular">$60.00</span>
-                                        <span class="price-old"><del>$70.00</del></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product single item end -->
-
-                            <!-- product single item start -->
-                            <div class="product-item">
-                                <figure class="product-thumb">
-                                    <a href="product-details.html">
-                                        <img class="pri-img" src="{{('public/frontend/assets/img/product/product-9.jpg')}}" alt="product">
-                                        <img class="sec-img" src="{{('public/frontend/assets/img/product/product-10.jpg')}}" alt="product">
-                                    </a>
-                                    <div class="product-badge">
-                                        <div class="product-label new">
-                                            <span>new</span>
-                                        </div>
-                                        <div class="product-label discount">
-                                            <span>30%</span>
-                                        </div>
-                                    </div>
-                                    <div class="button-group">
-                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a>
-                                    </div>
-                                </figure>
-                                <div class="product-caption">
-                                    <p class="product-name">
-                                        <a href="product-details.html">Orchid flower red stick</a>
-                                    </p>
-                                    <div class="price-box">
-                                        <span class="price-regular">$80.00</span>
-                                        <span class="price-old"><del>$90.00</del></span>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                             <!-- product single item end -->
                         </div>
                     </div>

@@ -87,7 +87,7 @@ class CategoryManagement extends Controller
 
         $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
         ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
-        ->get();
+        ->simplePaginate(3);
 
         $category=DB::table('loaihanghoa')->where('MaLoaiHang',$id_cate)->get();
 

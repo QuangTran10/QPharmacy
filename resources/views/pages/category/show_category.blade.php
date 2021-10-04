@@ -103,9 +103,9 @@
                                         <div class="product-short">
                                             <p>Sắp Xếp Theo : </p>
                                             <select class="nice-select" name="sortby">
-                                                <option value="trending">Phổ Biến</option>
-                                                <option value="rating">Bán Chạy</option>
-                                                <option value="date">Mới Nhất</option>
+                                                <option value="trending">--Chọn--</option>
+                                                <option value="rating">Từ A - Z</option>
+                                                <option value="date">Từ Z - A</option>
                                                 <option value="price-asc">Giá: Thấp đến Cao</option>
                                                 <option value="price-desc">Giá: Cao đến Thấp</option>
                                             </select>
@@ -216,6 +216,19 @@
                             </div>
                             @endforeach
                         </div>
+
+                        
+                        {{-- <!-- start pagination area -->
+                        <div class="paginatoin-area text-center">
+                            <ul class="pagination-box">
+                                <li><a class="previous" href="#"><i class="lnr lnr-chevron-left"></i></a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a class="next" href="#"><i class="lnr lnr-chevron-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- end pagination area --> --}}
                     </div>
                 </div>
                 <!-- shop main wrapper end -->
