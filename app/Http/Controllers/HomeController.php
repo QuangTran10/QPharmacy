@@ -29,6 +29,7 @@ class HomeController extends Controller
         foreach ($bestsell as $key => $value) {
             $pro_best_seller[]=DB::table('hanghoa')->where('MSHH',$value->MSHH)->first();
         }
+        
     	return view('pages.home')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)

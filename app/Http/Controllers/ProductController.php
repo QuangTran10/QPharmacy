@@ -215,6 +215,7 @@ class ProductController extends Controller
     public function favourite_product(Request $request){
         $now = Carbon::now('Asia/Ho_Chi_Minh');
         $data=array();
+        $notification=array();
 
         $MSKH=Session::get('user_id');
         if ($MSKH) {
@@ -230,13 +231,19 @@ class ProductController extends Controller
             }
             if($Ma==null){
                 $result = DB::table('yeuthich')->insert($data);
-                echo json_encode(1); //Nếu sản phẩm chưa có trong DB -> thêm vào
+                $notification['status']=1;
+                // echo json_encode(1); //Nếu sản phẩm chưa có trong DB -> thêm vào
             }else{
-                echo json_encode(2); //Nếu đã có trong DB yêu thích
+                $notification['status']=2;
+                // echo json_encode(2); //Nếu đã có trong DB yêu thích
             } 
         }else{
-            echo json_encode(3); //Nếu chưa đăng nhập
+            $notification['status']=3;
+            // echo json_encode(3); //Nếu chưa đăng nhập
         }
+        $count= DB::table('yeuthich')->where('MSKH',$MSKH)->get()->count();
+        $notification['count']=$count;
+        echo json_encode($notification);
     }
 
     //Chuyển trang sp yêu thích
@@ -265,5 +272,15 @@ class ProductController extends Controller
     public function delete_wishlist(Request $re){
         $Ma= $re->Ma;
         DB::table('yeuthich')->where('Ma',$Ma)->delete();
+    }
+
+    public function count_wishlist(){
+        $MSKH=Session::get('user_id');
+        if($MSKH!=null){
+            $count_wish= DB::table('yeuthich')->where('MSKH',$MSKH)->get()->count();
+        }else{
+            $count_wish=0;
+        }
+        echo $count_wish;
     }
 }

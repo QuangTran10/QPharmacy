@@ -94,8 +94,9 @@
                                         </form>
                                         
                                         <div class="useful-links">
-                                            <a href="#" data-toggle="tooltip" title="Wishlist"><i
-                                                    class="lnr lnr-heart"></i>Yêu Thích</a>
+                                            <a href="#" data-toggle="tooltip" class="add_favourite"data-id_product={{$value_pro->MSHH}}>
+                                                <i class="lnr lnr-heart"></i>Yêu Thích
+                                            </a>
                                         </div>
                                         <div class="like-icon">
                                             <a class="facebook" href="#"><i class="fa fa-facebook"></i>like</a>

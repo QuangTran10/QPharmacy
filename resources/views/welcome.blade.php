@@ -215,7 +215,8 @@
                                         <li>
                                             <a href="{{URL::to('/wish_list')}}">
                                                 <i class="lnr lnr-heart"></i>
-                                                <div class="notification">0</div>
+                                                <div class="notification" id="count_wishlist">
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
@@ -657,6 +658,7 @@
                 //Thêm giỏ hàng bằng AJAX
                 $(document).ready(function(){
                     load_minicart();
+                    load_wishlist();
 
                     function load_minicart(){
                         $.ajax({
@@ -665,6 +667,16 @@
                             data:{},
                             success:function(data){
                                 $('#minicart_cnt').html(data);
+                            }
+                        });
+                    }
+                    function load_wishlist(){
+                        $.ajax({
+                            url: '{{url('/count_wishlist')}}',
+                            method: "GET",
+                            data:{},
+                            success:function(data){
+                                $('#count_wishlist').html(data);
                             }
                         });
                     }
@@ -732,9 +744,9 @@
                         dataType: "JSON",
                         data:{id_product:id_product,_token:_token},
                         success:function(data){
-                            if(data==1){
-                                
-                            }else if(data==2){
+                            if(data.status==1){
+                                $('#count_wishlist').html(data.count);
+                            }else if(data.status==2){
                                 swal({
                                   title: "Sản phẩm đã được thêm",
                                   icon: "warning",

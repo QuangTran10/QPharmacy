@@ -83,6 +83,8 @@ Route::get('/wish_list', 'App\Http\Controllers\ProductController@wish_list');
 
 Route::post('/delete_wishlist', 'App\Http\Controllers\ProductController@delete_wishlist');
 
+Route::get('/count_wishlist','App\Http\Controllers\ProductController@count_wishlist');
+
 //user interface -> show order 
 
 Route::get('/show_order', 'App\Http\Controllers\OrderManagement@show_order');
