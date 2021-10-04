@@ -47,13 +47,13 @@
                                     <div class="product-details-des">
                                         <h3 class="product-name">{{$value_pro->TenHH}}</h3>
                                         <div class="ratings d-flex">
+
+                                            @for ($i = 1; $i <= $Total; $i++)
                                             <span><i class="lnr lnr-star"></i></span>
-                                            <span><i class="lnr lnr-star"></i></span>
-                                            <span><i class="lnr lnr-star"></i></span>
-                                            <span><i class="lnr lnr-star"></i></span>
-                                            <span><i class="lnr lnr-star"></i></span>
+                                            @endfor
+                                            
                                             <div class="pro-review">
-                                                <span>1 Reviews</span>
+                                                <span>{{$count_reviews}} Đánh Giá</span>
                                             </div>
                                         </div>
                                         <div class="price-box">

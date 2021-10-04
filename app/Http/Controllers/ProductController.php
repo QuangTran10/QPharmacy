@@ -152,6 +152,18 @@ class ProductController extends Controller
             $url=$re->url();
             // end seo
         }
+        $reviews=DB::table('binhluan')->where('MSHH',$id)->get();
+        $count=0;
+        $total=0;
+        foreach ($reviews as $k => $val) {
+            $count++;
+            $total=$total+$val->DanhGia;
+        }
+        if ($count==0) {
+            $total=0;
+        }else{
+            $total=round($total/$count);
+        }
         
         $related_product = DB::table('hanghoa')->where('MaLoaiHang',$MaLoaiHang)->whereNotIn('MSHH',[$id])->get();
         return view('pages.product.product_details')
@@ -159,15 +171,33 @@ class ProductController extends Controller
         ->with('producer',$all_producer)
         ->with('product_detail',$product_detail)
         ->with('related_product',$related_product)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('count_reviews',$count)->with('Total',$total);
     }
 
     //quick_view
     public function quick_view(Request $re){
         $id_product= $re->id_product;
+        $output= array();
         $product_detail = DB::table('hanghoa')->where('MSHH',$id_product)->get();
 
-        $output= array();
+        $reviews=DB::table('binhluan')->where('MSHH',$id_product)->get();
+        $count=0;
+        $total=0;
+        foreach ($reviews as $k => $val) {
+            $count++;
+            $total=$total+$val->DanhGia;
+        }
+        $output['rating']='';
+        if ($count==0) {
+            $total=0;
+        }else{
+            $total=round($total/$count);
+            for ($i=1; $i <=$total ; $i++) { 
+                $output['rating'].='<span><i class="lnr lnr-star"></i></span>';
+            }
+        }
+
         foreach ($product_detail as $key => $value) {
             $output['MSHH']=$value->MSHH;
             $output['TenHH']=$value->TenHH;
@@ -177,6 +207,7 @@ class ProductController extends Controller
             $url = '/public/upload/'.$value->hinhanh1;
             $output['hinhanh1']='<img src="'.url($url).' " alt="product-details" />';
         }
+        $output['review']='<span>'.$count.' Đánh Giá</span>';
         echo json_encode($output);
     }
 

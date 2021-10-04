@@ -548,14 +548,12 @@
                             <div class="col-lg-7 col-md-7">
                                 <div class="product-details-des quick-details">
                                     <h3 class="product-name" id="product-name"></h3>
-                                    <div class="ratings d-flex">
-                                        <span><i class="lnr lnr-star"></i></span>
-                                        <span><i class="lnr lnr-star"></i></span>
-                                        <span><i class="lnr lnr-star"></i></span>
-                                        <span><i class="lnr lnr-star"></i></span>
-                                        <span><i class="lnr lnr-star"></i></span>
-                                        <div class="pro-review">
-                                            <span>1 Reviews</span>
+                                    <div class="ratings d-flex" >
+                                        <div id="product-rating">
+                                            
+                                        </div>
+                                        <div class="pro-review" id="product-review">
+                                            
                                         </div>
                                     </div>
                                     <div class="price-box">
@@ -719,6 +717,8 @@
                             $('#product-desc').html(data.MoTa);
                             $('#product-qty').html(data.SoLuongHang);
                             $('#product-price').html(data.Gia);
+                            $('#product-review').html(data.review);
+                            $('#product-rating').html(data.rating);
                         }
                     });
                 });
