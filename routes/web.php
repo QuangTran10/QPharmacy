@@ -17,7 +17,7 @@ Route::get('/', 'App\Http\Controllers\HomeController@index');
 
 Route::get('/trang_chu', 'App\Http\Controllers\HomeController@index');
 
-Route::post('/tim_kiem', 'App\Http\Controllers\HomeController@search');
+Route::get('/search', 'App\Http\Controllers\HomeController@search');
 
 //user interface -> shopping cart
 

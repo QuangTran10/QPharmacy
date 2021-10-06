@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
@@ -38,15 +39,45 @@ class HomeController extends Controller
     }
 
     public function search(Request $re){
-    	$key_words=$re->key_words;
+    	$key_words=$_GET['key_words'];
         //Seo
         $meta_desc="Tìm kiếm";
         $meta_keywords=$key_words;
         $meta_tittle="QPharmacy";
-        $url=$re->url();
+        $url=url()->current();
         // end seo
 
-    	$product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')->get();
+        if (isset($_GET['sort_by'])) {
+
+            $sort_by= $_GET['sort_by'];
+
+            if($sort_by=='az'){
+
+               $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
+                ->orderBy('TenHH','ASC')->get();
+
+            }elseif ($sort_by=='za') {
+
+                $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
+                ->orderBy('TenHH','DESC')->get();
+
+            }elseif ($sort_by=='increase') {
+
+                $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
+                ->orderBy('Gia','ASC')->get();
+
+            }elseif ($sort_by=='decrease') {
+
+                $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
+                ->orderBy('Gia','DESC')->get();
+                
+            }
+        }else{
+            $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
+            ->orderBy('MSHH','ASC')
+            ->get();
+        }    
+    	
     	$all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
     	return view('pages.category.product_search')

@@ -101,14 +101,17 @@
                                 <div class="col-lg-5 col-md-6 order-1 order-md-2">
                                     <div class="top-bar-right">
                                         <div class="product-short">
-                                            <p>Sắp Xếp Theo : </p>
-                                            <select class="nice-select" name="sortby">
-                                                <option value="trending">Phổ Biến</option>
-                                                <option value="rating">Bán Chạy</option>
-                                                <option value="date">Mới Nhất</option>
-                                                <option value="price-asc">Giá: Thấp đến Cao</option>
-                                                <option value="price-desc">Giá: Cao đến Thấp</option>
+                                            <p>Sắp Xếp Theo</p>
+                                            <form>
+                                                {{csrf_field()}}
+                                            <select class="nice-select" id="sort_by" name="sort_by">
+                                                <option value="{{Request::fullUrlWithQuery(['sort_by' => 'none'])}}">--Chọn--</option>
+                                                <option value="{{Request::fullUrlWithQuery(['sort_by' => 'az'])}}">Từ A - Z</option>
+                                                <option value="{{Request::fullUrlWithQuery(['sort_by' => 'za'])}}">Từ Z - A</option>
+                                                <option value="{{Request::fullUrlWithQuery(['sort_by' => 'increase'])}}">Giá: Thấp đến Cao</option>
+                                                <option value="{{Request::fullUrlWithQuery(['sort_by' => 'decrease'])}}">Giá: Cao đến Thấp</option>
                                             </select>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

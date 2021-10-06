@@ -85,11 +85,43 @@ class CategoryManagement extends Controller
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
 
-        $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
-        ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
-        ->get();
-
         $category=DB::table('loaihanghoa')->where('MaLoaiHang',$id_cate)->get();
+
+        if (isset($_GET['sort_by'])) {
+
+            $sort_by= $_GET['sort_by'];
+
+            if($sort_by=='az'){
+
+                $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
+                ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
+                ->orderBy('TenHH','ASC')->get();
+
+            }elseif ($sort_by=='za') {
+
+                $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
+                ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
+                ->orderBy('TenHH','DESC')->get();
+
+            }elseif ($sort_by=='increase') {
+
+                $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
+                ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
+                ->orderBy('Gia','ASC')->get();
+
+            }elseif ($sort_by=='decrease') {
+
+                $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
+                ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
+                ->orderBy('Gia','DESC')->get();
+                
+            }
+        }else{
+            $category_by_id =DB::table('hanghoa')->where('hanghoa.MaLoaiHang',$id_cate)
+            ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
+            ->orderBy('MSHH','ASC')
+            ->get();
+        }
 
         foreach ($category as $key => $value) {
             //Seo

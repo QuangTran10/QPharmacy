@@ -124,6 +124,31 @@ class ProductController extends Controller
 
         $product_all =DB::table('hanghoa')->where('TrangThai',1)->get();
 
+        if (isset($_GET['sort_by'])) {
+
+            $sort_by= $_GET['sort_by'];
+
+            if($sort_by=='az'){
+
+                $product_all =DB::table('hanghoa')->where('TrangThai',1)->orderBy('TenHH','ASC')->get();
+
+            }elseif ($sort_by=='za') {
+
+                $product_all =DB::table('hanghoa')->where('TrangThai',1)->orderBy('TenHH','DESC')->get();
+
+            }elseif ($sort_by=='increase') {
+
+                $product_all =DB::table('hanghoa')->where('TrangThai',1)->orderBy('Gia','ASC')->get();
+
+            }elseif ($sort_by=='decrease') {
+
+                $product_all =DB::table('hanghoa')->where('TrangThai',1)->orderBy('Gia','DESC')->get();
+                
+            }
+        }else{
+            $product_all =DB::table('hanghoa')->where('TrangThai',1)->orderBy('MSHH','ASC')->get();
+        }
+
         //Seo
         $meta_desc="Tất cả sản phẩm";
         $meta_keywords="All Product";

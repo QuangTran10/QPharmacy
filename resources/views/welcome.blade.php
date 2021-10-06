@@ -28,6 +28,8 @@
     <link href="{{asset('public/frontend/assets/css/style.css')}}" rel="stylesheet">
 
     <link href="{{asset('public/frontend/assets/css/sweetalert.css')}}" rel="stylesheet">
+
+    <script src="{{asset('public/frontend/assets/js/jquery-3.6.0.js')}}"></script>
     <!--[if lt IE 9]>
 <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -291,7 +293,7 @@
             <div class="off-canvas-inner">
                 <!-- search box start -->
                 <div class="search-box-offcanvas">
-                    <form method="post" action="{{URL::to('/tim_kiem')}}">
+                    <form method="get" action="{{URL::to('/search')}}">
                         {{csrf_field()}}
                         <input type="text" placeholder="Tìm Kiếm..." name="key_words">
                         <button class="search-btn"><i class="lnr lnr-magnifier"></i></button>
@@ -608,7 +610,7 @@
                     </div>
                     <div class="container">
                         <div class="offcanvas-search-box">
-                            <form class="d-flex bdr-bottom w-100" method="post" action="{{URL::to('/tim_kiem')}}">
+                            <form class="d-flex bdr-bottom w-100" method="get" action="{{URL::to('/search')}}">
                                 {{csrf_field()}}
                                 <input type="text" placeholder="Tìm kiếm sản phẩm" name="key_words">
                                 <button class="search-btn"><i class="lnr lnr-magnifier"></i>search</button>
@@ -650,8 +652,6 @@
             <script src="{{asset('public/frontend/assets/js/vendor.js')}}"></script>
             <!-- Active Js -->
             <script src="{{asset('public/frontend/assets/js/active.js')}}"></script>
-
-            <script src="{{asset('public/frontend/assets/js/jquery-3.6.0.js')}}"></script>
             
             <script src="{{asset('public/frontend/assets/js/sweetalert.min.js')}}"></script>
             <script type="text/javascript">
@@ -814,6 +814,13 @@
                                 });
                             }
                         });
+                    });
+                    $('#sort_by').on('change', function(){  
+                        var url = $(this).val();
+                        if(url){
+                            window.location= url;
+                        }
+                        return false;
                     });
                 });
             </script>
