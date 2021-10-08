@@ -680,6 +680,7 @@
                             }
                         });
                     }
+                    
                     $('.add_cart').click(function(){
                         var id = $(this).data('id');
                         var cart_product_id = $('.cart_product_id_' + id).val();

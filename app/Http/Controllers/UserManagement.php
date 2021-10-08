@@ -45,6 +45,25 @@ class UserManagement extends Controller
     	return Redirect::to('/user');
     }
 
+    public function password(){
+        return view('admin.User.password');
+    }
+
+    public function change_pass(Request $re){
+        $id = Session::get('admin_id');
+        $TaiKhoan= $re->TaiKhoan;
+        $MatKhau = $re->MatKhau;
+
+        $result = DB::table("nhanvien")->where('MSNV',$id)->first();
+
+        if($result->TaiKhoan==$TaiKhoan){
+            DB::table('nhanvien')->where('MSNV',$id)->update(['MatKhau'=>md5($MatKhau)]);
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
+
     //User interface
     public function user_register(Request $re){
         //Seo

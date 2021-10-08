@@ -113,6 +113,10 @@ Route::get('/logout', 'App\Http\Controllers\AdminController@Logout');
 
 Route::get('/user', 'App\Http\Controllers\UserManagement@user');
 
+Route::get('/password', 'App\Http\Controllers\UserManagement@password');
+
+Route::post('/change_pass', 'App\Http\Controllers\UserManagement@change_pass');
+
 Route::post('/update_user', 'App\Http\Controllers\UserManagement@update_user');
 
 //admin interface -> category management
@@ -173,6 +177,14 @@ Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
 Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
 
 Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
+
+//admin interface -> Staff
+
+Route::get('/staff_management', 'App\Http\Controllers\StaffController@show_staff');
+
+Route::get('/add_staff', 'App\Http\Controllers\StaffController@add_staff');
+
+Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
 
 //admin interface -> comment
 

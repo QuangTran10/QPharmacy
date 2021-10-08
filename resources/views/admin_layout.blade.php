@@ -20,6 +20,8 @@
   <link href="{{asset('public/backend/assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('public/backend/assets/demo/demo.css')}}" rel="stylesheet" />
+
+  <script src="{{asset('public/backend/assets/js/core/jquery.min.js')}}"></script>
 </head>
 
 <body class="">
@@ -58,6 +60,12 @@
                     <span class="sidebar-normal"> Thông Tin Cá Nhân </span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{URL::to('/password')}}">
+                    <span class="sidebar-mini"><i class="material-icons">password</i></span>
+                    <span class="sidebar-normal"> Đổi Mật Khẩu </span>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -75,12 +83,19 @@
               <p>Quản Lý Hàng Hoá</p>
             </a>
           </li>
+          <?php 
+            $admin_id = Session::get('Position');
+            if($admin_id==1){
+          ?>
           <li class="nav-item <?php $page = Session::get('page'); if($page==3){echo "active";} ?>">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{URL::to('/staff_management')}}">
               <i class="material-icons">people</i>
               <p>Quản Lý Nhân Viên</p>
             </a>
           </li>
+          <?php 
+            }
+          ?>
           <li class="nav-item <?php $page = Session::get('page'); if($page==4){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/category_management')}}">
               <i class="material-icons">category</i>
@@ -292,7 +307,7 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="{{asset('public/backend/assets/js/core/jquery.min.js')}}"></script>
+  <script src="{{asset('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" defer=""></script>
   <script src="{{asset('public/backend/assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('public/backend/assets/js/core/bootstrap-material-design.min.js')}}"></script>
   
@@ -331,9 +346,9 @@
   <!--  Notifications Plugin    -->
   <script src="{{asset('public/backend/assets/js/plugins/bootstrap-notify.js')}}"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{asset('public/backend/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript" defer=""></script>
+  <script src="{{asset('public/backend/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('public/backend/assets/demo/demo.js')}}"></script>
+ {{--  <script src="{{asset('public/backend/assets/demo/demo.js')}}"></script> --}}
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -514,7 +529,55 @@
       }
     });
   </script>
-  <script src="{{asset('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+  <script>
+    function setFormValidation(id) {
+      $(id).validate({
+        highlight: function(element) {
+          $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+          $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
+        },
+        success: function(element) {
+          $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+          $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
+        },
+        errorPlacement: function(error, element) {
+          $(element).closest('.form-group').append(error);
+        },
+      });
+    }
+
+    $(document).ready(function() {
+      setFormValidation('#ChangePassword');
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.change_pass').click(function(){
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          url: '{{url('/change_pass')}}',
+          method: "POST",
+          data:{
+            TaiKhoan:username,
+            _token:_token,
+            MatKhau: password},
+            success:function(data){
+              if(data==1){
+                Swal.fire('Đổi mật khẩu thành công');
+              }else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Tài khoản không phải của bạn',
+                  text: 'Vui lòng thử lại'
+                })
+              }
+            }
+          });
+      });
+    });
+  </script>
 </body>
 
 </html>

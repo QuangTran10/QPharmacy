@@ -50,6 +50,11 @@ class AdminController extends Controller
     		Session::put('admin_name',$result->TaiKhoan);
     		Session::put('admin_id',$result->MSNV);
             Session::put('full_name',$result->HoTenNV);
+            if($result->ChucVu=='Admin'){
+                Session::put('Position',1);
+            }else{
+                Session::put('Position',0);
+            }
     		return view('admin.dashboard')->with('subscribers',$subscribers)->with('products',$products);
     	}else{
     		return redirect('/admin')->with('notice','Mật khẩu hoặc tài khoản không đúng');

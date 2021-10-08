@@ -115,7 +115,7 @@
                 </div>
               </div>
             </div>    
-            <button type="submit" class="btn btn-primary pull-right" name="Update">Update Profile</button>
+            <button type="submit" class="btn btn-primary pull-right" name="Update">Cập Nhật Thông Tin</button>
             <div class="clearfix"></div>
           </form> 
           @endforeach 
