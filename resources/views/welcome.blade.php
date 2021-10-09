@@ -612,8 +612,8 @@
                         <div class="offcanvas-search-box">
                             <form class="d-flex bdr-bottom w-100" method="get" action="{{URL::to('/search')}}">
                                 {{csrf_field()}}
-                                <input type="text" placeholder="Tìm kiếm sản phẩm" name="key_words">
-                                <button class="search-btn"><i class="lnr lnr-magnifier"></i>search</button>
+                                <input type="text" placeholder="Tìm kiếm sản phẩm" name="key_words" >
+                                <button class="search-btn search"><i class="lnr lnr-magnifier"></i>search</button>
                             </form>
                         </div>
                     </div>

@@ -189,3 +189,9 @@ Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
 //admin interface -> comment
 
 Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');
+
+//admin interface -> statistic
+
+Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_statistical');
+
+Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');

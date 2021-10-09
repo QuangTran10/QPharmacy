@@ -132,6 +132,12 @@
               <p>Khuyến Mãi</p>
             </a>
           </li>
+          <li class="nav-item <?php $page = Session::get('page'); if($page==10){echo "active";} ?>">
+            <a class="nav-link" href="{{URL::to('/show_statistic')}}">
+              <i class="material-icons">paid</i>
+              <p>Doanh Thu</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -552,6 +558,8 @@
   </script>
   <script type="text/javascript">
     $(document).ready(function() {
+      setStatistic();
+
       $('.change_pass').click(function(){
         var username = $('#username').val();
         var password = $('#password').val();
@@ -577,6 +585,27 @@
           });
       });
     });
+    // var data = {
+    //   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    //   series: [ [5, 2, 4, 2, 0] ]
+    // };
+    
+
+    function setStatistic(){
+      var _token = $('input[name="_token"]').val();
+      $.ajax({
+        url: '{{url('/load_statistic')}}',
+        method: "POST",
+        dataType: 'JSON',
+        data:{_token:_token},
+        success:function(data){
+          new Chartist.Line('#chart1', {
+            labels: data.labels,
+            series: [data.series]
+          });
+        }
+      });
+    }
   </script>
 </body>
 

@@ -41,8 +41,20 @@ class UserManagement extends Controller
     	$data['Thang'] = $re->Thang;
     	$data['Nam'] = $re->Nam;
 
-    	DB::table('nhanvien')->where('MSNV',$id)->update($data);
-    	return Redirect::to('/user');
+        $get_image = $re->file('Avatar');
+
+        if($get_image){
+            $get_name = $get_image->getClientOriginalName();
+            $name = current(explode('.', $get_name));
+            $new_image = $name.time() .'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/backend/images/avatar',$new_image);
+            $data['Avatar']=$new_image;
+            DB::table('nhanvien')->where('MSNV',$id)->update($data);
+            return Redirect::to('/user');
+        }
+
+        DB::table('nhanvien')->where('MSNV',$id)->update($data);
+        return Redirect::to('/user');
     }
 
     public function password(){

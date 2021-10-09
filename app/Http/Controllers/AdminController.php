@@ -25,6 +25,7 @@ class AdminController extends Controller
 
     public function dashboard(){
         $this->AuthLogin();
+        Session::put('page',1);
         //Số người đăng ký
         $subscribers = DB::table('khachhang')->get()->count();
         //Doanh thu
@@ -52,6 +53,8 @@ class AdminController extends Controller
             Session::put('full_name',$result->HoTenNV);
             if($result->ChucVu=='Admin'){
                 Session::put('Position',1);
+            }elseif ($result->ChucVu=='Kế Toán') {
+                Session::put('Position',2);
             }else{
                 Session::put('Position',0);
             }

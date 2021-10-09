@@ -2,16 +2,16 @@
 @section('admin_content')
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header card-header-primary">
-          <h4 class="card-title">THÔNG TIN CÁ NHÂN</h4>
-        </div>
-        <div class="card-body">
-          @foreach($staff_infor as $key => $value)
-          <form method="post" action="{{URL::to('/update_user')}}" enctype="multipart/form-data">
-              {{csrf_field() }}
+  @foreach($staff_infor as $key => $value)
+  <form method="post" action="{{URL::to('/update_user')}}" enctype="multipart/form-data">
+    {{csrf_field() }}
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">THÔNG TIN CÁ NHÂN</h4>
+          </div>
+          <div class="card-body">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -82,43 +82,41 @@
                 <div class="form-group">
                   <label class="bmd-label-floating">Ngày</label>
                   <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Ngay">
-                     @for($i = 1; $i < 31; $i++)
-                          <option value="{{$i}}" {{ ($value->Ngay==$i)? "selected" : "" }}>
-                            {{$i}}
-                          </option>
-                     @endfor
-                  </select>
-                </div>
+                   @for($i = 1; $i < 31; $i++)
+                   <option value="{{$i}}" {{ ($value->Ngay==$i)? "selected" : "" }}>
+                    {{$i}}
+                  </option>
+                  @endfor
+                </select>
               </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="bmd-label-floating">Tháng</label>
-                  <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Thang">
-                    @for($i = 1; $i < 12; $i++)
-                          <option value="{{$i}}" {{ ($value->Thang==$i)? "selected" : "" }}>
-                            {{$i}}
-                          </option>
-                     @endfor
-                  </select>
-                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Tháng</label>
+                <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Thang">
+                  @for($i = 1; $i < 12; $i++)
+                  <option value="{{$i}}" {{ ($value->Thang==$i)? "selected" : "" }}>
+                    {{$i}}
+                  </option>
+                  @endfor
+                </select>
               </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="bmd-label-floating">Năm</label>
-                  <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Nam">
-                      @for($i = 1990; $i < 2021; $i++)
-                          <option value="{{$i}}" {{ ($value->Nam==$i)? "selected" : "" }}>
-                            {{$i}}
-                          </option>
-                     @endfor
-                  </select>
-                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Năm</label>
+                <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Nam">
+                  @for($i = 1990; $i < 2021; $i++)
+                  <option value="{{$i}}" {{ ($value->Nam==$i)? "selected" : "" }}>
+                    {{$i}}
+                  </option>
+                  @endfor
+                </select>
               </div>
-            </div>    
-            <button type="submit" class="btn btn-primary pull-right" name="Update">Cập Nhật Thông Tin</button>
-            <div class="clearfix"></div>
-          </form> 
-          @endforeach 
+            </div>
+          </div>    
+          <button type="submit" class="btn btn-primary pull-right" name="Update">Cập Nhật Thông Tin</button>
+          <div class="clearfix"></div>
         </div>
       </div>
     </div>
@@ -126,7 +124,7 @@
       <div class="card card-profile">
         <div class="card-avatar">
           <a href="">
-            <img class="img" src="{{('public/backend/images/avatar/avatar_macdinh.jpeg')}}" />
+            <img class="img" src="{{('public/backend/images/avatar/'.$value->Avatar)}}" />
           </a>
         </div>
         <div class="card-body">
@@ -148,5 +146,7 @@
       </div>
     </div>
   </div>
+</form> 
+@endforeach 
 </div>
 @endsection
