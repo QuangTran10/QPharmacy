@@ -30,7 +30,31 @@ class RevenueController extends Controller
     	$labels=array();
     	$series=array();
     	foreach ($revenue as $key => $value) {
-    		$labels[]=$value->Thang;
+    		$labels[]='Tháng '.$value->Thang;
+    		$series[]=$value->soluong;
+    	}
+    	$chart_data = array(
+    		'labels' => $labels,
+    		'series' => $series
+    	);
+
+    	echo $data = json_encode($chart_data);
+    }
+
+    public function search_statistic(Request $re){
+    	$start_date=$re->start_date;
+    	$end_date= $re->end_date;
+
+    	$revenue = DB::table('dathang')
+    	->whereBetween('NgayDH', [ $start_date, $end_date])
+    	->select(DB::raw('COUNT(SoDonDH) as soluong, DAY(NgayDH) as Ngay, DATE(NgayDH) as Date'))->groupBy('Ngay','Date')
+    	->get();
+
+    	$labels=array();
+    	$series=array();
+    	foreach ($revenue as $key => $value) {
+    		$date = date('d-m-Y', strtotime($value->Date));
+    		$labels[]=$date;
     		$series[]=$value->soluong;
     	}
     	$chart_data = array(

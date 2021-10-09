@@ -558,8 +558,6 @@
   </script>
   <script type="text/javascript">
     $(document).ready(function() {
-      setStatistic();
-
       $('.change_pass').click(function(){
         var username = $('#username').val();
         var password = $('#password').val();
@@ -585,27 +583,6 @@
           });
       });
     });
-    // var data = {
-    //   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    //   series: [ [5, 2, 4, 2, 0] ]
-    // };
-    
-
-    function setStatistic(){
-      var _token = $('input[name="_token"]').val();
-      $.ajax({
-        url: '{{url('/load_statistic')}}',
-        method: "POST",
-        dataType: 'JSON',
-        data:{_token:_token},
-        success:function(data){
-          new Chartist.Line('#chart1', {
-            labels: data.labels,
-            series: [data.series]
-          });
-        }
-      });
-    }
   </script>
 </body>
 

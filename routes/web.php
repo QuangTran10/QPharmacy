@@ -195,3 +195,5 @@ Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment
 Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_statistical');
 
 Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
+
+Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
