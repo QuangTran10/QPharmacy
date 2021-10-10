@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -29,10 +30,18 @@ class AdminController extends Controller
         //Số người đăng ký
         $subscribers = DB::table('khachhang')->get()->count();
         //Doanh thu
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $first_date=Carbon::create(Carbon::now()->year, 1, 1);
 
+        $array = DB::table('dathang')->whereBetween('NgayDH',[ $first_date, $now])->select('ThanhTien')->get();
+        $statistic =0;
+        foreach ($array as $key => $value) {
+            $statistic += $value->ThanhTien;
+        }
         //Tổng số sản phẩm
         $products = DB::table('hanghoa')->get()->count();
-    	return view('admin.dashboard')->with('subscribers',$subscribers)->with('products',$products);
+    	return view('admin.dashboard')->with('subscribers',$subscribers)
+        ->with('products',$products)->with('statistical',$statistic);
     }
     public function admin_dashboard(Request $request){
     	$username = $request->Username;
@@ -42,7 +51,14 @@ class AdminController extends Controller
         //Số người đăng ký
         $subscribers = DB::table('khachhang')->get()->count();
         //Doanh thu
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $first_date=Carbon::create(Carbon::now()->year, 1, 1);
 
+        $array = DB::table('dathang')->whereBetween('NgayDH',[ $first_date, $now])->select('ThanhTien')->get();
+        $statistic =0;
+        foreach ($array as $key => $value) {
+            $statistic += $value->ThanhTien;
+        }
         //Tổng số sản phẩm
         $products = DB::table('hanghoa')->get()->count();
 
@@ -58,7 +74,7 @@ class AdminController extends Controller
             }else{
                 Session::put('Position',0);
             }
-    		return view('admin.dashboard')->with('subscribers',$subscribers)->with('products',$products);
+    		return view('admin.dashboard')->with('subscribers',$subscribers)->with('products',$products)->with('statistical',$statistic);
     	}else{
     		return redirect('/admin')->with('notice','Mật khẩu hoặc tài khoản không đúng');
     	}

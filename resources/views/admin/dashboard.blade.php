@@ -27,11 +27,11 @@
             <i class="material-icons">store</i>
           </div>
           <p class="card-category">Doanh thu</p>
-          <h3 class="card-title">$34,245</h3>
+          <h3 class="card-title">{{number_format($statistical , 0, ',', ' ').'đ';}}</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">date_range</i> Last 24 Hours
+            <i class="material-icons">date_range</i> {{Carbon\Carbon::now()}}
           </div>
         </div>
       </div>
