@@ -116,6 +116,27 @@ class ProductController extends Controller
         return Redirect::to('product_management');
     }
 
+    //Các sp bán chạy
+    public function best_sell(Request $re){
+        $bestsell = DB::table('chitietdathang')
+        ->select(DB::raw('COUNT(MSHH) as sl', 'MSHH'),'MSHH')->groupBy('MSHH')
+        ->orderBy('sl','Desc')
+        ->limit(10)->get();
+
+        $labels=array();
+        $series=array();
+        foreach ($bestsell as $key => $value) {
+            $labels[]=$value->MSHH;
+            $series[]=$value->sl;
+        }
+        $chart_data = array(
+            'labels' => $labels,
+            'series' => $series
+        );
+
+       echo $data = json_encode($chart_data);
+    }
+
     //END ADMIN
 
     public function show_all_product(Request $re){

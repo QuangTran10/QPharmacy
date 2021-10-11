@@ -162,6 +162,8 @@ Route::post('/save_product', 'App\Http\Controllers\ProductController@save_produc
 
 Route::post('/edit_product/{id}', 'App\Http\Controllers\ProductController@edit_product');
 
+Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
+
 //admin interface -> order management
 
 Route::get('/order_management', 'App\Http\Controllers\OrderManagement@order_management');

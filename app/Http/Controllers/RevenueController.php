@@ -48,7 +48,7 @@ class RevenueController extends Controller
     	$revenue = DB::table('dathang')
     	->whereBetween('NgayDH', [ $start_date, $end_date])
     	->select(DB::raw('COUNT(SoDonDH) as soluong, DAY(NgayDH) as Ngay, DATE(NgayDH) as Date'))->groupBy('Ngay','Date')
-    	->get();
+        ->orderBy('Date','asc')->get();
 
     	$labels=array();
     	$series=array();

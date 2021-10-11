@@ -45,7 +45,7 @@
         <div class="card-body table-responsive">
           <form>
             @csrf
-            <div class="ct-chart ct-golden-section" id="chart1"></div>
+            <div class="ct-chart ct-perfect-fourth" id="chart1"></div>
           </form>
         </div> {{-- end card body --}}
       </div>
