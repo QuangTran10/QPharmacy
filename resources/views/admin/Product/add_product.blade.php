@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="card-body ">
-          <form method="post" action="{{URL::to('/save_product')}}" class="form-horizontal" enctype="multipart/form-data">
+          <form method="post" action="{{URL::to('/save_product')}}" class="form-horizontal" enctype="multipart/form-data" id="AddProduct">
             {{csrf_field() }}
             <p>
               <?php
@@ -27,7 +27,7 @@
               <label class="col-sm-2 col-form-label">Tên Hàng Hoá</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="TenHangHoa" data-validation-length="min20">
+                  <input type="text" class="form-control" name="TenHangHoa" data-validation-length="min20" required="true" id="TenHangHoa">
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
               <label class="col-sm-2 col-form-label">Giá</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="Gia">
+                  <input type="text" class="form-control" name="Gia" id="Gia">
                 </div>
               </div>
             </div>
@@ -43,7 +43,7 @@
               <label class="col-sm-2 col-form-label">Số Lượng</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="number" class="form-control" name="SoLuong" min="0">
+                  <input type="number" class="form-control" name="SoLuong" min="0" id="SoLuong">
                 </div>
               </div>
             </div>
@@ -118,5 +118,34 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $( "#AddProduct" ).validate({
+      rules: {
+        TenHangHoa: {
+          required: true
+        },
+        Gia:{
+          required: true,
+          number: true
+        },
+        SoLuong:{
+          required: true,
+        },
+      },
+      messages: {
+        TenHangHoa: "Tên hàng hoá không được để trống",
+        Gia:{
+          required: "Giá không để trống",
+          number: "Giá phải là số"
+        },
+        SoLuong:{
+          required: "Số lượng không bỏ trống",
+        },
+      }
+    });
+  });
+</script>
 
 @endsection

@@ -654,6 +654,8 @@
             <script src="{{asset('public/frontend/assets/js/active.js')}}"></script>
             
             <script src="{{asset('public/frontend/assets/js/sweetalert.min.js')}}"></script>
+
+            <script src="{{asset('public/frontend/assets/js/jquery.validate.min.js')}}"></script>
             <script type="text/javascript">
                 //Thêm giỏ hàng bằng AJAX
                 $(document).ready(function(){

@@ -10,7 +10,7 @@
           <h4 class="card-title">THAY ĐỔI MẬT KHẨU</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form id="ChangePassword">
             @csrf
             <div class="form-group">
               <label for="username" class="bmd-label-floating"> Tài Khoản</label>

@@ -59,10 +59,11 @@
         <div class="card-header card-header-primary">
           <h4 class="card-title">Sản Phẩm Bán Chạy</h4>
         </div>
-        <div class="card-body table-responsive">
+        <div class="card-body">
           <form>
             @csrf
-            <div class="ct-chart ct-perfect-fourth" id="chart2"></div>
+            <br>
+            <div class="ct-chart" id="chart2"></div>
           </form>
         </div> {{-- end card body --}}
       </div>
@@ -82,11 +83,13 @@
         dataType: 'JSON',
         data:{_token:_token},
         success:function(data){
-          new Chartist.Line('#chart2', {
+          var options = {
+            fullWidth: true
+          };
+          new Chartist.Bar('.ct-chart', {
             labels: data.labels,
             series: [data.series]
-          },{ fullWidth: true,
-          });
+          },options);
         }
       });
     }
