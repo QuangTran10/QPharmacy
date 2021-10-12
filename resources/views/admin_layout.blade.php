@@ -182,17 +182,13 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
+                  <span class="notification" id="count_noti"></span>
                   <p class="d-lg-none d-md-block">
                     Some Actions
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" id="dropdown_nofi">
+                  <a class="dropdown-item" href="#"></a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -557,7 +553,22 @@
     });
   </script>
   <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function(){
+      load_Order();
+
+      function load_Order() {
+        $.ajax({
+          url: '{{url('/count_order')}}',
+          method: "GET",
+          dataType: 'JSON',
+          data:{},
+          success:function(data){
+            $('#count_noti').html(data.count);
+            $('#dropdown_nofi').html(data.contend);
+          }
+        });
+      }
+
       $('.change_pass').click(function(){
         var username = $('#username').val();
         var password = $('#password').val();

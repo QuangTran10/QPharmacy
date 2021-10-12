@@ -13,9 +13,25 @@ session_start();
 class OrderManagement extends Controller
 {
     public function order_management(){
-    	$all_order=DB::table('dathang')->get();
+    	$all_order=DB::table('dathang')->orderBy('SoDonDH','desc')->get();
+        $count = DB::table('dathang')->where('TinhTrang',0)->get()->count();
     	Session::put('page',5);
-    	return view('admin.Order.order_management')->with('all_order',$all_order);
+    	return view('admin.Order.order_management')->with('all_order',$all_order)->with('count_order_process',$count);
+    }
+
+    public function count_order(){
+        $data = array();
+        $count = DB::table('dathang')->where('TinhTrang',0)->get()->count();
+        $all_order=DB::table('dathang')->where('TinhTrang',0)->orderBy('SoDonDH','desc')->get();
+
+        $data['count']=$count;
+        $data['contend']='';
+        foreach ($all_order as $key => $value) {
+            $content=$value->SoDonDH.' - '.$value->HoTen.'    '.$value->NgayDH;
+            $url='/view_order/'.$value->SoDonDH;
+            $data['contend'].='<a class="dropdown-item" href=" '.url($url).'">'.$content.'</a>';
+        }
+        echo json_encode($data);
     }
 
     public function view_order($SoDonDH){
@@ -28,23 +44,14 @@ class OrderManagement extends Controller
     }
 
     public function update_status(Request $request){
-    	$sta = DB::table('dathang')->select('TinhTrang')->get();
     	$SoDonDH=$request->SoDonDH;
         $MSNV=Session::get('admin_id');
-    	foreach ($sta as $u) {
-    		$Status=$u->TinhTrang;
-    	}
-    	if ($Status==0) {
-    		$TrangThai= $request->TinhTrang;
-    		$result=DB::table('dathang')->where('SoDonDH',$SoDonDH)->update(['TinhTrang'=> $TrangThai, 'MSNV'=>$MSNV]);
-    		if($result){
-    			return Redirect::to('/order_management');
-    		}else{
-    			return redirect('/view_order/'.$SoDonDH)->with('notice','Cập nhật Không thành công');
-    		}
-    	}else{
-    		return redirect('/view_order/'.$SoDonDH)->with('notice','Đơn Hàng đã được cập nhật');
-    	}
+        $result=DB::table('dathang')->where('SoDonDH',$SoDonDH)->update(['TinhTrang'=> 1, 'MSNV'=>$MSNV]);
+        if($result){
+           return Redirect::to('/order_management');
+        }else{
+           return redirect('/view_order/'.$SoDonDH)->with('notice','Cập nhật Không thành công');
+        }
     }
 
     public function show_order(Request $re){

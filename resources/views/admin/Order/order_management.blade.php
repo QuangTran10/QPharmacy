@@ -3,7 +3,13 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-12 col-md-12"></div>
+    <div class="col-lg-4 col-md-4">
+      @if($count_order_process!=0)
+      <div class="alert alert-warning">
+        <span>Có {{$count_order_process}} đơn hàng cần xử lý</span>
+      </div>
+      @endif
+    </div>
   </div>
   <div class="row">
     <div class="col-lg-12 col-md-12">

@@ -172,6 +172,8 @@ Route::get('/view_order/{SoDonDH}', 'App\Http\Controllers\OrderManagement@view_o
 
 Route::post('/update_status', 'App\Http\Controllers\OrderManagement@update_status');
 
+Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
+
 //admin interface -> receipt
 
 Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
