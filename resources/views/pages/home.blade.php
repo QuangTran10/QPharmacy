@@ -529,6 +529,11 @@
                                         <div class="product-label new">
                                             <span>new</span>
                                         </div>
+                                        @if($pro_val->GiamGia!=0)
+                                        <div class="product-label discount">
+                                            <span>{{$pro_val->GiamGia*100}}%</span>
+                                        </div>
+                                        @endif
                                     </div>
                                     <form>
                                         {{csrf_field()}}
@@ -538,26 +543,39 @@
                                             <input type="hidden" name="Image" value="{{$pro_val->hinhanh1}}" class="cart_product_image_{{$pro_val->MSHH}}">
                                             <input type="hidden" name="Price" value="{{$pro_val->Gia}}" class="cart_product_price_{{$pro_val->MSHH}}">
                                             <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_{{$pro_val->MSHH}}">
+                                            <input type="hidden" name="Discount" value="{{$pro_val->GiamGia}}" class="cart_product_discount_{{$pro_val->MSHH}}">
                                         </div>    
                                     </form>
                                     <div class="button-group">
                                         <a href="" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-heart"></i></a>
                                         <a href="#" class="quick_view" data-toggle="modal" data-target="#quick_view" data-id_product={{$pro_val->MSHH}}><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
+                                        @if($pro_val->SoLuongHang!=0)
                                         <button><a data-id="{{$pro_val->MSHH}}" data-toggle="tooltip" data-placement="left" class="add_cart" ><i class="lnr lnr-cart"></i></a></button>
+                                        @endif
                                     </div>
                                 </figure>
                                 <div class="product-caption">
                                     <p class="product-name">
-                                        <a href="{{URL::to('/product_details/'.$pro_val->MSHH)}}">{{$pro_val->TenHH}}</a>
+                                        <a href="{{URL::to('/product_details/'.$pro_val->MSHH)}}">{{$pro_val->TenHH}}
+                                        </a>
                                     </p>
                                     <div class="price-box">
+                                        @if($pro_val->GiamGia!=0)    
                                         <span class="price-regular">
-                                         <?php
-                                         $GiaSP = number_format($pro_val->Gia, 0, ',', ' ');
-                                         echo $GiaSP." đ";
-                                         ?>
+                                            <?php
+                                            $GiaSP = number_format($pro_val->Gia*(1-$pro_val->GiamGia), 0, ',', ' ');
+                                            echo $GiaSP." đ";
+                                            ?>
                                         </span>
-                                        {{-- <span class="price-old"><del>$80.00</del></span> --}}
+                                        <span class="price-old"><del>{{$pro_val->Gia}}</del></span>
+                                        @else
+                                        <span class="price-regular">
+                                            <?php
+                                            $GiaSP = number_format($pro_val->Gia, 0, ',', ' ');
+                                            echo $GiaSP." đ";
+                                            ?>
+                                        </span>
+                                        @endif 
                                     </div>
                                 </div>
                             </div>

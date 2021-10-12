@@ -23,26 +23,21 @@
               <th width="10%">Số Lượng</th>
               <th width="10%">Loại Hàng</th>
               <th width="15%">Nhà Sản Xuất</th>
-              <th style="text-align: center;" width="10%">Tình Trạng</th>
+              <th width="10%">Giảm Giá</th>
               <th width="10%">Hình Ảnh</th>
               <th width="5%"></th>
               <th width="5%"></th>
             </thead>
             <tbody>
               @foreach($all_product as $key => $value)
-              <tr>
+              <tr <?php if($value->TrangThai==0) echo 'style="color:red;"' ?>>
                 <td>{{$value->TenHH}}</td>
                 <td>{{number_format($value->Gia , 0, ',', ' ').'đ';}}</td>
                 <td>{{$value->SoLuongHang}}</td>
                 <td>{{$value->TenLoaiHang}}</td>
                 <td>{{$value->TenNSX}}</td>
-                <td style="text-align: center;">
-                  <?php
-                    if($value->TrangThai ==1)
-                      echo '<i class="material-icons">done</i>';
-                    else  
-                      echo '<i class="material-icons">clear</i>';
-                  ?>
+                <td>
+                  {{($value->GiamGia*100).'%';}}
                 </td>
                 <td><img src="public/upload/{{$value->hinhanh1}}" width="100"></td>
                 <td>

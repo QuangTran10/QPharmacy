@@ -101,6 +101,7 @@ class CartController extends Controller
                         'product_id'   => $data['cart_product_id'],
                         'product_image'=> $data['cart_product_image'],
                         'product_qty'  => $data['cart_product_qty'],
+                        'product_discount'=> $data['cart_product_discount'],
                         'product_price'=> $data['cart_product_price']
                     );
                     Session::put('cart',$cart);
@@ -126,6 +127,7 @@ class CartController extends Controller
                     'product_id'   => $data['cart_product_id'],
                     'product_image'=> $data['cart_product_image'],
                     'product_qty'  => $data['cart_product_qty'],
+                    'product_discount'=> $data['cart_product_discount'],
                     'product_price'=> $data['cart_product_price']
                 );
                 Session::put('cart',$cart);

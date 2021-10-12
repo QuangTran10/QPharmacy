@@ -83,6 +83,26 @@
               </div>
             </div>
             <div class="row">
+              <label class="col-sm-2 col-form-label">Giảm Giá (%)</label>
+              <div class="col-sm-10">
+                <div class="form-group">
+                  <select class="selectpicker" data-style="select-with-transition" name="GiamGia">
+                    <option value="0" {{($value_pro->GiamGia=="0")? "selected" : "" }}>0%</option>
+                    <?php
+                      for ($i=1; $i <=10; $i++) { 
+                        $a=0.1*$i;
+                    ?>
+                    <option value="<?php echo $a;?>" {{($value_pro->GiamGia==$a)? "selected" : "" }}>
+                      <?php echo ($a*100).'%';?>
+                    </option>
+                    <?php
+                      }
+                    ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <label class="col-sm-2 col-form-label">Mô Tả</label>
               <div class="col-sm-10">
                 <div class="form-group">

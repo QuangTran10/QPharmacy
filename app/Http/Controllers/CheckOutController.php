@@ -69,10 +69,10 @@ class CheckOutController extends Controller
                 $order['SoDonDH']=$SoDonDH;
                 $order['MSHH']=$v_content['product_id'];
                 $order['SoLuong']=$v_content['product_qty'];
-                $order['GiamGia']=0;
+                $order['GiamGia']=$v_content['product_discount'];
                 $order['GiaDatHang']=$v_content['product_price'];
-                $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']);
-                $total=$total+$v_content['product_price']*$v_content['product_qty'];
+                $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
+                $total=$total+$v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']);
                 $result=DB::table('chitietdathang')->insert($order);
             }   
             if($total<1000000){

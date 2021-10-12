@@ -57,18 +57,38 @@
                                             </div>
                                         </div>
                                         <div class="price-box">
+                                            @if($value_pro->GiamGia!=0)    
                                             <span class="price-regular">
-                                            	<?php
+                                                <?php
+                                                $GiaSP = number_format($value_pro->Gia*(1-$value_pro->GiamGia), 0, ',', ' ');
+                                                echo $GiaSP." đ";
+                                                ?>
+                                            </span>
+                                            <span class="price-old">
+                                                <del>
+                                                    <?php
+                                                    $GiaSP = number_format($value_pro->Gia, 0, ',', ' ');
+                                                    echo $GiaSP." đ";
+                                                    ?>
+                                                </del>
+                                            </span>
+                                            @else
+                                            <span class="price-regular">
+                                                <?php
                                                 $GiaSP = number_format($value_pro->Gia, 0, ',', ' ');
                                                 echo $GiaSP." đ";
                                                 ?>
                                             </span>
-                                            {{-- <span class="price-old"><del>$90.00</del></span> --}}
+                                            @endif 
                                         </div>
                                         <div class="product-countdown" data-countdown="2021/12/25"></div>
                                         <div class="availability">
-                                            <i class="fa fa-check-circle"></i>
-                                            <span>{{$value_pro->SoLuongHang}} trong kho</span>
+                                            @if($value_pro->SoLuongHang==0)
+                                                <span style="color: red;">HẾT HÀNG</span>
+                                            @else
+                                                <i class="fa fa-check-circle"></i>
+                                                <span>{{$value_pro->SoLuongHang}} trong kho</span>
+                                            @endif
                                         </div>
                                         <p class="pro-desc">{{$value_pro->MoTa}}</p>
                                         <form>
@@ -84,11 +104,12 @@
                                                 <input type="hidden" name="Name" value="{{$value_pro->TenHH}}" class="cart_product_name_{{$value_pro->MSHH}}">
                                                 <input type="hidden" name="Image" value="{{$value_pro->hinhanh1}}" class="cart_product_image_{{$value_pro->MSHH}}">
                                                 <input type="hidden" name="Price" value="{{$value_pro->Gia}}" class="cart_product_price_{{$value_pro->MSHH}}">
+                                                <input type="hidden" name="Discount" value="{{$value_pro->GiamGia}}" class="cart_product_discount_{{$value_pro->MSHH}}">
                                                 <div class="quantity">
                                                     <div class="pro-qty"><input type="text" value="1" min="1" name="SoLuong" class="cart_product_qty_{{$value_pro->MSHH}}"></div>
                                                 </div>
                                                 <div class="action_link">
-                                                    <input data-id="{{$value_pro->MSHH}}" class="btn btn-cart2 add_cart" name="add_cart" value="Thêm Vào Giỏ Hàng">
+                                                    <input data-id="{{$value_pro->MSHH}}" class="btn btn-cart2 add_cart" name="add_cart" value="Thêm Vào Giỏ Hàng" <?php if($value_pro->SoLuongHang==0) echo 'disabled="disabled"';?>>
                                                 </div>
                                             </div>    
                                         </form>
@@ -229,11 +250,18 @@
                                         <div class="product-label new">
                                             <span>new</span>
                                         </div>
+                                        @if($value->GiamGia!=0)
+                                        <div class="product-label discount">
+                                            <span>{{$value->GiamGia*100}}%</span>
+                                        </div>
+                                        @endif
                                     </div>
                                     <div class="button-group">
                                         <a href="#" class="add_favourite" data-toggle="tooltip" data-placement="left" data-id_product={{$value->MSHH}}><i class="lnr lnr-heart"></i></a>
                                         <a href="#" class="quick_view" data-toggle="modal" data-target="#quick_view" data-id_product={{$value->MSHH}}><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
+                                        @if($value->SoLuongHang!=0)
                                         <button type="button" name="add_to_cart"><a href="" data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-cart"></i></a></button>
+                                        @endif
                                     </div>
                                 </figure>
                                 <div class="product-caption">
@@ -241,13 +269,22 @@
                                         <a href="{{URL::to('/product_details/'.$value->MSHH)}}">{{$value_pro->TenHH}}</a>
                                     </p>
                                     <div class="price-box">
-                                    	<span class="price-regular">
-                                    		<?php
-                                    		$GiaSP = number_format($value_pro->Gia, 0, ',', ' ');
-                                    		echo $GiaSP." đ";
-                                    		?>
-                                    	</span>
-                                        {{-- <span class="price-old"><del>$80.00</del></span> --}}
+                                    	@if($value->GiamGia!=0)    
+                                            <span class="price-regular">
+                                                <?php
+                                                $GiaSP = number_format($value->Gia*(1-$value->GiamGia), 0, ',', ' ');
+                                                echo $GiaSP." đ";
+                                                ?>
+                                            </span>
+                                            <span class="price-old"><del>{{$value->Gia}}</del></span>
+                                        @else
+                                            <span class="price-regular">
+                                                <?php
+                                                $GiaSP = number_format($value->Gia, 0, ',', ' ');
+                                                echo $GiaSP." đ";
+                                                ?>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 </form>

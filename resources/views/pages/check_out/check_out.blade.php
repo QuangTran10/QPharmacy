@@ -148,6 +148,7 @@
                                     <?php
                                     $content =  Session::get('cart');
                                     $total=0;
+                                    $total_dis=0;
                                     ?>
                                  <!-- Order Summary Table -->
                                  <div class="order-summary-table table-responsive text-center">
@@ -161,7 +162,8 @@
                                         <tbody>
                                         	@foreach($content as $value) 
                                             @php
-                                            $total=$total+ $value['product_price']*$value['product_qty'];
+                                            $total=$total+ $value['product_price']*$value['product_qty']*(1-$value['product_discount']);
+                                            $total_dis=$total_dis+ $value['product_price']*$value['product_qty']*($value['product_discount']);
                                             @endphp
                                             <tr>
                                                 <td>
@@ -176,6 +178,10 @@
                                             <tr>
                                                 <td>Tổng Tiền Hàng</td>
                                                 <td>{{number_format($total , 0, ',', ' ').'đ';}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tổng Tiền Đã Giảm</td>
+                                                <td>{{number_format($total_dis , 0, ',', ' ').'đ';}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Phí Vận Chuyển</td>

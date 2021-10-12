@@ -426,20 +426,20 @@
                         <div class="col-lg-5 col-md-6 col-sm-8">
                             <div class="footer-widget-item mb-30">
                                 <div class="footer-widget-title">
-                                    <h5>My account</h5>
+                                    <h5>QPharmacy</h5>
                                 </div>
                                 <ul class="footer-widget-body accout-widget">
                                     <li class="address">
                                         <em><i class="lnr lnr-map-marker"></i></em>
-                                        184 Main Rd E, St Albans VIC 3021, Australia
+                                        27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng 
                                     </li>
                                     <li class="email">
-                                        <em><i class="lnr lnr-envelope"></i>Mail us: </em>
-                                        <a href="mailto:test@yourdomain.com">yourmail@gmail.com</a>
+                                        <em><i class="lnr lnr-envelope"></i>Email: </em>
+                                        <a href="mailto:qtran8219@gmail.com">qtran8219@gmail.com</a>
                                     </li>
                                     <li class="phone">
-                                        <em><i class="lnr lnr-phone-handset"></i> Phones: </em>
-                                        <a href="tel:(012)800456789-987">(012) 800 456 789-987</a>
+                                        <em><i class="lnr lnr-phone-handset"></i> Số Điện Thoại: </em>
+                                        <a href="tel:0859083181">(+84) 859083182 </a>
                                     </li>
                                 </ul>
                                 <div class="payment-method">
@@ -552,16 +552,11 @@
                                 <div class="product-details-des quick-details">
                                     <h3 class="product-name" id="product-name"></h3>
                                     <div class="ratings d-flex" >
-                                        <div id="product-rating">
-                                            
-                                        </div>
-                                        <div class="pro-review" id="product-review">
-                                            
-                                        </div>
+                                        <div id="product-rating"></div>
+                                        <div class="pro-review" id="product-review"></div>
                                     </div>
                                     <div class="price-box">
                                         <span class="price-regular" id="product-price"></span>
-                                        {{-- <span class="price-old"><del>$90.00</del></span> --}}
                                     </div>
                                     <h5 class="offer-text"><strong>Hurry up</strong>! offer ends in:</h5>
                                     <div class="product-countdown" data-countdown="2021/12/25"></div>
@@ -569,8 +564,7 @@
                                         <i class="fa fa-check-circle"></i>
                                         <span id="product-qty"></span> in stock
                                     </div>
-                                    <p class="pro-desc" id="product-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+                                    <p class="pro-desc" id="product-desc"></p>
                                     <div class="quantity-cart-box d-flex align-items-center">
                                         <h5>qty:</h5>
                                         <div class="quantity">
@@ -690,13 +684,20 @@
                         var cart_product_image = $('.cart_product_image_' + id).val();
                         var cart_product_price = $('.cart_product_price_' + id).val();
                         var cart_product_qty = $('.cart_product_qty_' + id).val();
+                        var cart_product_discount = $('.cart_product_discount_' + id).val();
                         var _token = $('input[name="_token"]').val();
 
                         $.ajax({
                             url: '{{url('/add_cart_ajax')}}',
                             method: 'POST',
                             dataType: 'JSON',
-                            data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                            data:{cart_product_id:cart_product_id,
+                                cart_product_name:cart_product_name,
+                                cart_product_image:cart_product_image,
+                                cart_product_price:cart_product_price,
+                                cart_product_qty:cart_product_qty,
+                                cart_product_discount:cart_product_discount,
+                                _token:_token},
                             success:function(data){
                                 if(data.error==0){
                                     $('#minicart').html(data.count);

@@ -50,6 +50,7 @@ class ProductController extends Controller
     	$data['MaLoaiHang'] = $re->LoaiHang;
         $data['MaNSX'] = $re->NSX;
     	$data['MoTa'] = $re->MoTa;
+        $data['GiamGia']=0;
     	$data['TrangThai'] = $re->TrangThai;
     	$data['TG_Tao'] = $now;
     	$data['TG_CapNhat'] = $now;
@@ -89,6 +90,7 @@ class ProductController extends Controller
         $data['MaLoaiHang'] = $re->LoaiHang;
         $data['MaNSX'] = $re->NSX;
         $data['MoTa'] = $re->MoTa;
+        $data['GiamGia']=$re->GiamGia;
         $data['TrangThai'] = $re->TrangThai;
         $data['TG_Tao']= $re->TG_Tao;
         $data['TG_CapNhat'] = $now;
@@ -111,8 +113,7 @@ class ProductController extends Controller
     //Chuyển trang xoá SP
     public function delete($id,$hinhanh){
         $this->AuthLogin();
-        File::delete('public/upload/'.$hinhanh);
-        DB::table('hanghoa')->where('MSHH',$id)->delete();
+        DB::table('hanghoa')->where('MSHH',$id)->update(['TrangThai'=>0]);
         return Redirect::to('product_management');
     }
 

@@ -132,12 +132,14 @@
                                             <img class="sec-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
                                         </a>
                                         <div class="product-badge">
-                                            <div class="product-label new">
+                                            {{-- <div class="product-label new">
                                                 <span>new</span>
-                                            </div>
+                                            </div> --}}
+                                            @if($value->GiamGia!=0)
                                             <div class="product-label discount">
-                                                <span>10%</span>
+                                                <span>{{$value->GiamGia*100}}%</span>
                                             </div>
+                                            @endif
                                             <form>
                                                 {{csrf_field()}}
                                                 <div class="quantity-cart-box d-flex align-items-center">
@@ -145,6 +147,7 @@
                                                     <input type="hidden" name="Name" value="{{$value->TenHH}}" class="cart_product_name_{{$value->MSHH}}">
                                                     <input type="hidden" name="Image" value="{{$value->hinhanh1}}" class="cart_product_image_{{$value->MSHH}}">
                                                     <input type="hidden" name="Price" value="{{$value->Gia}}" class="cart_product_price_{{$value->MSHH}}">
+                                                    <input type="hidden" name="Discount" value="{{$value->GiamGia}}" class="cart_product_discount_{{$value->MSHH}}">
                                                     <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_{{$value->MSHH}}">
                                                 </div>    
                                             </form>
@@ -152,7 +155,9 @@
                                         <div class="button-group">
                                             <a href="#" class="add_favourite" data-toggle="tooltip" data-placement="left" data-id_product={{$value->MSHH}}><i class="lnr lnr-heart"></i></a>
                                             <a href="#" class="quick_view" data-toggle="modal" data-target="#quick_view" data-id_product={{$value->MSHH}}><span data-toggle="tooltip" data-placement="left" ><i class="lnr lnr-magnifier"></i></span></a>
+                                            @if($value->SoLuongHang!=0)
                                             <button><a data-id="{{$value->MSHH}}" data-toggle="tooltip" data-placement="left" class="add_cart" ><i class="lnr lnr-cart"></i></a></button>
+                                            @endif
                                         </div>
                                     </figure>
                                     <div class="product-caption">
@@ -160,13 +165,22 @@
                                             <a href="{{URL::to('/product_details/'.$value->MSHH)}}">{{$value->TenHH}}</a>
                                         </p>
                                         <div class="price-box">
+                                        @if($value->GiamGia!=0)    
+                                            <span class="price-regular">
+                                                <?php
+                                                $GiaSP = number_format($value->Gia*(1-$value->GiamGia), 0, ',', ' ');
+                                                echo $GiaSP." đ";
+                                                ?>
+                                            </span>
+                                            <span class="price-old"><del>{{$value->Gia}}</del></span>
+                                        @else
                                             <span class="price-regular">
                                                 <?php
                                                 $GiaSP = number_format($value->Gia, 0, ',', ' ');
                                                 echo $GiaSP." đ";
                                                 ?>
                                             </span>
-                                            {{-- <span class="price-old"><del>$50.00</del></span> --}}
+                                        @endif    
                                         </div>
                                     </div>
                                 </div>
@@ -200,12 +214,22 @@
                                         <div class="product-content-list">
                                             <h5 class="product-name"><a href="">{{$value->TenHH}}</a></h5>
                                             <div class="price-box">
+                                                @if($value->GiamGia!=0)    
+                                                <span class="price-regular">
+                                                    <?php
+                                                    $GiaSP = number_format($value->Gia*(1-$value->GiamGia), 0, ',', ' ');
+                                                    echo $GiaSP." đ";
+                                                    ?>
+                                                </span>
+                                                <span class="price-old"><del>{{$value->Gia}}đ</del></span>
+                                                @else
                                                 <span class="price-regular">
                                                     <?php
                                                     $GiaSP = number_format($value->Gia, 0, ',', ' ');
                                                     echo $GiaSP." đ";
                                                     ?>
                                                 </span>
+                                                @endif    
                                             </div>
                                             <p>{{$value->MoTa}}</p>
                                             <div class="button-group-list">
@@ -219,19 +243,6 @@
                             </div>
                             @endforeach
                         </div>
-
-                        
-                        {{-- <!-- start pagination area -->
-                        <div class="paginatoin-area text-center">
-                            <ul class="pagination-box">
-                                <li><a class="previous" href="#"><i class="lnr lnr-chevron-left"></i></a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a class="next" href="#"><i class="lnr lnr-chevron-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- end pagination area --> --}}
                     </div>
                 </div>
                 <!-- shop main wrapper end -->

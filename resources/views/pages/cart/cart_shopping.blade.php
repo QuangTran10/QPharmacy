@@ -42,6 +42,7 @@
                                                 <th class="pro-thumbnail"></th>
                                                 <th class="pro-title">Tên Sản Phẩm</th>
                                                 <th class="pro-price">Giá</th>
+                                                <th class="pro-price">Giảm Giá</th>
                                                 <th class="pro-quantity">Số Lượng</th>
                                                 <th class="pro-subtotal">Thành Tiền</th>
                                                 <th class="pro-remove"></th>
@@ -57,7 +58,7 @@
                                             
                                             @foreach($cart as $key => $value)  
                                             @php
-                                            $total=$total+ $value['product_price']*$value['product_qty'];
+                                            $total=$total+ $value['product_price']*$value['product_qty']*(1-$value['product_discount']);
                                             @endphp
                                             <tr>
                                                 <td class="pro-thumbnail">
@@ -71,6 +72,11 @@
                                                         {{number_format($value['product_price'] , 0, ',', ' ').'đ';}}
                                                     </span>
                                                 </td>
+                                                <td class="pro-price">
+                                                    <span>
+                                                        {{$value['product_discount']*100}}%
+                                                    </span>
+                                                </td>
                                                 <td class="pro-quantity">    
                                                     <div class="pro-qty">
                                                         <input type="text" value="{{$value['product_qty']}}" name="quantity[{{$value['session_id']}}]">
@@ -78,7 +84,7 @@
                                                 </td>
                                                 <td class="pro-subtotal">
                                                     <span>
-                                                        {{number_format($value['product_price']*$value['product_qty'] , 0, ',', ' ').'đ';}}
+                                                        {{number_format($value['product_price']*$value['product_qty']*(1-$value['product_discount']) , 0, ',', ' ').'đ';}}
                                                     </span>
                                                 </td>
                                                 <td class="pro-remove" ><a href="{{URL::to('/delete_cart/'.$value['session_id'])}}"><i class="fa fa-trash-o"></i></a></td>
