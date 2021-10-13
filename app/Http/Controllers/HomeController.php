@@ -31,11 +31,14 @@ class HomeController extends Controller
             $pro_best_seller[]=DB::table('hanghoa')->where('MSHH',$value->MSHH)->first();
         }
         
+        $new_product = DB::table('hanghoa')->orderBy('MSHH','desc')->limit(8)->get();
+
     	return view('pages.home')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('pro_best_seller',$pro_best_seller);
+        ->with('pro_best_seller',$pro_best_seller)
+        ->with('new_product',$new_product);
     }
 
     public function search(Request $re){

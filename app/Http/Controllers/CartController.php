@@ -24,7 +24,6 @@ class CartController extends Controller
             return Redirect::to('/cart_shopping');
         }
     }
-
     public function del_Cart($session_id){
         $cart = Session::get('cart');
         if($cart==true){
@@ -34,6 +33,7 @@ class CartController extends Controller
                 }
             }
             Session::put('cart',$cart);
+            echo json_encode(1);
         }
     }
 
@@ -160,15 +160,19 @@ class CartController extends Controller
     public function show_mini_cart(){
         $cart=Session::get('cart');
         $total=0;
+        $dis_total = 0;
         $output='';
         if ($cart) {
             $output.='<div class="minicart-content-box">
                         <div class="minicart-item-wrapper" >
                             <ul id="minicart_cnt">';
             foreach ($cart as $key => $value) {
-                $total=$total+$value['product_price']*$value['product_qty'];
+                $total=$total+$value['product_price']*$value['product_qty']*(1-$value['product_discount']);
+                $dis_total =$dis_total+$value['product_price']*$value['product_qty']*$value['product_discount'];
                 $link_product='/product_details/'.$value['product_id'];
                 $link_image='/public/upload/'.$value['product_image'];
+                $link_delete_cart= '/delete_cart/'.$value['session_id'];
+
                 $output.='<li class="minicart-item">
                 <div class="minicart-thumb">
                 <a href="'.url($link_product).'">
@@ -182,7 +186,7 @@ class CartController extends Controller
                 <p>
                 <span class="cart-quantity">'.$value['product_qty'].'<strong>&times;</strong></span>
                 <span class="cart-price"> '.
-                number_format($value['product_price']*$value['product_qty'] , 0, ',', ' ').'đ'.'
+                number_format($value['product_price']*$value['product_qty']*(1-$value['product_discount']) , 0, ',', ' ').'đ'.'
                 </span>
                 </p>
                 </div>
@@ -192,13 +196,16 @@ class CartController extends Controller
                         </div>
                         <div class="minicart-pricing-box">
                         <ul>
+                        <li>
+                        <span>Tổng Tiền Đã Giảm</span>
+                        <span><strong>'.number_format($dis_total , 0, ',', ' ').'đ'.'</strong></span>
+                        </li>
                         <li class="total">
                         <span>Thành Tiền</span>
                         <span><strong>'.number_format($total , 0, ',', ' ').'đ'.'</strong></span>
                         </li>
                         </ul>
                         </div>
-
                         <div class="minicart-button">
                         <a href="'.url('/cart_shopping').'"><i class="fa fa-shopping-cart"></i> Xem Giỏ Hàng</a>
                         <a href="'.url('/check_out').' "><i class="fa fa-share"></i> Thanh Toán</a>
@@ -208,6 +215,7 @@ class CartController extends Controller
             <p>Không có sản phẩm nào trong giỏ.<br><a href="'.url('/trang_chu').'">Mời bạn mua hàng</a></p>
             </li>';
         }
+
         echo $output;
     }
 }

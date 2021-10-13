@@ -262,7 +262,7 @@
                             </div>
                             <div class="mobile-menu-toggler">
                                 <div class="mini-cart-wrap">
-                                    <a href="cart.html">
+                                    <a href="{{URL::to('/cart_shopping')}}">
                                         <i class="lnr lnr-cart"></i>
                                     </a>
                                 </div>
@@ -308,10 +308,6 @@
                     <nav>
                         <ul class="mobile-menu">
                             <li class="menu-item-has-children"><a href="{{URL::to('/trang_chu')}}">Trang Chủ</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Home version 01</a></li>
-                                    <li><a href="index-2.html">Home version 02</a></li>
-                                </ul>
                             </li>
                             <li class="menu-item-has-children"><a href="#">Sản Phẩm</a>
                                 <ul class="megamenu dropdown">
@@ -543,9 +539,7 @@
                         <div class="row">
                             <div class="col-lg-5 col-md-5">
                                 <div class="product-large-slider">
-                                    <div class="pro-large-img img-zoom" id="product-image">
-
-                                    </div>
+                                    <div class="pro-large-img img-zoom" id="product-image"></div>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-7">
@@ -558,43 +552,41 @@
                                     <div class="price-box">
                                         <span class="price-regular" id="product-price"></span>
                                     </div>
-                                    <h5 class="offer-text"><strong>Hurry up</strong>! offer ends in:</h5>
                                     <div class="product-countdown" data-countdown="2021/12/25"></div>
                                     <div class="availability">
                                         <i class="fa fa-check-circle"></i>
-                                        <span id="product-qty"></span> in stock
+                                        <span id="product-qty"></span> trong kho
                                     </div>
                                     <p class="pro-desc" id="product-desc"></p>
                                     <div class="quantity-cart-box d-flex align-items-center">
-                                        <h5>qty:</h5>
+                                        <h5>Số Lượng:</h5>
                                         <div class="quantity">
                                             <div class="pro-qty"><input type="text" value="1"></div>
                                         </div>
                                         <div class="action_link">
-                                            <a class="btn btn-cart2" href="#">Add to cart</a>
+                                            <a class="btn btn-cart2" href="#">Thêm Vào Giỏ Hàng</a>
                                         </div>
                                     </div>
                                     <div class="useful-links">
-                                        <a href="#" data-toggle="tooltip" title="Compare"><i
-                                            class="lnr lnr-sync"></i>compare</a>
-                                            <a href="#" data-toggle="tooltip" title="Wishlist"><i
-                                                class="lnr lnr-heart"></i>wishlist</a>
-                                            </div>
-                                            <div class="like-icon">
-                                                <a class="facebook" href="#"><i class="fa fa-facebook"></i>like</a>
-                                                <a class="twitter" href="#"><i class="fa fa-twitter"></i>tweet</a>
-                                                <a class="pinterest" href="#"><i class="fa fa-pinterest"></i>save</a>
-                                                <a class="google" href="#"><i class="fa fa-google-plus"></i>share</a>
-                                            </div>
-                                        </div>
+                                        <a href="#" data-toggle="tooltip" title="Wishlist"><i
+                                            class="lnr lnr-heart"></i>Yêu Thích
+                                        </a>
+                                    </div>
+                                    <div class="like-icon">
+                                        <a class="facebook" href="#"><i class="fa fa-facebook"></i>like</a>
+                                        <a class="twitter" href="#"><i class="fa fa-twitter"></i>tweet</a>
+                                        <a class="pinterest" href="#"><i class="fa fa-pinterest"></i>save</a>
+                                        <a class="google" href="#"><i class="fa fa-google-plus"></i>share</a>
                                     </div>
                                 </div>
-                            </div> <!-- product details inner end -->
+                            </div>
                         </div>
-                    </div>
+                    </div> <!-- product details inner end -->
                 </div>
             </div>
-            <!-- Quick view modal end -->
+        </div>
+    </div>
+    <!-- Quick view modal end -->
 
             <!-- offcanvas search form start -->
             <div class="offcanvas-search-wrapper">
@@ -626,10 +618,7 @@
                         @php
                         $total=0;
                         @endphp    
-
-                        <div class="minicart-content-box" id="minicart_cnt">
-
-                        </div>
+                        <div class="minicart-content-box" id="minicart_cnt"></div>
                     </div>
                 </div>
             </div>
@@ -666,6 +655,7 @@
                             }
                         });
                     }
+                    //Đếm các sp trong yêu thích
                     function load_wishlist(){
                         $.ajax({
                             url: '{{url('/count_wishlist')}}',
@@ -676,7 +666,7 @@
                             }
                         });
                     }
-                    
+                    //Thêm vào giỏ hàng
                     $('.add_cart').click(function(){
                         var id = $(this).data('id');
                         var cart_product_id = $('.cart_product_id_' + id).val();
@@ -795,6 +785,7 @@
                             }
                         });
                     }
+                    //Thêm đánh giá
                     $('.cmt_add').click(function(){
                         var id_product = $('.cmt_pro_id').val();
                         var content = $('.cmt_content').val();
@@ -819,6 +810,7 @@
                             }
                         });
                     });
+                    //Lọc sản phẩm
                     $('#sort_by').on('change', function(){  
                         var url = $(this).val();
                         if(url){
