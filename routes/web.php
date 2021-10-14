@@ -19,6 +19,8 @@ Route::get('/trang_chu', 'App\Http\Controllers\HomeController@index');
 
 Route::get('/search', 'App\Http\Controllers\HomeController@search');
 
+Route::get('/contact_us', 'App\Http\Controllers\HomeController@contact_us');
+
 //user interface -> shopping cart
 
 Route::get('/show_mini_cart', 'App\Http\Controllers\CartController@show_mini_cart');
@@ -201,3 +203,9 @@ Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_stati
 Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
 Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
+
+//admin interface -> discount
+
+Route::get('/show_discount', 'App\Http\Controllers\DiscountController@show_discount');
+
+Route::post('/select_option_discount', 'App\Http\Controllers\DiscountController@select_discount');

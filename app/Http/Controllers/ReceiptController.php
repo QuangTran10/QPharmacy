@@ -13,8 +13,17 @@ session_start();
 
 class ReceiptController extends Controller
 {
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
 	//Danh sách
 	public function show_all(){
+        $this->AuthLogin();
 		$all= DB::table('phieuthu')->get();
 		Session::put('page',7);
 		return view('admin.Receipt.receipt_all')->with('all_receipt', $all);
@@ -22,6 +31,7 @@ class ReceiptController extends Controller
 
     //Thêm phiếu nhập
     public function show_add(){
+        $this->AuthLogin();
     	$all_product = DB::table('hanghoa')->join('nhasanxuat', 'hanghoa.MaNSX', '=', 'nhasanxuat.MaNSX')
         ->where('MaPhieu',NULL)->get();
 
@@ -31,6 +41,7 @@ class ReceiptController extends Controller
 
     //add
     public function add(Request $re){
+        $this->AuthLogin();
     	$data= $re->all();
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
 

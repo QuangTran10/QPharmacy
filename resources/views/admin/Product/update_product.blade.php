@@ -13,13 +13,13 @@
         </div>
         <div class="card-body ">
           @foreach($all_product as $key => $value_pro)
-          <form method="post" action="{{URL::to('/edit_product/'.$value_pro->MSHH)}}" class="form-horizontal" enctype="multipart/form-data">
+          <form method="post" action="{{URL::to('/edit_product/'.$value_pro->MSHH)}}" class="form-horizontal" enctype="multipart/form-data" id="UpdateProduct">
             {{csrf_field() }}
             <div class="row">
               <label class="col-sm-2 col-form-label">Tên Hàng Hoá</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="TenHangHoa" value="{{$value_pro->TenHH}}">
+                  <input type="text" class="form-control" name="TenHangHoa" value="{{$value_pro->TenHH}}" id="TenLoaiHang">
                 </div>
               </div>
             </div>
@@ -27,7 +27,7 @@
               <label class="col-sm-2 col-form-label">Giá</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="Gia" value="{{$value_pro->Gia}}">
+                  <input type="text" class="form-control" name="Gia" value="{{$value_pro->Gia}}" id="Gia">
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
               <label class="col-sm-2 col-form-label">Số Lượng</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="number" class="form-control" name="SoLuong" min="0" value="{{$value_pro->SoLuongHang}}">
+                  <input type="number" class="form-control" name="SoLuong" min="1" value="{{$value_pro->SoLuongHang}}" id="SoLuongHang">
                 </div>
               </div>
             </div>
@@ -140,5 +140,36 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $( "#UpdateProduct" ).validate({
+      rules: {
+        TenHangHoa: {
+          required: true
+        },
+        Gia:{
+          required: true,
+          number: true,
+          digits: true
+        },
+        SoLuong:{
+          required: true,
+        },
+      },
+      messages: {
+        TenHangHoa: "Tên hàng hoá không được để trống",
+        Gia:{
+          required: "Giá không để trống",
+          number: "Giá phải là số",
+          digits: "Giá không là số âm"
+        },
+        SoLuong:{
+          required: "Số lượng không bỏ trống",
+        },
+      }
+    });
+  });
+</script>
 
 @endsection

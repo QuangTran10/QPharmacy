@@ -27,9 +27,7 @@
 <body class="">
   <div class="wrapper">
     <div class="sidebar" data-color="purple" data-background-color="black" data-image="{{asset('public/backend/assets/img/sidebar-1.jpg')}}">
-
       <div class="logo"><a href="" class="simple-text logo-mini">
-
         </a>
         <a href="" class="simple-text logo-normal">
           QPharmacy
@@ -127,7 +125,7 @@
             </a>
           </li>
           <li class="nav-item <?php $page = Session::get('page'); if($page==9){echo "active";} ?>">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{URL::to('/show_discount')}}">
               <i class="material-icons">confirmation_number</i>
               <p>Khuyến Mãi</p>
             </a>
@@ -163,7 +161,7 @@
           <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" value="" class="form-control" placeholder="Tìm kiếm.....">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -199,7 +197,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                  <a class="dropdown-item" href="{{URL::to('/user')}}">Thông Tin Cá Nhân</a>
                   <a class="dropdown-item" href="{{URL::to('/logout')}}">Đăng Xuất</a>
                 </div>
               </li>
@@ -547,7 +545,6 @@
         },
       });
     }
-
     $(document).ready(function() {
       setFormValidation('#ChangePassword');
     });
@@ -568,7 +565,6 @@
           }
         });
       }
-
       $('.change_pass').click(function(){
         var username = $('#username').val();
         var password = $('#password').val();

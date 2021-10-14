@@ -51,6 +51,11 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ct-chart ct-perfect-fourth" id="chart2"></div>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
   $(document).ready(function() {

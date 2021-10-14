@@ -12,6 +12,14 @@ session_start();
 
 class CommentController extends Controller
 {
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     //User interface
     public function load_comment(Request $re){
     	$MSHH = $re->id_product;
@@ -67,6 +75,7 @@ class CommentController extends Controller
 
     //admin interface
     public function show_comment(){
+        $this->AuthLogin();
         $comment_by_id= DB::table('binhluan')
         ->join('khachhang', 'khachhang.MSKH', '=', 'binhluan.MSKH')
         ->join('hanghoa', 'hanghoa.MSHH', '=', 'binhluan.MSHH')

@@ -176,7 +176,7 @@
                                                 </ul>
                                             </li>
                                             <li><a href="">Liên Hệ</a></li>
-                                            <li><a href="">Giới Thiệu</a></li>
+                                            <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->

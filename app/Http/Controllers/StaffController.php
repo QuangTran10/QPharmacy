@@ -51,7 +51,16 @@ function vn_to_str ($str){
 
 class StaffController extends Controller
 {
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function show_staff(){
+        $this->AuthLogin();
     	$admin = Session::get('admin_id');
         Session::put('page',3);
     	$staff = DB::table('nhanvien')->whereNotIn('MSNV', [$admin])->get();
@@ -59,10 +68,12 @@ class StaffController extends Controller
     }
 
     public function add_staff(){
+        $this->AuthLogin();
     	return view('admin.Staff.add_staff');
     }
 
     public function save_staff(Request $re){
+        $this->AuthLogin();
         $now = Carbon::now('Asia/Ho_Chi_Minh');
     	// $data=$re->all();
         $user_name = vn_to_str($re->HoTenNV);

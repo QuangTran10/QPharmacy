@@ -43,7 +43,7 @@
               <label class="col-sm-2 col-form-label">Số Lượng</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="number" class="form-control" name="SoLuong" min="0" id="SoLuong">
+                  <input type="number" class="form-control" name="SoLuong" min="1" id="SoLuong">
                 </div>
               </div>
             </div>
@@ -128,7 +128,8 @@
         },
         Gia:{
           required: true,
-          number: true
+          number: true,
+          digits: true
         },
         SoLuong:{
           required: true,
@@ -138,7 +139,8 @@
         TenHangHoa: "Tên hàng hoá không được để trống",
         Gia:{
           required: "Giá không để trống",
-          number: "Giá phải là số"
+          number: "Giá phải là số",
+          digits: "Giá không là số âm"
         },
         SoLuong:{
           required: "Số lượng không bỏ trống",

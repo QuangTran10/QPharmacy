@@ -13,7 +13,16 @@ session_start();
 
 class RevenueController extends Controller
 {
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function show_statistical(){
+        $this->AuthLogin();
     	Session::put('page',10);
     	return view('admin.Statistic.show_statistic');
     }

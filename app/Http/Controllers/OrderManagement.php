@@ -12,7 +12,16 @@ session_start();
 
 class OrderManagement extends Controller
 {
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function order_management(){
+        $this->AuthLogin();
     	$all_order=DB::table('dathang')->orderBy('SoDonDH','desc')->get();
         $count = DB::table('dathang')->where('TinhTrang',0)->get()->count();
     	Session::put('page',5);
@@ -35,6 +44,7 @@ class OrderManagement extends Controller
     }
 
     public function view_order($SoDonDH){
+        $this->AuthLogin();
     	$order_by_id=DB::table('dathang')
     	->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')->where('dathang.SoDonDH',$SoDonDH)->get();
     	$order_details=DB::table('chitietdathang')->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')->where('SoDonDH',$SoDonDH)->get();
