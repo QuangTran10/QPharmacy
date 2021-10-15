@@ -253,6 +253,15 @@ class ProductController extends Controller
             $output['MoTa']=$value->MoTa;
             $url = '/public/upload/'.$value->hinhanh1;
             $output['hinhanh1']='<img src="'.url($url).' " alt="product-details" />';
+            $output['quickview_value']='
+                <input type="hidden" name="Id_'.$value->MSHH.'" value="'.$value->MSHH.'" class="cart_product_id_'.$value->MSHH.'">
+                <input type="hidden" name="Name" value="'.$value->TenHH.'" class="cart_product_name_'.$value->MSHH.'">
+                <input type="hidden" name="Image" value="'.$value->hinhanh1.'" class="cart_product_image_'.$value->MSHH.'">
+                <input type="hidden" name="Price" value="'.$value->Gia.'" class="cart_product_price_'.$value->MSHH.'">
+                <input type="hidden" name="Discount" value="'.$value->GiamGia.'" class="cart_product_discount_'.$value->MSHH.'">
+                <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_'.$value->MSHH.'">';
+            $output['button_quickview']='
+            <a class="btn btn-cart2" href="#">Thêm Vào Giỏ Hàng</a>';   
         }
         $output['review']='<span>'.$count.' Đánh Giá</span>';
         echo json_encode($output);

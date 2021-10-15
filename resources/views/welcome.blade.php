@@ -153,29 +153,10 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="shop.html">Tin Tức <i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">shop grid layout <i class="fa fa-angle-right"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="">shop grid left sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">shop list layout <i class="fa fa-angle-right"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="">shop list left sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">products details <i class="fa fa-angle-right"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-details-affiliate.html">product details affiliate</a></li>
-                                                            <li><a href="product-details-variable.html">product details variable</a></li>
-                                                            <li><a href="product-details-group.html">product details group</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
+                                            <li>
+                                                <a href="">Tin Tức</a>
                                             </li>
-                                            <li><a href="">Liên Hệ</a></li>
+                                            <li><a href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
                                             <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
                                         </ul>
                                     </nav>
@@ -331,16 +312,9 @@
                                 </ul>
                             </li>
                             <li class="menu-item-has-children "><a href="#">Tin Tức</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog-left-sidebar.html">blog left sidebar</a></li>
-                                    <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
-                                    <li><a href="blog-grid-full-width.html">blog grid no sidebar</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                    <li><a href="blog-details-left-sidebar.html">blog details left sidebar</a></li>
-                                </ul>
                             </li>
-                            <li><a href="contact-us.html">Liên Hệ</a></li>
-                            <li><a href="contact-us.html">Giới Thiệu</a></li>
+                            <li><a href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
+                            <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
                         </ul>
                     </nav>
                     <!-- mobile menu navigation end -->
@@ -446,51 +420,38 @@
                         <!-- footer widget item end -->
 
                         <!-- footer widget item start -->
-                        <div class="col-lg-2 col-md-6 col-sm-4">
+                        <div class="col-lg-3 col-md-6 col-sm-4">
                             <div class="footer-widget-item mb-30">
                                 <div class="footer-widget-title">
-                                    <h5>categories</h5>
+                                    <h5>Danh Mục</h5>
                                 </div>
                                 <ul class="footer-widget-body">
-                                    <li><a href="#">Ecommerce</a></li>
-                                    <li><a href="#">shopify</a></li>
-                                    <li><a href="#">Prestashop</a></li>
-                                    <li><a href="#">Opencart</a></li>
-                                    <li><a href="#">Magento</a></li>
+                                    @foreach($category as $key => $value_cate)
+                                    @if($value_cate->MaLoaiHang %2 ==0)    
+                                    <li>
+                                        <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
+                                    </li>
+                                    @endif
+                                    @endforeach   
                                 </ul>
                             </div>
                         </div>
                         <!-- footer widget item end -->
 
                         <!-- footer widget item start -->
-                        <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="footer-widget-item mb-30">
                                 <div class="footer-widget-title">
-                                    <h5>information</h5>
+                                    <h5></h5>
                                 </div>
                                 <ul class="footer-widget-body">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Exchanges</a></li>
-                                    <li><a href="#">Shipping</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- footer widget item end -->
-
-                        <!-- footer widget item start -->
-                        <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6">
-                            <div class="footer-widget-item mb-30">
-                                <div class="footer-widget-title">
-                                    <h5>Quick Links</h5>
-                                </div>
-                                <ul class="footer-widget-body">
-                                    <li><a href="#">Store Location</a></li>
-                                    <li><a href="#">My Account</a></li>
-                                    <li><a href="#">Orders Tracking</a></li>
-                                    <li><a href="#">Size Guide</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    @foreach($category as $key => $value_cate)    
+                                    @if($value_cate->MaLoaiHang %2 !=0)    
+                                    <li>
+                                        <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
+                                    </li>
+                                    @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -552,6 +513,7 @@
                                     <div class="price-box">
                                         <span class="price-regular" id="product-price"></span>
                                     </div>
+                                    
                                     <div class="product-countdown" data-countdown="2021/12/25"></div>
                                     <div class="availability">
                                         <i class="fa fa-check-circle"></i>
@@ -559,11 +521,7 @@
                                     </div>
                                     <p class="pro-desc" id="product-desc"></p>
                                     <div class="quantity-cart-box d-flex align-items-center">
-                                        <h5>Số Lượng:</h5>
-                                        <div class="quantity">
-                                            <div class="pro-qty"><input type="text" value="1"></div>
-                                        </div>
-                                        <div class="action_link">
+                                        <div class="action_link" id="button_quickview">
                                             <a class="btn btn-cart2" href="#">Thêm Vào Giỏ Hàng</a>
                                         </div>
                                     </div>
@@ -728,6 +686,7 @@
                         }
                     });
                 });
+                
                 //Thêm sản phẩm yêu thích
                 $('.add_favourite').click(function(){
                     var id_product = $(this).data('id_product');

@@ -96,12 +96,15 @@ class HomeController extends Controller
         $meta_tittle="QPharmacy";
         $url=url()->current();
 
+        $contact_list = DB::table('lienhe')->first();
+
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
 
         return view('pages.contact.contact')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('contact_list',$contact_list);
     }
 }
