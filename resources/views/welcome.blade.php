@@ -181,18 +181,17 @@
                                                 <i class="lnr lnr-user"></i>
                                             </a>
                                             <ul class="dropdown-list">
-                                                <li><a href="{{URL::to('/login_home')}}">Đăng Nhập</a></li>
-                                                <li><a href="{{URL::to('/register_home')}}">Đăng Ký</a></li>
                                                 <?php
                                                 $name_user= Session::get('user_name');
-                                                if($name_user){
                                                 ?>
+                                                @if($name_user)
                                                 <li><a href="{{URL::to('/my_account')}}">Tài Khoản Của Tôi</a></li>
                                                 <li><a href="{{URL::to('/show_order')}}">Đơn Hàng</a></li>
                                                 <li><a href="{{URL::to('/logout_user')}}">Đăng Xuất</a></li>
-                                                <?php
-                                                }
-                                                ?> 
+                                                @else
+                                                <li><a href="{{URL::to('/login_home')}}">Đăng Nhập</a></li>
+                                                <li><a href="{{URL::to('/register_home')}}">Đăng Ký</a></li>
+                                                @endif
                                             </ul>
                                         </li>
                                         <li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2021 at 01:53 AM
+-- Generation Time: Oct 15, 2021 at 02:10 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -287,7 +287,7 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`MSKH`, `HoTenKH`, `GioiTinh`, `Ngay`, `Thang`, `Nam`, `SoDienThoai`, `Email`, `TaiKhoan`, `MatKhau`, `HoatDong`, `TG_Tao`, `TG_CapNhat`) VALUES
-(4, 'Trần Thanh Quang', 1, 29, 10, 2000, '0859083181', 'qtran8219@gmail.com', 'quangquang', 'e10adc3949ba59abbe56e057f20f883e', 1, '2021-09-13 09:57:08', '2021-09-17 13:42:24'),
+(4, 'Trần Thanh Quang', 1, 29, 10, 2000, '0859083181', 'qtran8219@gmail.com', 'quangquang', '790f377a3eccd349efa09e24e3df7a01', 1, '2021-09-13 09:57:08', '2021-09-17 13:42:24'),
 (5, 'Trần Thanh Tân', 0, 11, 8, 2010, '0859083182', 'thanhtan1108@gmail.com', 'tan', 'e10adc3949ba59abbe56e057f20f883e', 1, '2021-10-03 09:35:00', '2021-10-03 09:35:00'),
 (6, 'Nguyễn Văn Entony', 1, 7, 7, 2000, '0859083182', 'entony@gmail.com.vn', 'nguyenvanentony', '25d55ad283aa400af464c76d713c07ad', 1, '2021-10-11 16:43:29', '2021-10-11 16:43:29');
 

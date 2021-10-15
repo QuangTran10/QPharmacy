@@ -35,13 +35,10 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4">
                                     <div class="myaccount-tab-menu nav" role="tablist">
-                                        {{-- <a href="#dashboad"  data-toggle="tab"><i class="fa fa-dashboard"></i>
-                                        Dashboard</a> --}}
                                         <a href="#account-info" class="active" data-toggle="tab"><i class="fa fa-user"></i>
                                         Thông Tin Cá Nhân</a>
                                         <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i>
                                         Đổi Mật Khẩu</a>
-                                        <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i>Payment Method</a>
                                         <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i>
                                         Địa Chỉ Nhận Hàng</a>
                                         <a href="{{URL::to('/logout_user')}}"><i class="fa fa-sign-out"></i> Đăng Xuất</a>
@@ -53,43 +50,33 @@
                                 <div class="col-lg-9 col-md-8">
                                     <div class="tab-content" id="myaccountContent">
                                         <!-- Single Tab Content Start -->
-                                        {{-- <div class="tab-pane fade show" id="dashboad" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Dashboard</h3>
-                                                <div class="welcome">
-                                                    <p>Hello, <strong>Erik Jhonson</strong> (If Not <strong>Jhonson
-                                                    !</strong><a href="login-register.html" class="logout"> Logout</a>)</p>
-                                                </div>
-                                                <p class="mb-0">From your account dashboard. you can easily check &
-                                                    view your recent orders, manage your shipping and billing addresses
-                                                and edit your password and account details.</p>
-                                            </div>
-                                        </div> --}}
-                                        <!-- Single Tab Content End -->
-
-                                        <!-- Single Tab Content Start -->
+                                        @if(session('notice'))
+                                        <p style="color: red;">
+                                            {{session('notice')}}
+                                        </p>
+                                        @endif
                                         <div class="tab-pane fade" id="download" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Thay Đổi Mật Khẩu</h3>
                                                 <div class="account-details-form">
-                                                    <form action="{{URL::to('/change_password')}}" method="post">
+                                                    <form id="Change_pass" action="{{URL::to('/change_password')}}" method="post">
                                                         {{csrf_field()}}
                                                         <fieldset>
                                                             <div class="single-input-item">
-                                                                <label for="current-pwd" class="required">Mật Khẩu Hiện Tại</label>
-                                                                <input type="password" name="current_pwd" placeholder="Current Password" />
+                                                                <label for="current-pwd" class="required">Tên Tài Khoản</label>
+                                                                <input type="text" name="username" id="username" />
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-lg-6">
                                                                     <div class="single-input-item">
                                                                         <label for="new-pwd" class="required">Mật Khẩu Mới</label>
-                                                                        <input type="password" name="new_pwd" placeholder="New Password" />
+                                                                        <input type="password" name="new_pwd" id="new_pwd" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <div class="single-input-item">
                                                                         <label for="confirm-pwd" class="required">Nhập Lại Mật Khẩu</label>
-                                                                        <input type="password" name="confirm_pwd" placeholder="Confirm Password" />
+                                                                        <input type="password" name="confirm_pwd" id="confirm_pwd" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -104,18 +91,9 @@
                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
-                                            <div class="myaccount-content">
-                                                <h3>Payment Method</h3>
-                                                <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
-                                            </div>
-                                        </div>
-                                        <!-- Single Tab Content End -->
-
-                                        <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="address-edit" role="tabpanel">
                                             <div class="myaccount-content">
-                                                <h3>Billing Address</h3>
+                                                <h3>Địa Chỉ Nhận Hàng</h3>
                                                 <address>
                                                     <p><strong>Erik Jhonson</strong></p>
                                                     <p>1355 Market St, Suite 900 <br>
@@ -131,7 +109,7 @@
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade active" id="account-info" role="tabpanel">
                                             <div class="myaccount-content">
-                                                <h3>Account Details</h3>
+                                                <h3>Thông Tin Cá Nhân</h3>
                                                 <div class="account-details-form">
                                                     @foreach($user_infor as $key => $value)
                                                     <form action="{{URL::to('/change_info')}}" method="post">
@@ -150,8 +128,6 @@
                                                             <label for="email" class="required">Email</label>
                                                             <input type="email" name="Email" placeholder="Email" value="{{$value->Email}}"/>
                                                         </div>
-
-                                                        
 
                                                         <div class="row">
                                                             <div class="col-lg-6">
@@ -244,4 +220,36 @@
     <!-- my account wrapper end -->
 </main>
 <!-- main wrapper end -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $( "#Change_pass" ).validate({
+            rules: {
+                username: {
+                    required: true
+                },
+                new_pwd:{
+                    required: true,
+                    minlength: 8
+                },
+                confirm_pwd:{
+                    required: true,
+                    equalTo: "#new_pwd"
+                },
+            },
+            messages: {
+                username:{
+                    required: "Tên tài khoản không bỏ trống"
+                },
+                new_pwd:{
+                    required: "Mật khẩu không để trống",  
+                    minlength: "Mật Khẩu phải ít nhất 8 ký tự"
+                },
+                confirm_pwd:{
+                    required: "Không để trống",
+                    equalTo: "Nhập lại mật khẩu không đúng"
+                },
+            }
+        });
+    });
+</script>
 @endsection    

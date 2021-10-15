@@ -177,16 +177,17 @@ class UserManagement extends Controller
     }
     public function change_password(Request $request){
         $MSKH=Session::get('user_id');
-        $Old_pass=md5($request->current_pwd);
+        $Username=$request->username;
         $New_pass=md5($request->new_pwd);
         $Confirm_pass=md5($request->confirm_pwd);
 
-        // $result= DB::table('khachhang')->where('MatKhau', $Old_pass)->get();
-        // if ($result) {
-        //     echo "OK";
-        // }else{
-        //     echo "Not OK";
-        // }
+        $result= DB::table('khachhang')->where('MSKH',$MSKH)->first();
+        if ($result->TaiKhoan==$Username) {
+            DB::table('khachhang')->where('MSKH',$MSKH)->update(['MatKhau'=>$New_pass]);
+            return Redirect::to('/my_account');
+        }else{
+            return redirect('/my_account')->with('notice','Tài khoản không đúng');
+        }
     }
 
     public function change_info(Request $request){
