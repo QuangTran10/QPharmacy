@@ -106,7 +106,7 @@
               <label class="col-sm-2 col-form-label">Mô Tả</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <textarea class="form-control" name="MoTa" rows="6">{{$value_pro->MoTa}}</textarea>
+                  <textarea class="form-control" name="MoTa" rows="6" id="ckediter1">{{$value_pro->MoTa}}</textarea>
                 </div>
               </div>
             </div>
@@ -143,6 +143,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    CKEDITOR.replace( 'ckediter1' );
     $( "#UpdateProduct" ).validate({
       rules: {
         TenHangHoa: {

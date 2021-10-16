@@ -310,7 +310,7 @@
   <script src="{{asset('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" defer=""></script>
   <script src="{{asset('public/backend/assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('public/backend/assets/js/core/bootstrap-material-design.min.js')}}"></script>
-  
+  <script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
   <!-- Plugin for the momentJs  -->
   <script src="{{asset('public/backend/assets/js/plugins/moment.min.js')}}"></script>
   <!--  Plugin for Sweet Alert -->

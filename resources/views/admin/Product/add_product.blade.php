@@ -86,7 +86,7 @@
               <label class="col-sm-2 col-form-label">Mô Tả</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <textarea class="form-control" name="MoTa" rows="6"></textarea>
+                  <textarea class="form-control" name="MoTa" rows="6" id="ckeditor"></textarea>
                 </div>
               </div>
             </div>
@@ -121,6 +121,8 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    //Ckeditor
+    CKEDITOR.replace( 'ckeditor' );
     $( "#AddProduct" ).validate({
       rules: {
         TenHangHoa: {
