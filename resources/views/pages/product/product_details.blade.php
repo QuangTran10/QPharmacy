@@ -35,6 +35,7 @@
                             @foreach($product_detail as $key => $value_pro)	
                             @php
                                 $MSHH=$value_pro->MSHH;
+                                $MoTa=$value_pro->MoTa;
                             @endphp
                                 <div class="col-lg-5">
                                     <div class="product-large-slider">
@@ -90,7 +91,9 @@
                                                 <span>{{$value_pro->SoLuongHang}} trong kho</span>
                                             @endif
                                         </div>
-                                        <p class="pro-desc">{{$value_pro->MoTa}}</p>
+                                        {{-- <p class="pro-desc">
+                                            
+                                        </p> --}}
                                         <form>
                                             {{csrf_field()}}
                                             <input type="hidden" name="comment_pro_id" class="comment_pro_id" value="{{$value_pro->MSHH}}">
@@ -139,28 +142,23 @@
                                     <div class="product-review-info">
                                         <ul class="nav review-tab">
                                             <li>
-                                                <a  data-toggle="tab" href="#tab_one">Mô Tả</a>
+                                                <a class="active" data-toggle="tab" href="#tab_one">Bình Luận</a>
                                             </li>
                                             <li>
-                                                <a class="active" data-toggle="tab" href="#tab_three">Bình Luận</a>
+                                                <a  data-toggle="tab" href="#tab_two">Mô Tả</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content reviews-tab">
-                                            <div class="tab-pane fade show " id="tab_one">
+                                            <div class="tab-pane fade show " id="tab_two">
                                                 <div class="tab-one">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                                                        fringilla augue nec est tristique auctor. Ipsum metus feugiat
-                                                        sem, quis fermentum turpis eros eget velit. Donec ac tempus
-                                                        ante. Fusce ultricies massa massa. Fusce aliquam, purus eget
-                                                        sagittis vulputate, sapien libero hendrerit est, sed commodo
-                                                        augue nisi non neque.Cras neque metus, consequat et blandit et,
-                                                        luctus a nunc. Etiam gravida vehicula tellus, in imperdiet
-                                                        ligula euismod eget. Pellentesque habitant morbi tristique
-                                                        senectus et netus et malesuada fames ac turpis egestas. Nam
-                                                        erat mi, rutrum at sollicitudin rhoncus</p>
+                                                    <p>
+                                                    <?php 
+                                                    echo $MoTa; 
+                                                    ?>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade active" id="tab_three">
+                                            <div class="tab-pane fade active" id="tab_one">
                                                 <form action="#" class="review-form">
                                                     <div id="total-reviews">
                                                         

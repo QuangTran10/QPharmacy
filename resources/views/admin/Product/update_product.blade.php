@@ -143,7 +143,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    CKEDITOR.replace( 'ckediter1' );
+    CKEDITOR.replace( 'ckediter1');
     $( "#UpdateProduct" ).validate({
       rules: {
         TenHangHoa: {

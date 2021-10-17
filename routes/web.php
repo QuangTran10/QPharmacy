@@ -61,6 +61,10 @@ Route::post('/change_password', 'App\Http\Controllers\UserManagement@change_pass
 
 Route::post('/change_info', 'App\Http\Controllers\UserManagement@change_info');
 
+Route::post('/show_address', 'App\Http\Controllers\UserManagement@show_address');
+
+Route::post('/update_address', 'App\Http\Controllers\UserManagement@update_address');
+
 //user interface -> category page
 
 Route::get('/category_home/{id_cate}', 'App\Http\Controllers\CategoryManagement@show_category_home');

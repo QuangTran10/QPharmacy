@@ -11,6 +11,7 @@ session_start();
 
 class UserManagement extends Controller
 {
+    //Admin
     public function AuthLogin(){
         $admin_id = Session::get('admin_id');
         if($admin_id){
@@ -167,13 +168,16 @@ class UserManagement extends Controller
         // end seo
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        //Thông tin cá nhân
         $user_infor= DB::table('khachhang')->where('MSKH', $MSKH)->get();
-        $order_by_id=DB::table('dathang')->where('MSKH', $MSKH)->get();
+        //Danh sách địa chỉ nhận hàng
+        $address_ship = DB::table('diachikh')->where('MSKH', $MSKH)->get();
+
         return view('pages.user.my_account')
         ->with('category',$all_category)->with('producer',$all_producer)
-        ->with('user_infor',$user_infor)->with('order_list',$order_by_id)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('user_infor',$user_infor)->with('address_ship',$address_ship)
+        ->with('meta_desc',$meta_desc)->with('url',$url)
+        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle);
     }
     public function change_password(Request $request){
         $MSKH=Session::get('user_id');
@@ -216,5 +220,34 @@ class UserManagement extends Controller
             ]);
             return Redirect::to('/my_account');
         }
+    }
+
+    public function show_address(Request $re){
+        $MaDC = $re->MaDC;
+        $result= DB::table('diachikh')->where('MaDC',$MaDC)->get();
+        $output=array();
+        foreach ($result as $key => $value) {
+            $output['HoTen']='<input type="text" name="HoTen" placeholder="Họ và tên" value="'.$value->HoTen.'" />';
+            $output['SDT']='<input type="text" name="SDT" placeholder="Số điện thoại" required value="'.$value->SDT.'" />';
+            $output['DiaChi']='<input type="text" name="DiaChi" placeholder="Địa chỉ cụ thế" required value="'.$value->DiaChi.'"/>';
+            $output['MaDC']='<input type="hidden" name="MaDC" value="'.$MaDC.'">';
+        }
+        echo json_encode($output);
+    }
+
+    public function update_address(Request $re){
+        $data=array();
+
+        $MaDC=$re->MaDC;
+        $HoTen=$re->HoTen;
+        $SDT=$re->SDT;
+        $DiaChi=$re->DiaChi;
+
+        DB::table('diachikh')->where('MaDC',$MaDC)->update([
+            'HoTen' =>$HoTen, 
+            'SDT'   =>$SDT,
+            'DiaChi'=>$DiaChi
+        ]);
+        return Redirect::to('/my_account');
     }
 }
