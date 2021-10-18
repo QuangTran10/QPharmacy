@@ -213,3 +213,7 @@ Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_
 Route::get('/show_discount', 'App\Http\Controllers\DiscountController@show_discount');
 
 Route::post('/select_option_discount', 'App\Http\Controllers\DiscountController@select_discount');
+
+Route::get('/add_coupon', 'App\Http\Controllers\DiscountController@add_coupon');
+
+Route::post('/save_coupon', 'App\Http\Controllers\DiscountController@save_coupon');

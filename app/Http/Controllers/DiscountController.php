@@ -12,6 +12,7 @@ session_start();
 
 class DiscountController extends Controller
 {
+    //ADMIN
 	public function AuthLogin(){
         $admin_id = Session::get('admin_id');
         if($admin_id){
@@ -29,19 +30,36 @@ class DiscountController extends Controller
     public function select_discount(Request $re){
         $option = $re->option;
         $array;
-        $output='';
-        $output.='<option>Chọn</option>';
+        $output=array();
         if ($option==0) {
             $array=DB::table('loaihanghoa')->where('TinhTrang',1)->orderBy('MaLoaiHang','ASC')->select('MaLoaiHang','TenLoaiHang')->get();
             foreach ($array as $key => $value) {
-                $output.='<option value="'.$value->MaLoaiHang.'">'.$value->TenLoaiHang.'</option>';
+                $output[] = array(
+                    'ID'  =>$value->MaLoaiHang,
+                    'Name'=>$value->TenLoaiHang
+                );
             }
         }else{
             $array=DB::table('hanghoa')->where('TrangThai',1)->orderBy('MSHH','ASC')->select('MSHH','TenHH')->get();
             foreach ($array as $key => $value) {
-                $output.='<option value="'.$value->MSHH.'">'.$value->TenHH.'</option>';
+                $output[] = array(
+                    'ID'  =>$value->MSHH,
+                    'Name'=>$value->TenHH
+                );
             }
         }
-        echo $output;
+        return response()->json($output);
+    }
+
+    public function add_coupon(){
+        return view('admin.Discount.add_coupon');
+    }
+
+    //Thêm coupon
+    public function save_coupon(Request $re){
+        $data = $re->all();
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
     }
 }
