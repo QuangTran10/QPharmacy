@@ -2,7 +2,7 @@
 @section('admin_content')
 
 <div class="container-fluid">
-  <form action="{{URL::to('/save_coupon')}}" method="post">
+  <form action="{{URL::to('/save_coupon')}}" method="post" id="add_coupon">
     @csrf 
     <div class="row">
       <div class="col-lg-8 col-md-8">
@@ -30,7 +30,7 @@
               </label>
               <div class="col-sm-9">
                 <div class="form-group">
-                  <select class="form-control choose_option selectpicker" data-style="btn btn-link" name="LoaiGiamGia">
+                  <select class="form-control choose_option selectpicker" data-style="btn btn-link" name="LoaiGiamGia" >
                     <option>Chọn</option>
                     <option value="0">Nhóm sản phẩm</option>
                     <option value="1">Từng sản phẩm</option>
@@ -45,21 +45,26 @@
               </label>
               <div class="col-sm-9">
                 <div class="form-group">
-                  <select class="form-control selectpicker" data-style="btn btn-link" id="show_option" name="SP" multiple></select>
+                  <select class="form-control selectpicker" data-style="btn btn-link" id="show_option" name="SP[]" multiple title="Chọn">
+                    
+                  </select>
                 </div>
               </div>
             </div>
 
-            {{-- Số lượng và mức giảm --}}
+            {{-- Số lượng và tình trạng --}}
             <div class="row">
               <div class="col-md-6">
                 <div class="row">
                   <label class="col-sm-4 col-form-label">
-                    Mức Giảm (%)
+                    Tình Trạng
                   </label>
                   <div class="col-sm-8">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="MucGiam" id="MucGiam">
+                      <select class="form-control selectpicker" data-style="btn btn-link" name="TinhTrang">
+                        <option value="1">Hiện</option>
+                        <option value="0">Ẩn</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -79,14 +84,28 @@
             </div>
             
             <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Tình Trạng</label>
-                  <select class="form-control selectpicker" data-style="btn btn-link" name="TinhTrang">
-                    <option value="1">Hiện</option>
-                    <option value="0">Ẩn</option>
-                  </select>
+              <label class="col-sm-2 col-form-label label-checkbox">Mức Giảm</label>
+              <div class="col-sm-3 checkbox-radios" >
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="option" value="1"> Theo %
+                    <span class="circle">
+                      <span class="check"></span>
+                    </span>
+                  </label>
                 </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="option" value="2"> Theo VND
+                    <span class="circle">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-7" >
+                <input type="text" class="form-control" name="MucGiam" id="MucGiam1" placeholder="Mức giảm %" disabled="">
+                <input type="text" class="form-control" name="MucGiam" id="MucGiam2" placeholder="Mức giảm VND" disabled="">
               </div>
             </div>
             
@@ -145,7 +164,17 @@
         });
     });
 
-    // $("input[name='Start_Date']").prop('disabled', true);
+    //Ajax chuyển đổi mức giảm % và VND
+    $('#add_coupon input[name="option"]').on('change', function() {
+      var option= $('input[name="option"]:checked', '#add_coupon').val();
+      if (option==1) {
+        $("input[id='MucGiam1']").prop('disabled', false);
+        $("input[id='MucGiam2']").prop('disabled', true);
+      }else{
+        $("input[id='MucGiam2']").prop('disabled', false);
+        $("input[id='MucGiam1']").prop('disabled', true);
+      }
+    });
 
     $(function () {
       $('.datepicker').datetimepicker({

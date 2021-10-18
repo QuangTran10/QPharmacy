@@ -57,9 +57,18 @@ class DiscountController extends Controller
 
     //Thêm coupon
     public function save_coupon(Request $re){
-        $data = $re->all();
+        $coupon = array();
+        $coupon['TenMa']=$re->TenMa;
+        $coupon['LoaiGiamGia']=$re->LoaiGiamGia;
+        $coupon['MucGiam']=$re->MucGiam;
+        $coupon['SoLuong']=$re->SoLuong;
+        $coupon['Code']=$re->Code;
+        $coupon['TG_BD']=$re->TG_BD;
+        $coupon['TG_KT']=$re->TG_KT;
+        $coupon['TinhTrang']=$re->TinhTrang;
+        
         echo '<pre>';
-        print_r($data);
+        print_r($coupon);
         echo '</pre>';
     }
 }
