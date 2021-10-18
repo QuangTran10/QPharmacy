@@ -40,7 +40,7 @@
     <div class="col-lg-12 col-md-12">
       <div class="card">
         <div class="card-header card-header-primary">
-          <h4 class="card-title">Doanh Thu Cả Năm</h4>
+          <h4 class="card-title">Doanh Thu</h4>
         </div>
         <div class="card-body table-responsive">
           <form>
@@ -72,6 +72,10 @@
           new Chartist.Line('#chart1', {
             labels: data.labels,
             series: [data.series]
+          },{
+            lineSmooth: Chartist.Interpolation.cardinal({
+              fillHoles: true,
+            })
           });
         }
       });
@@ -94,6 +98,10 @@
           new Chartist.Line('#chart1', {
             labels: data.labels,
             series: [data.series]
+          },{
+            lineSmooth: Chartist.Interpolation.cardinal({
+              fillHoles: true,
+            })
           });
         }
       });

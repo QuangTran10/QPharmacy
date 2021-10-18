@@ -21,9 +21,9 @@
               <th>Mã Khuyến Mãi</th>
               <th>Tên Khuyến Mãi</th>
               <th>Mức Giảm</th>
+              <th>Loại Giảm Giá</th>
               <th style="text-align: center;">Tình Trạng</th>
               <th>Thời Gian Bắt Đầu</th>
-              <th>Thời Gian Kết Thúc</th>
               <th>Thời Hạn</th>
               <th></th>
               <th></th>
@@ -33,7 +33,24 @@
               <tr>
                 <td>{{$value->Code}}</td>
                 <td>{{$value->TenMa}}</td>
-                <td>{{$value->MucGiam*100}}%</td>
+                <td>
+                  <?php
+                    if ($value->LoaiGiamGia==0) {
+                      echo number_format($value->MucGiam , 0, ',', ' ').'đ';
+                    }elseif($value->LoaiGiamGia==1){
+                      echo ($value->MucGiam*100).'%';
+                    }
+                  ?>
+                </td>
+                <td>
+                  <?php
+                    if ($value->LoaiGiamGia==0) {
+                      echo "Nhóm sản phẩm";
+                    }elseif($value->LoaiGiamGia==1){
+                      echo "Từng sản phẩm";
+                    }
+                  ?>
+                </td>
                 <td style="text-align: center;">
                   <?php
                     if($value->TinhTrang ==1)
@@ -44,9 +61,6 @@
                 </td>
                 <td>
                   {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value->TG_BD)->format('d/m/Y H:i:s')}}
-                </td>
-                <td>
-                  {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value->TG_KT)->format('d/m/Y H:i:s')}}
                 </td>
                 <td>
                   <?php

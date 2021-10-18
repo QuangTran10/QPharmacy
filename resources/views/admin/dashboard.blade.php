@@ -83,13 +83,12 @@
         dataType: 'JSON',
         data:{_token:_token},
         success:function(data){
-          var options = {
-            fullWidth: true
-          };
           new Chartist.Bar('.ct-chart', {
             labels: data.labels,
             series: [data.series]
-          },options);
+          },{
+            fullWidth: true
+          });
         }
       });
     }

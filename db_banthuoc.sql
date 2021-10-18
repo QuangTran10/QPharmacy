@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 07:25 AM
+-- Generation Time: Oct 18, 2021 at 02:32 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -113,8 +113,24 @@ CREATE TABLE `chitietgiamgia` (
   `MaGiam` int(11) NOT NULL,
   `MSHH` int(11) NOT NULL,
   `TenHH` varchar(255) NOT NULL,
-  `MucGiam` double NOT NULL
+  `MucGiam` double NOT NULL,
+  `TG_Tao` datetime NOT NULL,
+  `TG_CapNhat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chitietgiamgia`
+--
+
+INSERT INTO `chitietgiamgia` (`MaGiam`, `MSHH`, `TenHH`, `MucGiam`, `TG_Tao`, `TG_CapNhat`) VALUES
+(7, 9, 'Giảm Đau-Hạ Sốt', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
+(7, 12, 'Kháng Vi Sinh Vật', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
+(7, 14, 'Mỹ Phẩm', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
+(7, 17, 'Tim Mạch', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
+(7, 19, 'Ho, Cảm Cúm', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
+(8, 24, 'Kremil-S United (H/100v)', 0.1, '2021-10-18 19:25:16', '2021-10-18 19:25:16'),
+(8, 25, 'Decolgen Nd United Pharma (H/100v)', 0.1, '2021-10-18 19:25:16', '2021-10-18 19:25:16'),
+(8, 26, 'Glotadol 500mg Abbott (Hộp/100viên Nén)(Hồng)', 0.1, '2021-10-18 19:25:16', '2021-10-18 19:25:16');
 
 -- --------------------------------------------------------
 
@@ -373,6 +389,15 @@ CREATE TABLE `magiamgia` (
   `TG_KT` datetime NOT NULL,
   `TinhTrang` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `magiamgia`
+--
+
+INSERT INTO `magiamgia` (`MaGiamGia`, `TenMa`, `LoaiGiamGia`, `MucGiam`, `SoLuong`, `Code`, `TG_BD`, `TG_KT`, `TinhTrang`) VALUES
+(1, '11-11', 1, 0.1, 20, 'Q11112020', '2021-10-18 15:49:10', '2021-10-31 15:49:10', 1),
+(7, 'Giảm giá 12-12', 0, 30000, 10, 'Q12122021', '2021-10-18 19:20:52', '2021-10-31 19:20:52', 1),
+(8, 'Giảm giá 12-12', 1, 0.1, 5, 'Q1212202102', '2021-10-18 19:24:50', '2021-10-18 19:24:50', 1);
 
 -- --------------------------------------------------------
 
@@ -635,7 +660,7 @@ ALTER TABLE `loaihanghoa`
 -- AUTO_INCREMENT for table `magiamgia`
 --
 ALTER TABLE `magiamgia`
-  MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `nhanvien`

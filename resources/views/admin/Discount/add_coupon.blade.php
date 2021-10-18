@@ -11,6 +11,11 @@
             <h4 class="card-title">THÊM MÃ GIẢM GIÁ</h4>
           </div>
           <div class="card-body">
+            @if(session('notice'))
+            <p style="color: black; text-align: center;">
+              {{session('notice')}}
+            </p>
+            @endif
             {{-- Tên chương trình KM --}} 
             <div class="form-group">
               <label>Tên Chương Trình</label>
@@ -156,6 +161,7 @@
           option:option,
           _token:_token},
           success:function(data){
+            $("#show_option").find('option').remove().end();
             $.each(data, function(key, value){
               $("#show_option").append('<option value="'+value.ID+'">'+value.Name+'</option>');
             });

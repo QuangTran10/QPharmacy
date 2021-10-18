@@ -58,17 +58,60 @@ class DiscountController extends Controller
 
     //Thêm coupon
     public function save_coupon(Request $re){
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+
+        $option=$re->LoaiGiamGia;
+        $MucGiam= $re->MucGiam;
+
         $coupon = array();
-        $coupon['TenMa']=$re->TenMa;
+        $coupon['TenMa']      =$re->TenMa;
         $coupon['LoaiGiamGia']=$re->LoaiGiamGia;
-        $coupon['MucGiam']=$re->MucGiam/100;
-        $coupon['SoLuong']=$re->SoLuong;
-        $coupon['Code']=$re->Code;
-        $coupon['TG_BD']=$re->TG_BD;
-        $coupon['TG_KT']=$re->TG_KT;
-        $coupon['TinhTrang']=$re->TinhTrang;
+        if ($option==0) {
+            $coupon['MucGiam']    =$MucGiam;
+        }else{
+            $coupon['MucGiam']    =$MucGiam/100;
+        }
+        $coupon['SoLuong']    =$re->SoLuong;
+        $coupon['Code']       =$re->Code;
+        $coupon['TG_BD']      =$re->TG_BD;
+        $coupon['TG_KT']      =$re->TG_KT;
+        $coupon['TinhTrang']  =$re->TinhTrang;
+
+        $MaGiam = DB::table('magiamgia')->insertGetId($coupon);
+
+        $coupon_detail=array();
+        $data=$re->SP;
+        if ($MaGiam!=Null) {
+            foreach ($data as $key => $value) {
+                if ($option==0) {  
+                    //nhóm sp -> loaihanghoa
+                    $result = DB::table('loaihanghoa')->where('MaLoaiHang',$value)->first();
+                    $coupon_detail['MaGiam']     =$MaGiam;
+                    $coupon_detail['MSHH']       =$value;
+                    $coupon_detail['TenHH']      =$result->TenLoaiHang;
+                    $coupon_detail['MucGiam']    =$MucGiam;
+                    $coupon_detail['TG_Tao']     =$now;
+                    $coupon_detail['TG_CapNhat'] =$now;
+                    $re = DB::table('chitietgiamgia')->insert($coupon_detail);
+                }else{
+                    //từng sp -> hanghoa
+                    $result = DB::table('hanghoa')->where('MSHH',$value)->first();
+                    $coupon_detail['MaGiam']     =$MaGiam;
+                    $coupon_detail['MSHH']       =$value;
+                    $coupon_detail['TenHH']      =$result->TenHH;
+                    $coupon_detail['MucGiam']    =$MucGiam/100;
+                    $coupon_detail['TG_Tao']     =$now;
+                    $coupon_detail['TG_CapNhat'] =$now;
+                    $re = DB::table('chitietgiamgia')->insert($coupon_detail);
+                }
+            }
+        }
         
-        DB::table('magiamgia')->insert($coupon);
-        return Redirect::to('/show_discount');
+        if ($re) {
+            return Redirect::to('/show_discount');
+        }else{
+            return redirect('/add_coupon')->with('notice','Thanh Toán Thất Bại');
+        }
+        
     }    
 }
