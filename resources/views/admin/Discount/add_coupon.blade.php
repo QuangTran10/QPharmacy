@@ -54,7 +54,7 @@
 
             {{-- Số lượng và tình trạng --}}
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div class="row">
                   <label class="col-sm-4 col-form-label">
                     Tình Trạng
@@ -69,7 +69,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <div class="row">
                   <label class="col-sm-4 col-form-label">
                     Số Lượng Mã

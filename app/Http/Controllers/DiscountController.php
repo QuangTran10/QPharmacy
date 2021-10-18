@@ -24,7 +24,8 @@ class DiscountController extends Controller
     public function show_discount(){
     	$this->AuthLogin();
     	Session::put('page',9);
-    	return view('admin.Discount.discount_management');
+        $coupon = DB::table('magiamgia')->get();
+    	return view('admin.Discount.discount_management',compact('coupon'));
     }
 
     public function select_discount(Request $re){
@@ -60,15 +61,14 @@ class DiscountController extends Controller
         $coupon = array();
         $coupon['TenMa']=$re->TenMa;
         $coupon['LoaiGiamGia']=$re->LoaiGiamGia;
-        $coupon['MucGiam']=$re->MucGiam;
+        $coupon['MucGiam']=$re->MucGiam/100;
         $coupon['SoLuong']=$re->SoLuong;
         $coupon['Code']=$re->Code;
         $coupon['TG_BD']=$re->TG_BD;
         $coupon['TG_KT']=$re->TG_KT;
         $coupon['TinhTrang']=$re->TinhTrang;
         
-        echo '<pre>';
-        print_r($coupon);
-        echo '</pre>';
-    }
+        DB::table('magiamgia')->insert($coupon);
+        return Redirect::to('/show_discount');
+    }    
 }
