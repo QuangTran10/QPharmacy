@@ -31,4 +31,32 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.change_pass').click(function(){
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          url: '{{url('/change_pass')}}',
+          method: "POST",
+          data:{
+            TaiKhoan:username,
+            _token:_token,
+            MatKhau: password},
+            success:function(data){
+              if(data==1){
+                Swal.fire('Đổi mật khẩu thành công');
+              }else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Tài khoản không phải của bạn',
+                  text: 'Vui lòng thử lại'
+                })
+              }
+            }
+          });
+      });
+  });
+</script>
 @endsection

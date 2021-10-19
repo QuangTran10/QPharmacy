@@ -26,7 +26,6 @@
               <th>Thời Gian Bắt Đầu</th>
               <th>Thời Hạn</th>
               <th></th>
-              <th></th>
             </thead>
             <tbody>
               @foreach($coupon as $key => $value)
@@ -69,10 +68,7 @@
                   ?>
                 </td>
                 <td>
-                  <a href=""><i class="material-icons">edit</i></a>
-                </td>
-                <td>
-                  <a href="" >
+                  <a href="{{URL::to('/delete_coupon/'.$value->MaGiamGia)}}" onclick="return confirm('Bạn có chắc chắn muốn xoá')" >
                     <i class="material-icons">delete</i>
                   </a>
                 </td>

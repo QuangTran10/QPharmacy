@@ -56,6 +56,14 @@ class DiscountController extends Controller
         return view('admin.Discount.add_coupon');
     }
 
+    public function delete_coupon($MaGiam){
+        $coupon = DB::table('magiamgia')->where('MaGiamGia',$MaGiam)->delete();
+
+        $coupon_detail = DB::table('chitietgiamgia')->where('MaGiam',$MaGiam)->delete();
+
+        return Redirect::to('/show_discount');
+    }
+
     //Thêm coupon
     public function save_coupon(Request $re){
         $now = Carbon::now('Asia/Ho_Chi_Minh');

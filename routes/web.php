@@ -217,3 +217,5 @@ Route::post('/select_option_discount', 'App\Http\Controllers\DiscountController@
 Route::get('/add_coupon', 'App\Http\Controllers\DiscountController@add_coupon');
 
 Route::post('/save_coupon', 'App\Http\Controllers\DiscountController@save_coupon');
+
+Route::get('/delete_coupon/{MaGiam}', 'App\Http\Controllers\DiscountController@delete_coupon');
