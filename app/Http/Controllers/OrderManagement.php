@@ -137,11 +137,12 @@ class OrderManagement extends Controller
         ->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')
         ->where('SoDonDH',$checkout_code)->get();
 
+        $data['URL']='public/frontend/assets/img/logo_brand.png';
         $data['order']=$order_by_id;
         $data['order_details']=$order_details;
         $data['contact']=$contact;
 
-        $pdf = PDF::loadView('admin.Order.invoice', $data);
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.Order.invoice', $data);
         return $pdf->stream();
     }
 }
