@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 02:32 PM
+-- Generation Time: Oct 19, 2021 at 11:18 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -102,35 +102,6 @@ DELIMITER $$
 CREATE TRIGGER `xoa_hang` AFTER DELETE ON `chitietdathang` FOR EACH ROW update hanghoa set SoLuongHang=SoLuongHang+old.SoLuong where MSHH=old.MSHH
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chitietgiamgia`
---
-
-CREATE TABLE `chitietgiamgia` (
-  `MaGiam` int(11) NOT NULL,
-  `MSHH` int(11) NOT NULL,
-  `TenHH` varchar(255) NOT NULL,
-  `MucGiam` double NOT NULL,
-  `TG_Tao` datetime NOT NULL,
-  `TG_CapNhat` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `chitietgiamgia`
---
-
-INSERT INTO `chitietgiamgia` (`MaGiam`, `MSHH`, `TenHH`, `MucGiam`, `TG_Tao`, `TG_CapNhat`) VALUES
-(7, 9, 'Giảm Đau-Hạ Sốt', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
-(7, 12, 'Kháng Vi Sinh Vật', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
-(7, 14, 'Mỹ Phẩm', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
-(7, 17, 'Tim Mạch', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
-(7, 19, 'Ho, Cảm Cúm', 30000, '2021-10-18 19:21:37', '2021-10-18 19:21:37'),
-(8, 24, 'Kremil-S United (H/100v)', 0.1, '2021-10-18 19:25:16', '2021-10-18 19:25:16'),
-(8, 25, 'Decolgen Nd United Pharma (H/100v)', 0.1, '2021-10-18 19:25:16', '2021-10-18 19:25:16'),
-(8, 26, 'Glotadol 500mg Abbott (Hộp/100viên Nén)(Hồng)', 0.1, '2021-10-18 19:25:16', '2021-10-18 19:25:16');
 
 -- --------------------------------------------------------
 
@@ -375,33 +346,6 @@ INSERT INTO `loaihanghoa` (`MaLoaiHang`, `TenLoaiHang`, `TinhTrang`, `TG_Tao`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `magiamgia`
---
-
-CREATE TABLE `magiamgia` (
-  `MaGiamGia` int(11) NOT NULL,
-  `TenMa` varchar(255) NOT NULL,
-  `LoaiGiamGia` tinyint(4) NOT NULL,
-  `MucGiam` double NOT NULL,
-  `SoLuong` int(11) NOT NULL,
-  `Code` varchar(100) NOT NULL,
-  `TG_BD` datetime NOT NULL,
-  `TG_KT` datetime NOT NULL,
-  `TinhTrang` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `magiamgia`
---
-
-INSERT INTO `magiamgia` (`MaGiamGia`, `TenMa`, `LoaiGiamGia`, `MucGiam`, `SoLuong`, `Code`, `TG_BD`, `TG_KT`, `TinhTrang`) VALUES
-(1, '11-11', 1, 0.1, 20, 'Q11112020', '2021-10-18 15:49:10', '2021-10-31 15:49:10', 1),
-(7, 'Giảm giá 12-12', 0, 30000, 10, 'Q12122021', '2021-10-18 19:20:52', '2021-10-31 19:20:52', 1),
-(8, 'Giảm giá 12-12', 1, 0.1, 5, 'Q1212202102', '2021-10-18 19:24:50', '2021-10-18 19:24:50', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `nhanvien`
 --
 
@@ -537,12 +481,6 @@ ALTER TABLE `chitietdathang`
   ADD KEY `MSHH` (`MSHH`);
 
 --
--- Indexes for table `chitietgiamgia`
---
-ALTER TABLE `chitietgiamgia`
-  ADD PRIMARY KEY (`MaGiam`,`MSHH`);
-
---
 -- Indexes for table `chitietphieuthu`
 --
 ALTER TABLE `chitietphieuthu`
@@ -583,12 +521,6 @@ ALTER TABLE `khachhang`
 --
 ALTER TABLE `loaihanghoa`
   ADD PRIMARY KEY (`MaLoaiHang`);
-
---
--- Indexes for table `magiamgia`
---
-ALTER TABLE `magiamgia`
-  ADD PRIMARY KEY (`MaGiamGia`);
 
 --
 -- Indexes for table `nhanvien`
@@ -655,12 +587,6 @@ ALTER TABLE `khachhang`
 --
 ALTER TABLE `loaihanghoa`
   MODIFY `MaLoaiHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `magiamgia`
---
-ALTER TABLE `magiamgia`
-  MODIFY `MaGiamGia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `nhanvien`

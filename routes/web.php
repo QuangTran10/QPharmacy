@@ -178,6 +178,8 @@ Route::get('/view_order/{SoDonDH}', 'App\Http\Controllers\OrderManagement@view_o
 
 Route::post('/update_status', 'App\Http\Controllers\OrderManagement@update_status');
 
+Route::get('/print_order/{checkout_code}', 'App\Http\Controllers\OrderManagement@print_order');
+
 Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
 
 //admin interface -> receipt
@@ -207,15 +209,3 @@ Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_stati
 Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
 Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
-
-//admin interface -> discount
-
-Route::get('/show_discount', 'App\Http\Controllers\DiscountController@show_discount');
-
-Route::post('/select_option_discount', 'App\Http\Controllers\DiscountController@select_discount');
-
-Route::get('/add_coupon', 'App\Http\Controllers\DiscountController@add_coupon');
-
-Route::post('/save_coupon', 'App\Http\Controllers\DiscountController@save_coupon');
-
-Route::get('/delete_coupon/{MaGiam}', 'App\Http\Controllers\DiscountController@delete_coupon');

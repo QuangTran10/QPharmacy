@@ -4,11 +4,14 @@
 <div class="container-fluid">
 	<h3 class="title mt-4 text-center" style="font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
 	@foreach($order_by_id as $key =>$value)
+	@php
+		$tong=$value->ThanhTien;
+	@endphp
 	<div class="card">
 		<div class="card-body">
 			<div class="row">
 				<div class="col-sm-6">
-					<h4><b>Thông Tin Khách Hàng</b></h4>
+					<h3><b>Thông Tin Khách Hàng</b></h3>
 					<div class="dropdown-divider"></div>
 					<div class="table-responsive">
 						<table class="table">
@@ -48,7 +51,7 @@
 					</div>		
 				</div>
 				<div class="col-sm-6">
-					<h4><b>Thông Tin Đơn Hàng</b></h4>
+					<h3><b>Thông Tin Đơn Hàng</b></h3>
 					<div class="dropdown-divider"></div>
 					<div class="table-responsive">
 						<table class="table">
@@ -105,10 +108,6 @@
 										?>
 									</td>
 								</tr>
-								<tr>
-									<td>Thành Tiền</td>
-									<td>{{$value->ThanhTien.'đ'}}</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>	
@@ -129,20 +128,28 @@
 				<div class="card-body table-responsive">
 					<table class="table table-hover">
 						<thead class="text-warning">
-							<th width="20%">Mã</th>
+							<th width="10%">Mã</th>
 							<th width="20%">Tên Sản Phẩm</th>
-							<th width="20%">Số Lượng</th>
+							<th width="10%">Số Lượng</th>
 							<th width="20%">Giá</th>
+							<th width="20%">Giảm Giá</th>
 							<th width="20%">Thành Tiền</th>
 						</thead>
 						<tbody>
+							@php
+							$dis_total=0;
+							@endphp
 							@foreach($order_details as $order_val)
+							@php
+							$dis_total=$dis_total+$order_val->SoLuong*$order_val->GiaDatHang*$order_val->GiamGia;
+							@endphp
 							<tr>
 								<td>{{$order_val->MSHH}}</td>
 								<td>{{$order_val->TenHH}}</td>
 								<td>{{$order_val->SoLuong}}</td>
 								<td>{{$order_val->GiaDatHang}}</td>
-								<td>{{$order_val->Gia * $order_val->SoLuong}}</td>
+								<td>{{$order_val->GiamGia*100}}%</td>
+								<td>{{$order_val->ThanhTien}}</td>
 							</tr>
 							@endforeach
 						</tbody>
@@ -150,6 +157,36 @@
 				</div>  {{-- end card body --}}
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<table>
+						<tbody style="font-size: 18px">
+							<tr>
+								<td><b>Phí vận chuyển:</b></td>
+								<td>
+									@if($tong >1000000)
+										Miễn phí giao hàng
+									@else
+										{{number_format(30000 , 0, ',', ' ').'đ';}}
+									@endif
+								</td>
+							</tr>
+							<tr>
+								<td><b>Số tiền đã giảm:</b></td>
+								<td><?php echo number_format($dis_total , 0, ',', ' ').'đ'; ?></td>
+							</tr>
+							<tr>
+								<td><b>Thành Tiền:</b></td>
+								<td><?php echo number_format($tong , 0, ',', ' ').'đ'; ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>		
 	</div>
 	@if(session('notice'))
 	<p style="color: red">
@@ -167,6 +204,9 @@
 		</div>
 		<div class="col-lg-2 col-md-2">
 			<a href="{{URL::to('/order_management')}}" class="btn btn-danger">Quay Lại</a>
+		</div>
+		<div class="col-lg-2 col-md-2">
+			<a target="_blank" href="{{URL::to('/print_order/'.$SoDonDH)}}" class="btn btn-info">In Đơn Hàng</a>
 		</div>
 	</div>
 </div>

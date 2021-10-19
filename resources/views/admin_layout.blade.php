@@ -125,12 +125,6 @@
             </a>
           </li>
           <li class="nav-item <?php $page = Session::get('page'); if($page==9){echo "active";} ?>">
-            <a class="nav-link" href="{{URL::to('/show_discount')}}">
-              <i class="material-icons">confirmation_number</i>
-              <p>Khuyến Mãi</p>
-            </a>
-          </li>
-          <li class="nav-item <?php $page = Session::get('page'); if($page==10){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/show_statistic')}}">
               <i class="material-icons">paid</i>
               <p>Doanh Thu</p>

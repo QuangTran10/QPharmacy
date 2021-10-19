@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
+use PDF;
 session_start();
 
 class OrderManagement extends Controller
@@ -35,11 +36,16 @@ class OrderManagement extends Controller
 
         $data['count']=$count;
         $data['contend']='';
-        foreach ($all_order as $key => $value) {
-            $content=$value->SoDonDH.' - '.$value->HoTen.'    '.$value->NgayDH;
-            $url='/view_order/'.$value->SoDonDH;
-            $data['contend'].='<a class="dropdown-item" href=" '.url($url).'">'.$content.'</a>';
+        if ($count!=0) {
+            foreach ($all_order as $key => $value) {
+                $content=$value->SoDonDH.' - '.$value->HoTen.'    '.$value->NgayDH;
+                $url='/view_order/'.$value->SoDonDH;
+                $data['contend'].='<a class="dropdown-item" href=" '.url($url).'">'.$content.'</a>';
+            }
+        }else{
+            $data['contend'].='<a class="dropdown-item" >Không có thông báo nào </a>';
         }
+        
         echo json_encode($data);
     }
 
@@ -117,5 +123,25 @@ class OrderManagement extends Controller
         if($result){
             return Redirect::to('/show_order');
         }
+    }
+
+    public function print_order($checkout_code){
+        $data=array();
+        $contact = DB::table('lienhe')->get();
+
+        $order_by_id=DB::table('dathang')
+        ->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')
+        ->where('dathang.SoDonDH',$checkout_code)->get();
+
+        $order_details=DB::table('chitietdathang')
+        ->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')
+        ->where('SoDonDH',$checkout_code)->get();
+
+        $data['order']=$order_by_id;
+        $data['order_details']=$order_details;
+        $data['contact']=$contact;
+
+        $pdf = PDF::loadView('admin.Order.invoice', $data);
+        return $pdf->stream();
     }
 }

@@ -23,7 +23,7 @@ class RevenueController extends Controller
     }
     public function show_statistical(){
         $this->AuthLogin();
-    	Session::put('page',10);
+    	Session::put('page',9);
     	return view('admin.Statistic.show_statistic');
     }
 
