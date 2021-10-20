@@ -69,7 +69,7 @@
 									<td>{{\Carbon\Carbon::parse($value->NgayDH )->format('d/m/Y')}}</td>
 								</tr>
 								<tr>
-									<td>Ngày Đặt Hàng</td>
+									<td>Ngày Giao Hàng</td>
 									<td>
 										@if($value->NgayGH==NULL)
 										Chưa Giao Hàng
