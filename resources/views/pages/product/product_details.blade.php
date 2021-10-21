@@ -46,7 +46,17 @@
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="product-details-des">
-                                        <h3 class="product-name">{{$value_pro->TenHH}}</h3>
+                                        <h3 class="product-name">{{$value_pro->TenHH}}
+                                            @if($value_pro->GiamGia!=0)
+                                            <span class="badge bg-warning text-dark">Giảm {{$value_pro->GiamGia*100}}%</span>
+                                            @endif
+                                            <?php
+                                                if(isset($_GET['new'])){
+                                                    echo '<span class="badge bg-danger">Mới</span>';
+                                                }
+                                            ?>
+                                        </h3>
+
                                         <div class="ratings d-flex">
 
                                             @for ($i = 1; $i <= $Total; $i++)

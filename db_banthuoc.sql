@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2021 at 11:18 AM
+-- Generation Time: Oct 21, 2021 at 10:38 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -256,7 +256,7 @@ INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `Gia`, `GiamGia`, `SoLuongHang`, `MaLoai
 (41, 'Decumar Gel Cvi Pharma (Tuýp/20gr)', 65300, 0, 5, 14, 16, NULL, NULL, '20217ccacbfccba4ac213b2ceaf370271632797647.png', 1, '2021-09-28 09:54:07', '2021-09-28 09:54:07'),
 (42, 'Kem Yoosun Rau Má Đại Bắc (Tube/25g) (Xanh)', 19500, 0, 10, 14, 16, NULL, NULL, 'name1304-6091326511632797697.png', 1, '2021-09-28 09:54:57', '2021-09-28 09:54:57'),
 (43, 'Sữa Rửa Mặt Cetaphil (C/125ml)', 111900, 0, 5, 14, 17, NULL, NULL, 'name1271-8615288091632797815.png', 1, '2021-09-28 09:56:55', '2021-09-28 09:56:55'),
-(44, 'Sữa Tắm Gội Cetaphil Baby Gentle (2 In 1) (C/230ml)', 124000, 0, 5, 14, 17, NULL, NULL, 'name9236-5261549651632797863.png', 1, '2021-09-28 09:57:43', '2021-09-28 09:57:43'),
+(44, 'Sữa Tắm Gội Cetaphil Baby Gentle (2 In 1) (C/230ml)', 124000, 0.1, 5, 14, 17, NULL, NULL, 'name9236-5261549651632797863.png', 1, '2021-09-28 09:57:43', '2021-10-21 15:37:42'),
 (45, 'Kem Cetaphil Face&Body Cream (H/50gr)', 228000, 0, 5, 14, 17, NULL, NULL, '20212319576c6f6de93f8b6c6312a4081632797912.png', 1, '2021-09-28 09:58:32', '2021-09-28 09:58:32'),
 (46, 'Lotion Cetaphil Daily Facial Moist Spf15 (C/118ml)', 400000, 0, 5, 14, 17, NULL, NULL, 'name9215-8655821731632797991.png', 1, '2021-09-28 09:59:51', '2021-09-28 09:59:51');
 
@@ -288,7 +288,7 @@ CREATE TABLE `khachhang` (
 
 INSERT INTO `khachhang` (`MSKH`, `HoTenKH`, `GioiTinh`, `Ngay`, `Thang`, `Nam`, `SoDienThoai`, `Email`, `TaiKhoan`, `MatKhau`, `HoatDong`, `TG_Tao`, `TG_CapNhat`) VALUES
 (4, 'Trần Thanh Quang', 1, 29, 10, 2000, '0859083181', 'qtran8219@gmail.com', 'quangquang', '790f377a3eccd349efa09e24e3df7a01', 1, '2021-09-13 09:57:08', '2021-09-17 13:42:24'),
-(5, 'Trần Thanh Tân', 0, 11, 8, 2010, '0859083182', 'thanhtan1108@gmail.com', 'tan', 'e10adc3949ba59abbe56e057f20f883e', 1, '2021-10-03 09:35:00', '2021-10-03 09:35:00'),
+(5, 'Trần Thanh Tân', 1, 11, 8, 2010, '0859083182', 'thanhtan1108@gmail.com', 'tan', 'e10adc3949ba59abbe56e057f20f883e', 1, '2021-10-03 09:35:00', '2021-10-19 18:29:25'),
 (6, 'Nguyễn Văn Entony', 1, 7, 7, 2000, '0859083182', 'entony@gmail.com.vn', 'nguyenvanentony', '25d55ad283aa400af464c76d713c07ad', 1, '2021-10-11 16:43:29', '2021-10-11 16:43:29');
 
 -- --------------------------------------------------------

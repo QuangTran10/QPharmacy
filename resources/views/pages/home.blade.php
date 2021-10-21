@@ -13,9 +13,9 @@
                                 <div class="col-md-12">
                                     <div class="hero-slider-content slide-1">
                                         {{-- <span style="color: green">Chào Hè</span> --}}
-                                        <h1 style="color: #FDE357"><b>Chào Hè</b></h1>
+                                        {{-- <h1 style="color: #FDE357"><b>Chào Hè</b></h1> --}}
                                         {{-- <h2>& Feeling love</h2> --}}
-                                        <a href="" class="btn-hero">Mua Ngay</a>
+                                        {{-- <a href="" class="btn-hero">Mua Ngay</a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -31,11 +31,30 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="hero-slider-content slide-2">
+                                        {{-- <span>Chào Trung Thu</span>
+                                        <h1 style="color: yellow;">Tết Trung thu</h1>
+                                        <h2 style="color: yellow;">trao gửi ân tình</h2> --}}
+                                        {{-- <a href="" class="btn-hero">Mua Ngay</a> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single slider item start -->
+
+                <!-- single slider item start -->
+                <div class="hero-single-slide">
+                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster7.jpg')}}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{-- <div class="hero-slider-content slide-2">
                                         <span>Chào Trung Thu</span>
                                         <h1 style="color: yellow;">Tết Trung thu</h1>
                                         <h2 style="color: yellow;">trao gửi ân tình</h2>
                                         <a href="shop.html" class="btn-hero">Mua Ngay</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -57,11 +76,11 @@
                                 <a href="#">
                                     <img src="{{asset('public/frontend/assets/img/banner/task1.png')}}" alt="">
                                 </a>
-                                <figcaption class="banner-content">
+                                {{-- <figcaption class="banner-content">
                                     <h2 class="text1">Siêu Ưu Đãi</h2>
-                                    {{-- <h2 class="text2">Yellow Gold</h2> --}}
+                                    <h2 class="text2">Yellow Gold</h2>
                                     <a class="store-link" href="#">Mua Ngay</a>
-                                </figcaption>
+                                </figcaption> --}}
                             </figure>
                         </div>
                     </div>
@@ -74,11 +93,11 @@
                                 <a href="#">
                                     <img src="{{asset('public/frontend/assets/img/banner/task2.png')}}" alt="">
                                 </a>
-                                <figcaption class="banner-content text-center">
+                                {{-- <figcaption class="banner-content text-center">
                                     <h2 class="text1">Chào Tháng 9</h2>
-                                    {{-- <h2 class="text2">Orchid stick</h2> --}}
+                                    <h2 class="text2">Orchid stick</h2>
                                     <a class="store-link" href="#">Mua Ngay</a>
-                                </figcaption>
+                                </figcaption> --}}
                             </figure>
                         </div>
                     </div>
@@ -91,11 +110,11 @@
                                 <a href="#">
                                     <img src="{{asset('public/frontend/assets/img/banner/task3.png')}}" alt="">
                                 </a>
-                                <figcaption class="banner-content">
+                                {{-- <figcaption class="banner-content">
                                     <h2 class="text1">Giảm 10%</h2>
-{{--                                     <h2 class="text2">tulip flower</h2> --}}
+                                    <h2 class="text2">tulip flower</h2>
                                     <a class="store-link" href="#">Mua Ngay</a>
-                                </figcaption>
+                                </figcaption> --}}
                             </figure>
                         </div>
                     </div>
@@ -182,13 +201,13 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product-item mt-40">
                             <figure class="product-thumb">
-                                <a href="{{URL::to('/product_details/'.$value->MSHH)}}">
+                                <a href="{{URL::to('/product_details/'.$value->MSHH.'?new=1')}}">
                                     <img class="pri-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
                                     <img class="sec-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
                                 </a>
                                 <div class="product-badge">
                                     <div class="product-label new">
-                                        <span>new</span>
+                                        <span>Mới</span>
                                     </div>
                                     @if($value->GiamGia!=0)
                                     <div class="product-label discount">
@@ -264,11 +283,11 @@
                                 <a href="#">
                                     <img src="{{('public/frontend/assets/img/banner/task4.png')}}" alt="">
                                 </a>
-                                <figcaption class="banner-content banner-content-right">
+                                {{-- <figcaption class="banner-content banner-content-right">
                                     <h2 class="text1">for you</h2>
                                     <h2 class="text2">Tulip Flower</h2>
                                     <a class="store-link" href="#">shop now</a>
-                                </figcaption>
+                                </figcaption> --}}
                             </figure>
                         </div>
                     </div>
@@ -281,11 +300,11 @@
                                 <a href="#">
                                     <img src="{{('public/frontend/assets/img/banner/task5.png')}}" alt="">
                                 </a>
-                                <figcaption class="banner-content banner-content-right">
+                                {{-- <figcaption class="banner-content banner-content-right">
                                     <h2 class="text1">for you</h2>
                                     <h2 class="text2">Flower & Box</h2>
                                     <a class="store-link" href="#">shop now</a>
-                                </figcaption>
+                                </figcaption> --}}
                             </figure>
                         </div>
                     </div>
@@ -313,13 +332,13 @@
                             @foreach($pro_best_seller as $pro_val)
                             <div class="product-item">
                                 <figure class="product-thumb">
-                                    <a href="">
+                                    <a href="{{URL::to('/product_details/'.$pro_val->MSHH)}}">
                                         <img class="pri-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
                                         <img class="sec-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
                                     </a>
                                     <div class="product-badge">
                                         <div class="product-label new">
-                                            <span>new</span>
+                                            <span>Mới</span>
                                         </div>
                                         @if($pro_val->GiamGia!=0)
                                         <div class="product-label discount">
