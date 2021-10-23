@@ -69,6 +69,31 @@ class OrderManagement extends Controller
            return redirect('/view_order/'.$SoDonDH)->with('notice','Cập nhật Không thành công');
         }
     }
+    public function print_order($checkout_code){
+        $this->AuthLogin();
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $data=array();
+        $contact = DB::table('lienhe')->get();
+
+        $order_by_id=DB::table('dathang')
+        ->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')
+        ->where('dathang.SoDonDH',$checkout_code)->get();
+
+        $order_details=DB::table('chitietdathang')
+        ->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')
+        ->where('SoDonDH',$checkout_code)->get();
+
+        $data['URL']='public/frontend/assets/img/logo_brand.png';
+        $data['order']=$order_by_id;
+        $data['order_details']=$order_details;
+        $data['contact']=$contact;
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.Order.invoice', $data);
+        $name="Invoice_".$checkout_code."_".$now->day.$now->month.$now->year.".pdf";
+        return $pdf->stream($name);
+    }
+
+    //USER
 
     public function show_order(Request $re){
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
@@ -123,26 +148,5 @@ class OrderManagement extends Controller
         if($result){
             return Redirect::to('/show_order');
         }
-    }
-
-    public function print_order($checkout_code){
-        $data=array();
-        $contact = DB::table('lienhe')->get();
-
-        $order_by_id=DB::table('dathang')
-        ->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')
-        ->where('dathang.SoDonDH',$checkout_code)->get();
-
-        $order_details=DB::table('chitietdathang')
-        ->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')
-        ->where('SoDonDH',$checkout_code)->get();
-
-        $data['URL']='public/frontend/assets/img/logo_brand.png';
-        $data['order']=$order_by_id;
-        $data['order_details']=$order_details;
-        $data['contact']=$contact;
-
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.Order.invoice', $data);
-        return $pdf->stream();
     }
 }

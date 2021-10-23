@@ -32,6 +32,7 @@
 </head>
 <body>
   @php
+    use Carbon\Carbon;
     $image = $URL;
     $imageData = base64_encode(file_get_contents($image));
     $src = 'data:'.mime_content_type($image).';base64,'.$imageData;
@@ -50,6 +51,14 @@
         </div>
       </td>
     </tr>
+    <tfoot>
+      <td colspan="2" align="right">
+        @php
+          $now = Carbon::now('Asia/Ho_Chi_Minh');
+        @endphp
+        <i>Sóc Trăng, Ngày..{{$now->day}}.Tháng..{{$now->month}}.Năm..{{$now->year}}.</i>
+      </td>
+    </tfoot>
   </table>
 
   <br><br>
