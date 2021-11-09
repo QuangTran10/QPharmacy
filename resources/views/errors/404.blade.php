@@ -3,25 +3,27 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="{{('public/backend/assets/img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{('public/backend/assets/img/favicon.png')}}">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Đăng Nhập</title>
+  <title>
+    Admin
+  </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="{{('public/backend/assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
+  <link href="{{asset('public/backend/assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{('public/backend/assets/demo/demo.css')}}" rel="stylesheet" />
+  <link href="{{asset('public/backend/assets/demo/demo.css')}}" rel="stylesheet" />
 </head>
-
 <body class="off-canvas-sidebar">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
       <div class="navbar-wrapper">
+        <a class="navbar-brand" href="javascript:;"></a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -49,49 +51,14 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{{('public/backend/assets/img/login.jpg')}}'); background-size: cover; background-position: top center;">
-      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
-      <div class="container">
+    <div class="page-header error-page header-filter" style="background-image: url({{asset('public/backend/assets/img/clint-mckoy.jpg')}})">
+      <!--   you can change the color of the filter page using: data-color="blue | green | orange | red | purple" -->
+      <div class="content-center">
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form" method="post" action="{{URL::to('/admin_dashboard')}}">
-              {{ csrf_field() }}
-              <div class="card card-login card-hidden">
-                <div class="card-header card-header-rose text-center">
-                  <h4 class="card-title">ĐĂNG NHẬP</h4>
-                </div>
-                <div class="card-body ">
-                  @if(session('notice'))
-                  <p style="color: black; text-align: center;">
-                    {{session('notice')}}
-                  </p>
-                  @endif
-                  <span class="bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">email</i>
-                        </span>
-                      </div>
-                      <input type="text" name="Username" class="form-control" placeholder="TÊN ĐĂNG NHẬP...">
-                    </div>
-                  </span>
-                  <span class="bmd-form-group">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
-                        </span>
-                      </div>
-                      <input type="password" name="Password" class="form-control" placeholder="MẬT KHẨU...">
-                    </div>
-                  </span>
-                </div>
-                <div class="card-footer justify-content-center">
-                  <input type="submit" class="btn btn-rose btn-link btn-lg" value="Đăng Nhập" name="login">
-                </div>
-              </div>
-            </form>
+          <div class="col-md-12">
+            <h1 class="title">404</h1>
+            <h4>Ooooups!</h4>
+            <h2>Không Tìm Thấy Trang:(</h2>
           </div>
         </div>
       </div>
@@ -125,21 +92,23 @@
       </footer>
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="{{('public/backend/assets/js/core/jquery.min.js')}}"></script>
-  <script src="{{('public/backend/assets/js/core/popper.min.js')}}"></script>
-  <script src="{{('public/backend/assets/js/core/bootstrap-material-design.min.js')}}"></script>
-  <script src="{{('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
-  <script src="{{asset('public/backend/assets/js/plugins/sweetalert2.js')}}"></script>
-  <!-- Chartist JS -->
-  <script src="{{('public/backend/assets/js/plugins/chartist.min.js')}}"></script>
-  <!--  Notifications Plugin    -->
-  <script src="{{('public/backend/assets/js/plugins/bootstrap-notify.js')}}"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{('public/backend/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{('public/backend/assets/demo/demo.js')}}"></script>
-  <script>
+
+<!--   Core JS Files   -->
+<script src="{{asset('public/backend/assets/js/core/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('public/backend/assets/js/core/bootstrap-material-design.min.js')}}"></script>
+<script src="{{asset('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chartist JS -->
+<script src="{{asset('public/backend/assets/js/plugins/chartist.min.js')}}"></script>
+<!--  Notifications Plugin    -->
+<script src="{{asset('public/backend/assets/js/plugins/bootstrap-notify.js')}}"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{{asset('public/backend/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{asset('public/backend/assets/demo/demo.js')}}"></script>
+<script>
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
@@ -313,10 +282,6 @@
   <script>
     $(document).ready(function() {
       md.checkFullPageBackgroundImage();
-      setTimeout(function() {
-        // after 1000 ms we add the class animated to the login/register card
-        $('.card').removeClass('card-hidden');
-      }, 700);
     });
   </script>
 </body>

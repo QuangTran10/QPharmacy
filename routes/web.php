@@ -115,6 +115,8 @@ Route::post('/admin_dashboard', 'App\Http\Controllers\AdminController@admin_dash
 
 Route::get('/logout', 'App\Http\Controllers\AdminController@Logout');
 
+Route::get('/404', 'App\Http\Controllers\AdminController@error_page');
+
 //admin interface -> user management
 
 Route::get('/user', 'App\Http\Controllers\UserManagement@user');

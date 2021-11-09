@@ -20,6 +20,9 @@ class AdminController extends Controller
             return Redirect::to('admin')->send();
         }
     }
+    public function error_page(){
+        return view('errors.404');
+    }
     public function index(){
     	return view('admin_login');
     }
