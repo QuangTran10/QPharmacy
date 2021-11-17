@@ -98,12 +98,15 @@
 									<td>Tình Trạng</td>
 									<td>
 										<?php
+										$Status = $value->TinhTrang;
 										if($value->TinhTrang ==0)
-											echo 'Đang Xử Lý...';
+											echo 'Đang Xử Lý';
 										elseif($value->TinhTrang ==1){
 											echo 'Đang Giao Hàng';
-										}else{
+										}elseif($value->TinhTrang ==2){
 											echo 'Đã Giao Hàng';
+										}else{
+											echo 'Đã Huỷ';
 										} 
 										?>
 									</td>
@@ -199,14 +202,14 @@
 				{{csrf_field()}}
 				<input type="hidden" name="SoDonDH" value="{{$SoDonDH}}">
 				<input type="hidden" name="TinhTrang" value="1">
-				<input type="submit" name="Update" value="Xác Nhận" class="btn btn-success">
+				<input type="submit" name="Update" value="Xác Nhận" class="btn btn-success" <?php if($Status==3 || $Status==1 || $Status==2) echo 'disabled=""';?>>
 			</form>
 		</div>
 		<div class="col-lg-2 col-md-2">
 			<a href="{{URL::to('/order_management')}}" class="btn btn-danger">Quay Lại</a>
 		</div>
 		<div class="col-lg-2 col-md-2">
-			<a target="_blank" href="{{URL::to('/print_order/'.$SoDonDH)}}" class="btn btn-info">In Đơn Hàng</a>
+			<a target="_blank" href="{{URL::to('/print_order/'.$SoDonDH)}}" class="btn btn-info" <?php if($Status==3) {echo 'style="pointer-events: none;cursor: default;" ';};?>  >In Đơn Hàng</a>
 		</div>
 	</div>
 </div>

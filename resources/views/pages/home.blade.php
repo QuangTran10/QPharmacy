@@ -337,9 +337,6 @@
                                         <img class="sec-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
                                     </a>
                                     <div class="product-badge">
-                                        <div class="product-label new">
-                                            <span>Mới</span>
-                                        </div>
                                         @if($pro_val->GiamGia!=0)
                                         <div class="product-label discount">
                                             <span>{{$pro_val->GiamGia*100}}%</span>

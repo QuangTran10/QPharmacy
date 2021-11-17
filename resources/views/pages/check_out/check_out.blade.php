@@ -35,25 +35,41 @@
                         <!-- Checkout Login Coupon Accordion Start -->
                         <div class="checkoutaccordion" id="checkOutAccordion">
                             <div class="card">
-                                <h3>
-                                    <span><a href="{{URL::to('/login_home')}}">Đăng nhập để có thể thanh toán </a></span>
-                                </h3>
-                            </div>
-
-                            <div class="card">
-                                <h3>
-                                    <span data-toggle="collapse" data-target="#couponaccordion">
-                                        Nhấn vào đây để thêm voucher
-                                    </span>
-                                </h3>
-                                <div id="couponaccordion" class="collapse" data-parent="#checkOutAccordion">
+                                <h3>Bạn chưa Đăng nhập? <span data-toggle="collapse" data-target="#login">Đăng nhập để có thể thanh toán</span></h3>
+                                <div id="login" class="collapse" data-parent="#checkOutAccordion">
                                     <div class="card-body">
-                                        <div class="cart-update-option">
-                                            <div class="apply-coupon-wrapper">
-                                                <form action="#" method="post" class=" d-block d-md-flex">
-                                                    <input type="text" placeholder="Enter Your Coupon Code" required />
-                                                    <button class="btn btn__bg">Apply Coupon</button>
-                                                </form>
+                                        <p>Nếu bạn chưa đăng nhập bạn sẽ không thể tiến hành thanh toán đơn hàng của bạn. 
+                                        Nếu chưa có tài khoản <a href="{{URL::to('/register_home')}}">Nhấn vào đây</a></p><br>
+                                        Nếu đã có tài khoản hay đăng nhập tại đây.
+                                        <div class="login-reg-form-wrap mt-20">
+                                            <div class="row">
+                                                <div class="col-lg-7 m-auto">
+                                                    <form action="{{URL::to('/quick_login')}}" method="post">
+                                                        {{ csrf_field() }}
+                                                        @if(session('notice'))
+                                                        <p style="color: red; text-align: center;">
+                                                            {{session('notice')}}
+                                                        </p>
+                                                        @endif
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="single-input-item">
+                                                                    <input type="text" name="TaiKhoan" placeholder="Tài Khoản" required />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <div class="single-input-item">
+                                                                    <input type="password" name="MatKhau" placeholder="Mật Khẩu" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="single-input-item">
+                                                            <button type="submit" class="btn btn__bg" name="DangNhap">Đăng Nhập</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +149,9 @@
                                             <input type="checkbox" class="custom-control-input" id="terms" required name="check" value="1" />
                                             <label class="custom-control-label" for="terms">Tôi đồng ý với các <a href="{{URL::to('/trang_chu')}}">điều khoản.</a></label>
                                         </div>
+                                        @if($user_id!=null)
                                         <input type="submit" name="XacNhan" class="btn btn__bg" value="Xác Nhận">
+                                        @endif
                                     </div>
                                 </form>    
                             </div>

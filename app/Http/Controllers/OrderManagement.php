@@ -145,6 +145,9 @@ class OrderManagement extends Controller
         $status = $re->TinhTrang;
         $SoDonDH= $re->SoDonDH;
         $result = DB::table('dathang')->where('SoDonDH',$SoDonDH)->update(['TinhTrang' => $status]);
+        if ($status==3) {
+            DB::table("chitietdathang")->where('SoDonDH',$SoDonDH)->delete();
+        }
         if($result){
             return Redirect::to('/show_order');
         }

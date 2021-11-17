@@ -53,6 +53,8 @@ Route::get('/logout_user', 'App\Http\Controllers\UserManagement@user_logout');
 
 Route::post('/login', 'App\Http\Controllers\UserManagement@login');
 
+Route::post('/quick_login', 'App\Http\Controllers\UserManagement@quick_login');
+
 Route::post('/register', 'App\Http\Controllers\UserManagement@register');
 
 Route::get('/my_account', 'App\Http\Controllers\UserManagement@my_account');
