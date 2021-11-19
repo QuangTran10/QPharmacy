@@ -149,9 +149,7 @@
                                             <input type="checkbox" class="custom-control-input" id="terms" required name="check" value="1" />
                                             <label class="custom-control-label" for="terms">Tôi đồng ý với các <a href="{{URL::to('/trang_chu')}}">điều khoản.</a></label>
                                         </div>
-                                        @if($user_id!=null)
-                                        <input type="submit" name="XacNhan" class="btn btn__bg" value="Xác Nhận">
-                                        @endif
+                                        <input type="submit" name="XacNhan" class="btn btn__bg" value="Xác Nhận" <?php if($user_id==null) echo "disabled" ?> >
                                     </div>
                                 </form>    
                             </div>

@@ -101,7 +101,7 @@
                                 <!-- Cart Update Option -->
                                 <div class="cart-update-option d-block d-md-flex justify-content-between">
                                     <div class="apply-coupon-wrapper">
-                                        <a href="" class="btn btn__bg">Xoá Tất Cả</a>
+                                        
                                     </div>
                                     <div class="cart-update">
                                         <button type="submit" class="btn btn__bg">Cập Nhật</button>

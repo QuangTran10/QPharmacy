@@ -68,7 +68,6 @@
                                         <img src="{{asset('public/frontend/assets/img/icon/vn.png')}}" alt="flag"> Việt Nam
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="dropdown-list">
-                                            <li><a href="#"><img src="{{asset('public/frontend/assets/img/icon/en.png')}}" alt="flag"> english</a></li>
                                             <li><a href="#"><img src="{{asset('public/frontend/assets/img/icon/vn.png')}}" alt="flag"> Việt Nam</a></li>
                                         </ul>
                                     </li>
@@ -152,9 +151,6 @@
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                            </li>
-                                            <li>
-                                                <a href="">Tin Tức</a>
                                             </li>
                                             <li><a href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
                                             <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
@@ -310,8 +306,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children "><a href="#">Tin Tức</a>
-                            </li>
                             <li><a href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
                             <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
                         </ul>
@@ -354,10 +348,10 @@
                     <div class="off-canvas-contact-widget">
                         <ul>
                             <li><i class="fa fa-mobile"></i>
-                                <a href="#">0123456789</a>
+                                <a href="tel:0859083181">(+84) 859083182</a>
                             </li>
                             <li><i class="fa fa-envelope-o"></i>
-                                <a href="#">info@yourdomain.com</a>
+                                <a href="mailto:qtran8219@gmail.com">qtran8219@gmail.com</a>
                             </li>
                         </ul>
                     </div>
@@ -519,11 +513,6 @@
                                         <span id="product-qty"></span> trong kho
                                     </div>
                                     <p class="pro-desc" id="product-desc"></p>
-                                    <div class="quantity-cart-box d-flex align-items-center">
-                                        <div class="action_link" id="button_quickview">
-                                            <a class="btn btn-cart2" href="#">Thêm Vào Giỏ Hàng</a>
-                                        </div>
-                                    </div>
                                     <div class="useful-links">
                                         <a href="#" data-toggle="tooltip" title="Wishlist"><i
                                             class="lnr lnr-heart"></i>Yêu Thích

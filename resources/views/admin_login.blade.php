@@ -31,14 +31,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
-          <li class="nav-item ">
-            <a href="../pages/register.html" class="nav-link">
-              <i class="material-icons">person_add</i>
-              ĐĂNG KÝ
-            </a>
-          </li>
           <li class="nav-item  active ">
-            <a href="../pages/login.html" class="nav-link">
+            <a href="{{URL::to('/admin')}}" class="nav-link">
               <i class="material-icons">fingerprint</i>
               ĐĂNG NHẬP
             </a>

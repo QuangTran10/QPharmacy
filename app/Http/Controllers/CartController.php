@@ -24,6 +24,7 @@ class CartController extends Controller
             return Redirect::to('/cart_shopping');
         }
     }
+
     public function del_Cart($session_id){
         $cart = Session::get('cart');
         if($cart==true){
