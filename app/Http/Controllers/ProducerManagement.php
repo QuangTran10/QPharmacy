@@ -73,8 +73,7 @@ class ProducerManagement extends Controller
     //Chuyển trang xoá NSX
     public function delete($id){
         $this->AuthLogin();
-        $del_pro= Producer::find($id);
-        $del_pro->delete();
+        DB::table('nhasanxuat')->where('MaNSX',$id)->update(['TinhTrang'=>0]);
         return Redirect::to('producer_management');
     }
 

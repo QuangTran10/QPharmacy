@@ -72,9 +72,7 @@ class CategoryManagement extends Controller
     //Chuyển trang xoá danh mục
     public function delete($category_product_id){
         $this->AuthLogin();
-        $del_cate= Producer::find($category_product_id);
-        $del_cate->delete();
-    	// DB::table('loaihanghoa')->where('MaLoaiHang',$category_product_id)->delete();
+    	DB::table('loaihanghoa')->where('MaLoaiHang',$category_product_id)->update(['TinhTrang'=>0]);
         return Redirect::to('category_management');
     }
 

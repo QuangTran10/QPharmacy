@@ -99,4 +99,16 @@ class StaffController extends Controller
             return Redirect::to('staff_management');
         }
     }
+
+    public function delete_staff($id){
+        $this->AuthLogin();
+        DB::table('nhanvien')->where('MSNV',$id)->update(['HoatDong'=>0]);
+        return Redirect::to('staff_management');
+    }
+
+    public function unblock_staff($id){
+        $this->AuthLogin();
+        DB::table('nhanvien')->where('MSNV',$id)->update(['HoatDong'=>1]);
+        return Redirect::to('staff_management');
+    }
 }

@@ -26,6 +26,7 @@
               <th style="text-align: center;">Tình Trạng</th>
               <th>Chức Vụ</th>
               <th></th>
+              <th></th>
             </thead>
             <tbody>
               @foreach($staff as $key => $value)
@@ -54,8 +55,13 @@
                 </td>
                 <td>{{$value->ChucVu}}</td>
                 <td>
-                  <a href="{{-- {{URL::to('/delete_category/'.$value->MaLoaiHang)}} --}}" onclick="return confirm('Bạn có chắc chắn muốn xoá')">
-                    <i class="material-icons">delete</i>
+                  @if($value->HoatDong==0)
+                  <a href="{{URL::to('/unblock_staff/'.$value->MSNV)}}" onclick="return confirm('Bạn có chắc chắn muốn mở khoá tài khoản')"><i class="material-icons">lock_open</i></a>
+                  @endif
+                </td>
+                <td>
+                  <a href="{{URL::to('/delete_staff/'.$value->MSNV)}}" onclick="return confirm('Bạn có chắc chắn muốn khoá tài khoản')">
+                    <i class="material-icons">lock</i>
                   </a>
                 </td>
               </tr>

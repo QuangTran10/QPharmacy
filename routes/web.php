@@ -202,6 +202,10 @@ Route::get('/add_staff', 'App\Http\Controllers\StaffController@add_staff');
 
 Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
 
+Route::get('/delete_staff/{id}', 'App\Http\Controllers\StaffController@delete_staff');
+
+Route::get('/unblock_staff/{id}', 'App\Http\Controllers\StaffController@unblock_staff');
+
 //admin interface -> comment
 
 Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');
