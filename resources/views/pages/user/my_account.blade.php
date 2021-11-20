@@ -35,7 +35,9 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4">
                                     <div class="myaccount-tab-menu nav" role="tablist">
-                                        <a href="#account-info" class="active" data-toggle="tab"><i class="fa fa-user"></i>
+                                        <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
+                                        Giới Thiệu</a>
+                                        <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i>
                                         Thông Tin Cá Nhân</a>
                                         <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i>
                                         Đổi Mật Khẩu</a>
@@ -54,6 +56,18 @@
                                             {{session('notice')}}
                                         </p>
                                         @endif
+                                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <?php
+                                                $name_user= Session::get('user_name');
+                                                ?>
+                                                <h3>Giới Thiệu</h3>
+                                                <div class="welcome">
+                                                    <p>Xin chào, <strong><?php echo $name_user; ?></strong> đã đến với Qpharmacy</p>
+                                                </div>    
+                                            </div>
+                                        </div>
+
                                         <div class="tab-pane fade" id="download" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Thay Đổi Mật Khẩu</h3>
@@ -106,12 +120,13 @@
                                                     <hr>
                                                 </form>
                                                 @endforeach
+                                                
                                             </div>
                                         </div>
                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade active" id="account-info" role="tabpanel">
+                                        <div class="tab-pane fade" id="account-info" role="tabpanel">
                                             <div class="myaccount-content">
                                                 <h3>Thông Tin Cá Nhân</h3>
                                                 <div class="account-details-form">
@@ -224,6 +239,7 @@
     <!-- my account wrapper end -->
 
     <!-- Quick view modal start -->
+    <!-- SỬA ĐỊA CHỈ-->
     <div class="modal" id="address_edit">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -264,6 +280,7 @@
         </div>
     </div> 
     <!-- Quick view modal end --> 
+
 </main>
 <!-- main wrapper end -->
 <script type="text/javascript">

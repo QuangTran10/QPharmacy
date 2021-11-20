@@ -113,7 +113,8 @@
                                         <div class="single-payment-method">
                                             <div class="payment-method-name">
                                                 <div class="custom-control custom-radio">
-                                                    <label class="custom-control-label"><a href="" data-toggle="modal" data-target="#quick_view">Thêm Địa Chỉ Nhận Hàng</a>
+                                                    <label class="custom-control-label">
+                                                        <a href="" data-toggle="modal" data-target="#quick_view" <?php if($user_id==null) {echo 'style="pointer-events: none;cursor: default;" ';};?>>Thêm Địa Chỉ Nhận Hàng</a>
                                                     </label>
                                                 </div>
                                             </div>
@@ -122,7 +123,7 @@
 
                                     <div class="single-input-item">
                                         <label for="ordernote">Ghi Chú</label>
-                                        <textarea name="ordernote" id="ordernote" cols="30" rows="3" placeholder=""></textarea>
+                                        <textarea name="ordernote" id="ordernote" cols="30" rows="3" placeholder="Ghi chú" style="resize: none;"></textarea>
                                     </div>
 
                                     <div class="order-payment-method">
@@ -131,14 +132,6 @@
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked />
                                                     <label class="custom-control-label" for="cashon">Thanh Toán Khi Nhận Hàng</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-payment-method">
-                                            <div class="payment-method-name">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="paypalpayment" name="paymentmethod" value="paypal" class="custom-control-input" />
-                                                    <label class="custom-control-label" for="paypalpayment">Paypal <img src="{{asset('public/frontend/assets/img/paypal-card.jpg')}}" class="img-fluid paypal-card" alt="Paypal" /></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -204,7 +197,7 @@
                                                 <td>
                                                     @php
                                                     if($total>=1000000){
-                                                        echo 'Free';
+                                                        echo 'Miễn Phí Giao Hàng';
                                                     }else{
                                                         $total=$total+30000;
                                                         echo number_format(30000 , 0, ',', ' ').'đ';

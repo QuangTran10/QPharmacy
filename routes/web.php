@@ -41,6 +41,7 @@ Route::get('/check_out', 'App\Http\Controllers\CheckOutController@check_out');
 
 Route::post('/shipping_add', 'App\Http\Controllers\CheckOutController@shipping_add');
 
+
 Route::post('/save_check_out', 'App\Http\Controllers\CheckOutController@save_check_out');
 
 //user interface -> login/register/logout

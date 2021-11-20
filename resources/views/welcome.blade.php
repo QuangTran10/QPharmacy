@@ -29,6 +29,8 @@
 
     <link href="{{asset('public/frontend/assets/css/sweetalert.css')}}" rel="stylesheet">
 
+    <link href="{{asset('public/frontend/assets/css/upload.css')}}" rel="stylesheet">
+
     <script src="{{asset('public/frontend/assets/js/jquery-3.6.0.js')}}"></script>
     <!--[if lt IE 9]>
 <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -578,6 +580,8 @@
 
             <!-- All vendor & plugins & active js include here -->
             <!--All Vendor Js -->
+            <script src="{{asset('public/frontend/assets/js/upload.js')}}"></script>
+
             <script src="{{asset('public/frontend/assets/js/vendor.js')}}"></script>
             <!-- Active Js -->
             <script src="{{asset('public/frontend/assets/js/active.js')}}"></script>

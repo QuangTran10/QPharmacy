@@ -192,6 +192,7 @@ class UserManagement extends Controller
         ->with('meta_desc',$meta_desc)->with('url',$url)
         ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle);
     }
+
     public function change_password(Request $request){
         $MSKH=Session::get('user_id');
         $Username=$request->username;
