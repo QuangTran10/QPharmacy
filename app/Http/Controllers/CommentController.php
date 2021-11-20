@@ -66,7 +66,7 @@ class CommentController extends Controller
     	$data['NoiDung']=$re->content;
     	$data['ThoiGian']=$now;
     	$data['DanhGia']=$re->rating;
-    	$data['TrangThai']=0;
+    	$data['TrangThai']=1;
 
     	DB::table('binhluan')->insert($data);
 
