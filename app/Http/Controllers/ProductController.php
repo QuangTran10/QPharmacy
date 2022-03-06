@@ -289,6 +289,7 @@ class ProductController extends Controller
                 $result = DB::table('yeuthich')->insert($data);
                 $notification['status']=1;
                 // echo json_encode(1); //Nếu sản phẩm chưa có trong DB -> thêm vào
+                
             }else{
                 $notification['status']=2;
                 // echo json_encode(2); //Nếu đã có trong DB yêu thích
