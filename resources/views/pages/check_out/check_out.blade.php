@@ -126,16 +126,7 @@
                                         <textarea name="ordernote" id="ordernote" cols="30" rows="3" placeholder="Ghi chú" style="resize: none;"></textarea>
                                     </div>
 
-                                    <div class="order-payment-method">
-                                        <div class="single-payment-method show">
-                                            <div class="payment-method-name">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked />
-                                                    <label class="custom-control-label" for="cashon">Thanh Toán Khi Nhận Hàng</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="PhuongThuc" id="paymethod" value="Thanh Toán Khi Nhận Hàng">
 
                                     <div class="summary-footer-area">
                                         <div class="custom-control custom-checkbox mb-20">

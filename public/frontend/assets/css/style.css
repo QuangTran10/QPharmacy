@@ -6230,3 +6230,24 @@ label.star:before {
 label.error{
     color: red;
 }
+
+
+@keyframes filling {
+  from{
+    background-position: center 25%;
+  }
+  to {
+    background-position: center 50%;
+  }
+}
+
+.container-text {
+  background-image:  url('../img/pic.jpg');
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  color:  #FFFFFF;
+  padding-top: 20px;
+  font-size: 100px;
+  font-family: 'Bungee', cursive;
+  animation: filling 3s ease forwards;
+}

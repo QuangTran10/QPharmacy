@@ -3,6 +3,12 @@
 
 <!-- main wrapper start -->
 <main>
+    <?php
+        $sort='none';
+        if (isset($_GET['sort_by'])) {
+          $sort=$_GET['sort_by'];
+        } 
+    ?>
     <!-- breadcrumb area start -->
     <div class="breadcrumb-area common-bg">
         <div class="container">
@@ -69,6 +75,26 @@
                         <!-- single sidebar end -->
 
                         <!-- single sidebar start -->
+                        <div class="sidebar-single">
+                            <h3 class="sidebar-title">Lọc theo giá</h3>
+                            <div class="sidebar-body">
+                                <div class="price-range-wrap">
+                                    <div class="price-range" data-min="0" data-max="500000"></div>
+                                    <div class="range-slider">
+                                        <form action="#" class="d-flex align-items-center justify-content-between">
+                                            <div class="price-input">
+                                                <label for="amount">Giá: </label>
+                                                <input type="text" id="amount">
+                                            </div>
+                                            <button class="filter-btn">Lọc</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single sidebar end -->
+
+                        <!-- single sidebar start -->
                         <div class="sidebar-banner">
                             <div class="img-container">
                                 <a href="#">
@@ -105,11 +131,11 @@
                                             <form>
                                                 {{csrf_field()}}
                                             <select class="nice-select" id="sort_by" name="sort_by">
-                                                <option value="{{Request::url()}}?sort_by=none">--Chọn--</option>
-                                                <option value="{{Request::url()}}?sort_by=az">Từ A - Z</option>
-                                                <option value="{{Request::url()}}?sort_by=za">Từ Z - A</option>
-                                                <option value="{{Request::url()}}?sort_by=increase">Giá: Thấp đến Cao</option>
-                                                <option value="{{Request::url()}}?sort_by=decrease">Giá: Cao đến Thấp</option>
+                                                <option value="{{Request::url()}}?sort_by=none" <?php if($sort=="none") echo 'selected'; ?>>--Chọn--</option>
+                                                <option value="{{Request::url()}}?sort_by=az" <?php if($sort=="az") echo 'selected'; ?>>Từ A - Z</option>
+                                                <option value="{{Request::url()}}?sort_by=za" <?php if($sort=="za") echo 'selected'; ?>>Từ Z - A</option>
+                                                <option value="{{Request::url()}}?sort_by=increase" <?php if($sort=="increase") echo 'selected'; ?>>Giá: Thấp đến Cao</option>
+                                                <option value="{{Request::url()}}?sort_by=decrease" <?php if($sort=="decrease") echo 'selected'; ?>>Giá: Cao đến Thấp</option>
                                             </select>
                                             </form>
                                         </div>
@@ -231,7 +257,7 @@
                                                 </span>
                                                 @endif    
                                             </div>
-                                            <p>{{$value->MoTa}}</p>
+                                            <p><?php echo $value->MoTa ?></p>
                                             <div class="button-group-list">
                                                 <button><a class="btn-big" data-id="{{$value->MSHH}}" data-toggle="tooltip" class="add_cart" ><i class="lnr lnr-cart"></i>Thêm Vào Giỏ Hàng</a></button>
                                                 <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip"  title="Xem"><i class="lnr lnr-magnifier"></i></span></a>

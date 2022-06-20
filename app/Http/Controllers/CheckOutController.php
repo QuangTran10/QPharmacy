@@ -12,7 +12,17 @@ session_start();
 
 class CheckOutController extends Controller
 {
+    public function LoginCheck(){
+        $MSKH=Session::get('user_id');
+        if($MSKH){
+            
+        }else{
+            return Redirect::to('login_home')->send();
+        }
+    }
+
     public function check_out(Request $re){
+        $this->LoginCheck();
     	$MSKH=Session::get('user_id');
     	$all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
     	$all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
@@ -32,8 +42,10 @@ class CheckOutController extends Controller
     }
 
     public function save_check_out(Request $re){
+        $this->LoginCheck();
     	$content =  Session::get('cart');
     	$MSKH=Session::get('user_id');
+        $total=0;
     	//Lấy dữ liệu từ bảng diachikh
     	$MaDC=$re->DiaChi;
     	$address_info=DB::table('diachikh')->where('MaDC',$MaDC)->get();
@@ -47,6 +59,26 @@ class CheckOutController extends Controller
     	$data=array();
         $order=array();
 
+        $payment = array();
+        //Xử lý thành tiền
+        foreach ($content as $value) {
+            $total=$total+$value['product_price']*$value['product_qty']*(1-$value['product_discount']);
+        }
+        if($total<1000000){
+            $total = $total +30000;
+        }
+        //insert table thanhtoan
+        $payment['TT_Ten'] = $re->PhuongThuc;
+        $payment['TT_DienGiai']="Thanh toan don hang";
+        $payment['TT_TrangThai']=0; // Có 2 trạng thái: Chưa TT và Đã Thanh Toán
+        $payment['TT_BankCode']=null;
+        $payment['TT_CodeVnpay']=null;
+        $payment['TT_ResponseCode']=null;
+        $payment['TT_TaoMoi'] = $now;
+        $payment['TT_CapNhat'] = $now;
+        $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
+
+
         //insert table dathang
     	$data['MSKH']=$MSKH;
     	$data['MSNV']=NULL;
@@ -56,8 +88,8 @@ class CheckOutController extends Controller
     	$data['DiaChiGH']=$DiaChi;
     	$data['NgayDH']=$now;
     	$data['NgayGH']=NULL;
-    	$data['LoaiGH']=$re->paymentmethod;
     	$data['TinhTrang']=0;
+        $data['MaThanhToan']=$MaThanhToan;
     	$data['TG_Tao']=$now;
     	$data['TG_CapNhat']=$now;
         $total=0;
@@ -81,7 +113,7 @@ class CheckOutController extends Controller
             if ($result) {
                 DB::table('dathang')->where('SoDonDH',$SoDonDH)->update(['ThanhTien' => $total]);
                 Session::put('cart',null);
-                return Redirect::to('/trang_chu');
+                return Redirect::to('/complete_checkout');
             }else{
                 return redirect('/check_out')->with('notice','Thanh Toán Thất Bại');
             }
@@ -98,5 +130,23 @@ class CheckOutController extends Controller
     	$data['MSKH']=$MSKH;
     	DB::table('diachikh')->insert($data);
     	return Redirect::to('/check_out');
+    }
+
+    public function complete_check_out(Request $re){
+        $this->LoginCheck();
+        $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
+        $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+
+        //Seo
+        $meta_desc="Thanh Toán Đơn Hàng";
+        $meta_keywords="Complete Check Out";
+        $meta_tittle="QPharmacy";
+        $url=$re->url();
+        // end seo
+
+        return view('pages.check_out.complete_check_out')
+        ->with('category',$all_category)->with('producer',$all_producer)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url);
     }
 }

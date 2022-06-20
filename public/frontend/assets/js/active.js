@@ -181,14 +181,14 @@
 	rangeSlider.slider({
 		range: true,
 		min: 0,
-		max: 1200,
-		values: [100, 1000],
+		max: 500000,
+		values: [100, 500000],
 		slide: function (event, ui) {
-			amount.val("$" + ui.values[0] + " - $" + ui.values[1]);
+			amount.val(ui.values[0] + " - " + ui.values[1]);
 		}
 	});
-	amount.val(" $" + rangeSlider.slider("values", 0) +
-		" - $" + rangeSlider.slider("values", 1));
+	amount.val(rangeSlider.slider("values", 0) +
+		" - " + rangeSlider.slider("values", 1));
 
 
 	/*------- product view mode change js start -------*/
