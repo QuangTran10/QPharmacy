@@ -19,13 +19,13 @@
         <div class="card-body table-responsive">
           <table class="table table-hover">
             <thead class="text-warning">
-              <th>Mã Nhân Viên</th>
-              <th>Họ Tên Nhân Viên</th>
+              <th>#</th>
+              <th>Họ Tên</th>
               <th>Giới Tính</th>
               <th>Email</th>
               <th style="text-align: center;">Tình Trạng</th>
               <th>Chức Vụ</th>
-              <th></th>
+              <th>Tài Khoản</th>
               <th></th>
             </thead>
             <tbody>
@@ -54,15 +54,15 @@
                   ?>
                 </td>
                 <td>{{$value->ChucVu}}</td>
+                <td>{{$value->TaiKhoan}}</td>
                 <td>
                   @if($value->HoatDong==0)
                   <a href="{{URL::to('/unblock_staff/'.$value->MSNV)}}" onclick="return confirm('Bạn có chắc chắn muốn mở khoá tài khoản')"><i class="material-icons">lock_open</i></a>
-                  @endif
-                </td>
-                <td>
+                  @else
                   <a href="{{URL::to('/delete_staff/'.$value->MSNV)}}" onclick="return confirm('Bạn có chắc chắn muốn khoá tài khoản')">
                     <i class="material-icons">lock</i>
                   </a>
+                  @endif
                 </td>
               </tr>
               @endforeach
