@@ -122,6 +122,8 @@ Route::get('/logout', 'App\Http\Controllers\AdminController@Logout');
 
 Route::get('/404', 'App\Http\Controllers\AdminController@error_page');
 
+Route::get('/update_avatar', 'App\Http\Controllers\AdminController@update_image');
+
 //admin interface -> user management
 
 Route::get('/user', 'App\Http\Controllers\UserManagement@user');

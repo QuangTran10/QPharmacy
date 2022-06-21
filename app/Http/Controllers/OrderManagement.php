@@ -35,6 +35,7 @@ class OrderManagement extends Controller
         $all_order=DB::table('dathang')->where('TinhTrang',0)->orderBy('SoDonDH','desc')->get();
 
         $data['count']=$count;
+        
         $data['contend']='';
         if ($count!=0) {
             foreach ($all_order as $key => $value) {

@@ -34,9 +34,7 @@
         </a></div>
       <div class="sidebar-wrapper">
         <div class="user">
-          <div class="photo">
-            <img src="{{asset('public/backend/images/avatar/avatar_macdinh.jpeg')}}" />
-          </div>
+          <div class="photo" id="photo"></div>
           <div class="user-info">
             <a data-toggle="collapse" href="#collapseExample" class="username">
               <span>
@@ -343,6 +341,7 @@
   <script src="{{asset('public/backend/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
  {{--  <script src="{{asset('public/backend/assets/demo/demo.js')}}"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -546,6 +545,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
       load_Order();
+      load_avatar();
 
       function load_Order() {
         $.ajax({
@@ -556,6 +556,18 @@
           success:function(data){
             $('#count_noti').html(data.count);
             $('#dropdown_nofi').html(data.contend);
+          }
+        });
+      }
+
+      function load_avatar(){
+        $.ajax({
+          url: '{{url('/update_avatar')}}',
+          method: "GET",
+          dataType: 'JSON',
+          data:{},
+          success:function(data){
+            $('#photo').html(data);
           }
         });
       }

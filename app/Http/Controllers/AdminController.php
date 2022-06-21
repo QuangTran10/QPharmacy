@@ -32,11 +32,14 @@ class AdminController extends Controller
         Session::put('page',1);
         //Số người đăng ký
         $subscribers = DB::table('khachhang')->get()->count();
+
         //Doanh thu
         $now = Carbon::now('Asia/Ho_Chi_Minh');
+
         $first_date=Carbon::create(Carbon::now()->year, 1, 1);
 
         $array = DB::table('dathang')->whereBetween('NgayDH',[ $first_date, $now])->select('ThanhTien')->get();
+
         $statistic =0;
         foreach ($array as $key => $value) {
             $statistic += $value->ThanhTien;
@@ -86,6 +89,16 @@ class AdminController extends Controller
     		return redirect('/admin')->with('notice','Mật khẩu hoặc tài khoản không đúng');
     	}
     }
+
+    public function update_image(){
+        $admin_id = Session::get('admin_id');
+
+        $staff = DB::table('nhanvien')->where('MSNV', $admin_id)->first();
+        $url = '/public/backend/images/avatar/'.$staff->Avatar;
+        $str = '<img src="'.url($url).' " />';
+        echo json_encode($str);
+    }
+
     public function Logout(){
         $this->AuthLogin();
     	Session::put('admin_name',null);

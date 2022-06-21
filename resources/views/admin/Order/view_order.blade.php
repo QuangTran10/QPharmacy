@@ -83,18 +83,6 @@
 									<td>{{$value->SDT}}</td>
 								</tr>
 								<tr>
-									<td>Loại Giao Hàng</td>
-									<td>
-										@if($value->LoaiGH=='cash')
-											Thanh Toán Khi Nhận Hàng
-										@elseif($value->LoaiGH=='paypal')
-											Thanh Toán Bằng PayPal
-										@else
-											Khác
-										@endif
-									</td>
-								</tr>
-								<tr>
 									<td>Tình Trạng</td>
 									<td>
 										<?php

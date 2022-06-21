@@ -122,12 +122,13 @@ class ProductController extends Controller
         $bestsell = DB::table('chitietdathang')
         ->select(DB::raw('COUNT(MSHH) as sl', 'MSHH'),'MSHH')->groupBy('MSHH')
         ->orderBy('sl','Desc')
-        ->limit(10)->get();
+        ->limit(5)->get();
 
         $labels=array();
         $series=array();
         foreach ($bestsell as $key => $value) {
-            $labels[]=$value->MSHH;
+            $a = DB::table('hanghoa')->where('MSHH', $value->MSHH)->get('TenHH')->first();
+            $labels[]=$a->TenHH;
             $series[]=$value->sl;
         }
         $chart_data = array(
