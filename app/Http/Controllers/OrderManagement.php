@@ -53,8 +53,15 @@ class OrderManagement extends Controller
     public function view_order($SoDonDH){
         $this->AuthLogin();
     	$order_by_id=DB::table('dathang')
-    	->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')->where('dathang.SoDonDH',$SoDonDH)->get();
-    	$order_details=DB::table('chitietdathang')->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')->where('SoDonDH',$SoDonDH)->get();
+    	->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')
+        ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
+        ->where('dathang.SoDonDH',$SoDonDH)
+        ->select('dathang.*', 'thanhtoan.*')->get();
+
+    	$order_details=DB::table('chitietdathang')
+        ->join('hanghoa', 'chitietdathang.MSHH', '=', 'hanghoa.MSHH')
+        ->where('SoDonDH',$SoDonDH)->get();
+
     	return view('admin.Order.view_order')
         ->with('order_by_id',$order_by_id)->with('order_details',$order_details)
         ->with('SoDonDH',$SoDonDH);
@@ -129,7 +136,9 @@ class OrderManagement extends Controller
         ->join('hanghoa', 'hanghoa.MSHH', '=', 'chitietdathang.MSHH')
         ->where('chitietdathang.SoDonDH',$id_order)->get();
 
-        $order= DB::table('dathang')->where('SoDonDH',$id_order)->get();
+        $order= DB::table('dathang')
+        ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
+        ->where('dathang.SoDonDH',$id_order)->first();
 
         $meta_desc="Chi Tiết Đơn Hàng";
         $meta_keywords="Show Order Details - ".$id_order;

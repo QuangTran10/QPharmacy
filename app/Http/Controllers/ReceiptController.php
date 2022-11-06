@@ -32,11 +32,26 @@ class ReceiptController extends Controller
     //Thêm phiếu nhập
     public function show_add(){
         $this->AuthLogin();
-    	$all_product = DB::table('hanghoa')->join('nhasanxuat', 'hanghoa.MaNSX', '=', 'nhasanxuat.MaNSX')
-        ->where('MaPhieu',NULL)->get();
+        $all_receipt = DB::table('chitietphieuthu')->select("MSHH")->get()->toArray();
+
+        $data = array();
+        foreach ($all_receipt as $key => $value) {
+            $data[]=$value->MSSP;
+        }
+
+    	$all_product = DB::table('hanghoa')->select("MSHH")->whereNotIn("MSHH",$data)->get();
+        
+        $product = array();
+        foreach ($all_product as $key => $value) {
+            $product[]=DB::table('hanghoa')
+            ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
+            ->where('MSHH',$value->MSHH)
+            ->select('hanghoa.*','loaihanghoa.TenLoaiHang')->first();
+        }
 
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
-    	return view('admin.Receipt.add_receipt')->with('all_product',$all_product)->with('all_producer',$all_producer);
+
+    	return view('admin.Receipt.add_receipt')->with('all_product',$product)->with('all_producer',$all_producer);
     }
 
     //add

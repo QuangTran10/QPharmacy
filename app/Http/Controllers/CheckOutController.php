@@ -41,6 +41,26 @@ class CheckOutController extends Controller
         ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url);
     }
 
+    public function vnpay_check_out(Request $re){
+        $this->LoginCheck();
+        $MSKH=Session::get('user_id');
+        $all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
+        $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
+        $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+
+        //Seo
+        $meta_desc="Thanh Toán Đơn Hàng";
+        $meta_keywords="CheckOut";
+        $meta_tittle="QPharmacy";
+        $url=$re->url();
+        // end seo
+
+        return view('pages.check_out.vnpay_check_out')
+        ->with('category',$all_category)->with('producer',$all_producer)
+        ->with('all_address_by_id',$all_address_by_id)->with('meta_desc',$meta_desc)
+        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url);
+    }
+
     public function save_check_out(Request $re){
         $this->LoginCheck();
     	$content =  Session::get('cart');
@@ -71,11 +91,11 @@ class CheckOutController extends Controller
         $payment['TT_Ten'] = $re->PhuongThuc;
         $payment['TT_DienGiai']="Thanh toan don hang";
         $payment['TT_TrangThai']=0; // Có 2 trạng thái: Chưa TT và Đã Thanh Toán
-        $payment['TT_BankCode']=null;
-        $payment['TT_CodeVnpay']=null;
-        $payment['TT_ResponseCode']=null;
-        $payment['TT_TaoMoi'] = $now;
-        $payment['TT_CapNhat'] = $now;
+        $payment['TT_BankCode']="2910";
+        $payment['TT_Code']="QT2910";
+        $payment['TT_ResponseCode']="0";
+        $payment['created_at'] = $now;
+        $payment['updated_at'] = $now;
         $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
 
 
@@ -90,8 +110,8 @@ class CheckOutController extends Controller
     	$data['NgayGH']=NULL;
     	$data['TinhTrang']=0;
         $data['MaThanhToan']=$MaThanhToan;
-    	$data['TG_Tao']=$now;
-    	$data['TG_CapNhat']=$now;
+    	$data['created_at'] = $now;
+        $data['updated_at'] = $now;
         $total=0;
         
         if($re->check==1){

@@ -147,7 +147,15 @@
                                         </table>
                                     </div>
                                 </div>
-                                <a href="{{URL::to('/check_out')}}" class="btn btn__bg d-block">THANH TOÁN</a>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{{URL::to('/check_out')}}" class="btn btn__bg d-block">THANH TOÁN</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{{URL::to('/vnpay_check_out')}}" class="btn btn__bg d-block">THANH TOÁN VNPAY</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

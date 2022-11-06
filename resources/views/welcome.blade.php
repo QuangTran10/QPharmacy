@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
 <head>
     <title>{{$meta_tittle}}</title>
     <meta charset="utf-8">
@@ -175,7 +174,7 @@
                                             </a>
                                         </li>
                                         <li class="user-hover">
-                                            <a href="{{URL::to('/login_home')}}">
+                                            <a href="#">
                                                 <i class="lnr lnr-user"></i>
                                             </a>
                                             <ul class="dropdown-list">
@@ -585,9 +584,7 @@
             <script src="{{asset('public/frontend/assets/js/vendor.js')}}"></script>
             <!-- Active Js -->
             <script src="{{asset('public/frontend/assets/js/active.js')}}"></script>
-            
             <script src="{{asset('public/frontend/assets/js/sweetalert.min.js')}}"></script>
-
             <script src="{{asset('public/frontend/assets/js/jquery.validate.min.js')}}"></script>
             <script type="text/javascript">
                 //Thêm giỏ hàng bằng AJAX

@@ -27,7 +27,6 @@
         <!-- cart main wrapper start -->
         <div class="cart-main-wrapper section-space pb-0">
             <div class="container">
-                @foreach($order as $k => $val)
                 <div class="section-bg-color">
                     <div class="row">
                         <div class="col-lg-12">
@@ -79,7 +78,7 @@
                                 </table>
                             </div>
                             <!-- Cart Update Option -->
-                            @if($val->TinhTrang==0)
+                            @if($order->TinhTrang==0)
                             <div class="cart-update-option d-block d-md-flex justify-content-between">
                                 <form action="{{URL::to('/update_order')}}" method="post">
                                     {{csrf_field() }}
@@ -90,7 +89,7 @@
                                     </div>
                                 </form>
                             </div>
-                            @elseif($val->TinhTrang==1)
+                            @elseif($order->TinhTrang==1)
                             <div class="cart-update-option d-block d-md-flex justify-content-between">
                                 <form action="{{URL::to('/update_order')}}" method="post">
                                     {{csrf_field() }}
@@ -115,15 +114,29 @@
                                                 <td>Tình Trạng Đơn Hàng</td>
                                                 <td>
                                                     <?php
-                                                    if($val->TinhTrang ==0)
+                                                    if($order->TinhTrang ==0)
                                                         echo '<p style="color:red">Đang Xử Lý...</p>';
-                                                    elseif($val->TinhTrang ==1){
+                                                    elseif($order->TinhTrang ==1){
                                                         echo '<p style="color:red">Đang Giao Hàng</p>';
-                                                    }elseif($val->TinhTrang ==2){
+                                                    }elseif($order->TinhTrang ==2){
                                                         echo '<p style="color:green">Đã Giao Hàng</p>';
                                                     }else{
                                                         echo '<p>Đã Huỷ</p>';
                                                     } 
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Thanh Toán</td>
+                                                <td>
+                                                    <?php
+                                                    if($order->TT_TrangThai ==0)
+                                                        echo '<p style="color:red">Chưa Thanh Toán</p>';
+                                                    elseif($order->TT_TrangThai ==1){
+                                                        echo '<p style="color:green">Đã Thanh Toán</p>';
+                                                    }else{
+                                                        echo '<p style="color:green">Đã Thanh Toán VnPay</p>';
+                                                    }
                                                     ?>
                                                 </td>
                                             </tr>
@@ -134,9 +147,9 @@
                                             <tr>
                                                 <td>Thông Tin Giao Hàng</td>
                                                 <td>
-                                                    {{$val->HoTen}}<br>
-                                                    {{$val->SDT}}<br>
-                                                    {{$val->DiaChiGH}}
+                                                    {{$order->HoTen}}<br>
+                                                    {{$order->SDT}}<br>
+                                                    {{$order->DiaChiGH}}
                                                 </td>
                                             </tr>
 
@@ -147,7 +160,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
         </div>
         <!-- cart main wrapper end -->

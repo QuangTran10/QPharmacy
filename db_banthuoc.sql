@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2021 at 09:22 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Nov 06, 2022 at 08:51 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,25 +37,6 @@ CREATE TABLE `binhluan` (
   `TrangThai` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `binhluan`
---
-
-INSERT INTO `binhluan` (`MaBinhLuan`, `ThoiGian`, `NoiDung`, `DanhGia`, `MSKH`, `MSHH`, `TrangThai`) VALUES
-(1, '2021-10-01 09:45:30', 'Sản phẩm rất tốt', 4, 4, 23, 1),
-(2, '2021-10-01 10:24:45', 'Giao hàng nhanh, Sản phẩm chất lượng', 5, 4, 23, 1),
-(3, '2021-10-02 09:15:45', 'Sản phẩm rất tốt', 5, 4, 27, 1),
-(6, '2021-10-02 09:18:43', 'Giao hàng nhanh chóng', 5, 4, 25, 1),
-(7, '2021-10-02 09:21:12', 'Sản phẩm sử dụng an toàn', 3, 4, 41, 1),
-(9, '2021-10-02 09:27:43', 'Giao hàng nhanh chóng', 5, 4, 41, 1),
-(11, '2021-10-02 10:29:21', 'Sản phẩm rất tiện lợi', 4, 4, 22, 1),
-(12, '2021-10-03 09:40:36', 'Sản phẩm rất tốt', 1, 5, 23, 1),
-(14, '2021-11-20 14:48:40', 'Sản phẩm rất tốt', 5, 4, 46, 1),
-(15, '2021-11-20 14:48:45', 'Sản phẩm rất tốt', 5, 4, 46, 1),
-(16, '2021-11-20 14:49:25', 'Sản phẩm rất tốt', 5, 4, 46, 1),
-(17, '2021-11-20 14:49:36', 'Sản phẩm rất tốt', 5, 4, 46, 1),
-(18, '2021-11-20 14:53:12', 'Sản phẩm hơi tệ', 3, 4, 44, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -76,29 +57,11 @@ CREATE TABLE `chitietdathang` (
 --
 
 INSERT INTO `chitietdathang` (`SoDonDH`, `MSHH`, `SoLuong`, `GiamGia`, `GiaDatHang`, `ThanhTien`) VALUES
-(13, 16, 2, 0, 96000, 192000),
-(13, 24, 1, 0, 102300, 102300),
-(14, 22, 3, 0, 29500, 88500),
-(14, 24, 1, 0, 102300, 102300),
-(15, 37, 1, 0, 54900, 54900),
-(15, 38, 2, 0, 25800, 51600),
-(16, 22, 1, 0, 29500, 29500),
-(16, 26, 1, 0, 34900, 34900),
-(17, 16, 1, 0, 96000, 96000),
-(18, 31, 1, 0, 20500, 20500),
-(18, 32, 1, 0, 46000, 46000),
-(18, 34, 4, 0, 64000, 256000),
-(18, 35, 1, 0, 21000, 21000),
-(20, 16, 2, 0.2, 96000, 153600),
-(20, 22, 1, 0, 29500, 29500),
-(21, 39, 1, 0, 129800, 129800),
-(21, 41, 1, 0, 65300, 65300),
-(23, 39, 1, 0, 129800, 129800),
-(24, 44, 1, 0.1, 124000, 111600),
-(24, 45, 1, 0, 228000, 228000),
-(25, 16, 5, 0.1, 96000, 432000),
-(25, 46, 4, 0, 400000, 1600000),
-(26, 22, 1, 0, 29500, 29500);
+(1, 41, 1, 0, 65300, 65300),
+(1, 43, 1, 0, 111900, 111900),
+(7, 41, 1, 0, 65300, 65300),
+(7, 42, 2, 0, 19500, 39000),
+(8, 44, 1, 0.1, 124000, 111600);
 
 --
 -- Triggers `chitietdathang`
@@ -131,41 +94,6 @@ CREATE TABLE `chitietphieuthu` (
   `TG_CapNhat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `chitietphieuthu`
---
-
-INSERT INTO `chitietphieuthu` (`MaPhieu`, `MSHH`, `SoLuong`, `DonGia`, `TG_Tao`, `TG_CapNhat`) VALUES
-(2, 16, 10, 96000, '2021-09-24 12:12:38', '2021-09-24 12:12:38'),
-(2, 20, 50, 19200, '2021-09-24 12:12:38', '2021-09-24 12:12:38'),
-(2, 21, 20, 36500, '2021-09-24 12:12:38', '2021-09-24 12:12:38'),
-(2, 23, 20, 116100, '2021-09-24 12:12:38', '2021-09-24 12:12:38'),
-(3, 18, 10, 20000, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 22, 20, 29500, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 24, 10, 102300, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 25, 20, 115000, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 26, 20, 34900, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 27, 20, 87100, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 28, 10, 14900, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(3, 29, 10, 415700, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(4, 33, 10, 54200, '2021-09-28 09:40:46', '2021-09-28 09:40:46'),
-(4, 34, 20, 64000, '2021-09-28 09:40:46', '2021-09-28 09:40:46'),
-(4, 35, 10, 21000, '2021-09-28 09:40:46', '2021-09-28 09:40:46'),
-(4, 36, 10, 72500, '2021-09-28 09:40:46', '2021-09-28 09:40:46'),
-(4, 37, 20, 54900, '2021-09-28 09:40:46', '2021-09-28 09:40:46'),
-(5, 31, 20, 20500, '2021-09-28 09:42:09', '2021-09-28 09:42:09'),
-(5, 32, 20, 46000, '2021-09-28 09:42:09', '2021-09-28 09:42:09'),
-(6, 30, 20, 348900, '2021-09-28 09:47:41', '2021-09-28 09:47:41'),
-(6, 38, 20, 25800, '2021-09-28 09:47:41', '2021-09-28 09:47:41'),
-(7, 39, 8, 129800, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 40, 10, 120000, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 41, 4, 65300, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 42, 10, 19500, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 43, 5, 111900, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 44, 5, 124000, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 45, 5, 228000, '2021-11-19 12:09:26', '2021-11-19 12:09:26'),
-(7, 46, 5, 400000, '2021-11-19 12:09:26', '2021-11-19 12:09:26');
-
 -- --------------------------------------------------------
 
 --
@@ -182,31 +110,21 @@ CREATE TABLE `dathang` (
   `ThanhTien` double NOT NULL,
   `NgayDH` datetime NOT NULL,
   `NgayGH` datetime DEFAULT NULL,
-  `LoaiGH` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `TinhTrang` int(15) DEFAULT NULL,
-  `TG_Tao` datetime NOT NULL,
-  `TG_CapNhat` datetime NOT NULL
+  `GhiChu` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `MaThanhToan` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `dathang`
 --
 
-INSERT INTO `dathang` (`SoDonDH`, `MSKH`, `MSNV`, `HoTen`, `SDT`, `DiaChiGH`, `ThanhTien`, `NgayDH`, `NgayGH`, `LoaiGH`, `TinhTrang`, `TG_Tao`, `TG_CapNhat`) VALUES
-(13, 4, 1, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 324300, '2021-09-25 15:52:46', NULL, 'cash', 2, '2021-09-25 15:52:46', '2021-09-25 15:52:46'),
-(14, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 220800, '2021-09-25 15:55:13', NULL, 'cash', 2, '2021-09-25 15:55:13', '2021-09-25 15:55:13'),
-(15, 5, 2, 'Trần Thanh Tân', '0918151004', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 136500, '2021-10-04 18:51:42', NULL, 'cash', 1, '2021-10-04 18:51:42', '2021-10-04 18:51:42'),
-(16, 5, 1, 'Trần Thanh Tân', '0918151004', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 94400, '2021-10-09 14:07:17', NULL, 'cash', 1, '2021-10-09 14:07:17', '2021-10-09 14:07:17'),
-(17, 5, 1, 'Trần Thanh Tân', '0918151004', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 126000, '2021-10-09 14:09:20', NULL, 'cash', 1, '2021-10-09 14:09:20', '2021-10-09 14:09:20'),
-(18, 5, 1, 'Trần Thanh Tân', '0918151004', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 373500, '2021-10-11 07:59:31', NULL, 'cash', 1, '2021-10-11 07:59:31', '2021-10-11 07:59:31'),
-(20, 4, 1, 'Trần Thanh Tân', '0859083181', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 213100, '2021-10-12 16:05:12', NULL, 'cash', 2, '2021-10-12 16:05:12', '2021-10-12 16:05:12'),
-(21, 4, 1, 'Trần Thanh Tân', '0859083181', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 225100, '2021-11-09 07:31:32', NULL, 'cash', 1, '2021-11-09 07:31:32', '2021-11-09 07:31:32'),
-(22, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 360300, '2021-11-17 09:56:43', NULL, 'cash', 3, '2021-11-17 09:56:43', '2021-11-17 09:56:43'),
-(23, 4, 1, 'Trần Thanh Tân', '0859083181', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng', 159800, '2021-11-17 10:13:17', NULL, 'cash', 1, '2021-11-17 10:13:17', '2021-11-17 10:13:17'),
-(24, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 369600, '2021-11-19 15:04:54', NULL, 'paypal', 0, '2021-11-19 15:04:54', '2021-11-19 15:04:54'),
-(25, 4, 1, 'Trần Tuấn Anh', '0859083182', '37 Hoàng Diệu, phường 5, Thành phố Sóc Trăng, tỉnh Sóc Trăng', 2032000, '2021-11-20 14:58:19', NULL, 'cash', 1, '2021-11-20 14:58:19', '2021-11-20 14:58:19'),
-(26, 4, 3, 'Trần Tuấn Anh', '0859083182', '37 Hoàng Diệu, phường 5, Thành phố Sóc Trăng, tỉnh Sóc Trăng', 59500, '2021-11-20 15:06:15', NULL, 'cash', 1, '2021-11-20 15:06:15', '2021-11-20 15:06:15'),
-(27, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 148000, '2021-11-20 15:07:36', NULL, 'cash', 3, '2021-11-20 15:07:36', '2021-11-20 15:07:36');
+INSERT INTO `dathang` (`SoDonDH`, `MSKH`, `MSNV`, `HoTen`, `SDT`, `DiaChiGH`, `ThanhTien`, `NgayDH`, `NgayGH`, `TinhTrang`, `GhiChu`, `MaThanhToan`, `created_at`, `updated_at`) VALUES
+(1, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 207200, '2022-08-02 14:29:04', NULL, 0, NULL, 1, '2022-08-02 14:29:04', '2022-08-02 14:29:04'),
+(7, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 134300, '2022-08-02 16:11:25', NULL, 0, 'Thanh toan don hang', 16, '2022-08-02 16:11:25', '2022-08-02 16:11:25'),
+(8, 4, NULL, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ', 141600, '2022-11-06 14:36:57', NULL, 0, 'Thanh toan don hang', 17, '2022-11-06 14:36:57', '2022-11-06 14:36:57');
 
 -- --------------------------------------------------------
 
@@ -227,10 +145,7 @@ CREATE TABLE `diachikh` (
 --
 
 INSERT INTO `diachikh` (`MaDC`, `MSKH`, `HoTen`, `SDT`, `DiaChi`) VALUES
-(15, 4, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ'),
-(16, 4, 'Trần Thanh Tân', '0859083181', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng'),
-(17, 5, 'Trần Thanh Tân', '0918151004', '180 Triệu Nương, Thị trấn Mỹ Xuyên, huyện Mỹ Xuyên, tỉnh Sóc Trăng'),
-(18, 4, 'Trần Tuấn Anh', '0859083182', '37 Hoàng Diệu, phường 5, Thành phố Sóc Trăng, tỉnh Sóc Trăng');
+(19, 4, 'Trần Thanh Quang', '0859083181', 'Ký túc xá A Đại học cần thơ');
 
 -- --------------------------------------------------------
 
@@ -246,7 +161,6 @@ CREATE TABLE `hanghoa` (
   `SoLuongHang` int(10) NOT NULL,
   `MaLoaiHang` int(11) DEFAULT NULL,
   `MaNSX` int(11) DEFAULT NULL,
-  `MaPhieu` int(11) DEFAULT NULL,
   `MoTa` mediumblob DEFAULT NULL,
   `hinhanh1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `TrangThai` int(11) NOT NULL,
@@ -258,36 +172,36 @@ CREATE TABLE `hanghoa` (
 -- Dumping data for table `hanghoa`
 --
 
-INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `Gia`, `GiamGia`, `SoLuongHang`, `MaLoaiHang`, `MaNSX`, `MaPhieu`, `MoTa`, `hinhanh1`, `TrangThai`, `TG_Tao`, `TG_CapNhat`) VALUES
-(16, 'Paralmax Extra Boston (H/180v)', 96000, 0.1, 0, 9, 1, 2, 0x3c703e506172616c6d617820457874726120c49169e1bb8175207472e1bb8b206769e1baa36d20c49161752c2068e1baa12073e1bb91742074726f6e672063266161637574653b63207472c6b0e1bb9d6e672068e1bba37020c4916175206e68e1bab920c491e1babf6e2076e1bbab61206e68c6b03a20c491617520c491e1baa7752c20c4916175206ee1bbad6120c491e1baa7752c20c49161752072c4836e672c20c4916175206e68e1bba96320646f2063e1baa36d2063267561637574653b6d2c20c49161752068e1bb8d6e672c20c4916175206e68e1bba9632063c6a12078c6b0c6a16e672c20c491617520646f2076692665636972633b6d206b68e1bb9b702e3c2f703e0d0a0d0a3c703e3c7374726f6e673e5468266167726176653b6e68207068e1baa76e3a3c2f7374726f6e673e266e6273703b70617261636574616d6f6c2c2063616665696e2c207068656e796c65706872696e652e3c2f703e0d0a0d0a3c703e3c7374726f6e673ec490266f61637574653b6e672067266f61637574653b693a3c2f7374726f6e673e266e6273703b48e1bb99702031352076e1bb8920782031322076692665636972633b6e206e266561637574653b6e2062616f207068696d2e3c2f703e0d0a0d0a3c703e3c7374726f6e673e4368e1bb8920c491e1bb8b6e683a266e6273703b3c2f7374726f6e673e4769e1baa36d20c49161752c2068e1baa12073e1bb91742074726f6e672063266161637574653b63207472c6b0e1bb9d6e672068e1bba37020c4916175206e68e1bab920c491e1babf6e2076e1bbab61206e68c6b03a20c491617520c491e1baa7752c20c4916175206ee1bbad6120c491e1baa7752c20c49161752072c4836e672c20c4916175206e68e1bba96320646f2063e1baa36d2063267561637574653b6d2c20c49161752068e1bb8d6e672c20c4916175206e68e1bba9632063c6a12078c6b0c6a16e672c20c491617520646f2076692665636972633b6d206b68e1bb9b702e266e6273703b3c2f703e0d0a0d0a3c703e3c7374726f6e673e43266161637574653b63682064267567726176653b6e673a266e6273703b3c2f7374726f6e673e44267567726176653b6e672062e1bab16e6720c491c6b0e1bb9d6e672075e1bb916e672c2063266f61637574653b207468e1bb832064267567726176653b6e67206368756e672076e1bb9b69207468e1bba96320c4836e2e3c6272202f3e0d0a266e6273703b3c2f703e, 'name646-6879748321631017891.png', 1, '2021-09-07 19:31:31', '2021-10-17 10:28:10'),
-(18, 'Gentrisone Cream Shinpoong', 20000, 0, 10, 13, 4, 3, NULL, 'name2157-5251678401631163176.png', 1, '2021-09-09 11:52:56', '2021-09-10 14:39:06'),
-(20, 'Bông Y Tế Bạch Tuyết 100g', 19200, 0, 50, 15, 5, 2, NULL, 'name2008-8166521601631163639.png', 1, '2021-09-09 12:00:39', '2021-09-09 12:00:39'),
-(21, 'Hapacol 250mg Dhg (H/24g)', 36500, 0.1, 20, 9, 6, 2, NULL, 'name1166-1107908311631163884.png', 1, '2021-09-09 12:04:44', '2021-10-12 16:22:00'),
-(22, 'Hapacol 150mg Dhg (H/24g)', 29500, 0, 14, 9, 6, 3, NULL, 'name70-166180001631163927.png', 1, '2021-09-09 12:05:27', '2021-09-09 12:05:27'),
-(23, 'Alaxan United (H/25v/4v) (Xé)', 116100, 0, 20, 9, 8, 2, NULL, 'name742-408787161631164013.png', 1, '2021-09-09 12:06:53', '2021-09-09 12:06:53'),
-(24, 'Kremil-S United (H/100v)', 102300, 0, 8, 18, 8, 3, NULL, 'name2352-8295972491631164128.png', 1, '2021-09-09 12:08:48', '2021-09-09 12:09:33'),
-(25, 'Decolgen Nd United Pharma (H/100v)', 115000, 0, 20, 19, 8, 3, NULL, 'name1021-8435806961631164252.png', 1, '2021-09-09 12:10:52', '2021-09-09 12:11:34'),
-(26, 'Glotadol 500mg Abbott (Hộp/100viên Nén)(Hồng)', 34900, 0, 19, 9, 9, 3, NULL, 'name1384-7286234041631258196.png', 1, '2021-09-10 14:16:36', '2021-09-10 14:17:40'),
-(27, 'Glotadol 650 Paracetamol (Chai/200viên Nén)', 87100, 0, 20, 9, 9, 3, NULL, 'name6931-8286788751631258322.png', 1, '2021-09-10 14:18:42', '2021-09-10 14:35:51'),
-(28, 'Acyclovir Cream Stella (Tube/5gram)', 14900, 0, 10, 13, 10, 3, 0x3c703e3c7374726f6e673e43c3b46e672044e1bba56e673c2f7374726f6e673e3c2f703e0d0a0d0a3c703e416379636c6f766972206cc3a0206de1bb9974206368e1baa5742074c6b0c6a16e672074e1bbb1206e75636c656f73696420707572696e2074e1bb956e672068e1bba3702076e1bb9b6920686fe1baa1742074c3ad6e6820e1bba963206368e1babf20696e20766974726f2076c3a020696e207669766f207669727573204865727065732073696d706c65782074797020312c2074797020322076c3a0207669727573205661726963656c6c612d7a6f7374653c2f703e, '2021c7d1724b046972a420b758461bab1631708759.png', 1, '2021-09-15 19:25:59', '2021-10-17 09:55:25'),
-(29, 'Kem Dưỡng Ẩm, Tái Tạo Da Rapider Turkey (T/66ml)(Date 08/2022)', 415700, 0, 10, 13, 11, 3, 0x4b656d2062c3b46920646120524150494445520d0a0d0a2d2053e1baa36e207068e1baa96d2073e1bbad2064e1bba56e672063c3b46e67207468e1bba963204d6f666578204f696c20c491e1bb996320717579e1bb816e2e0d0a0d0a2d20c490c6b0e1bba363206cc6b0752068c3a06e682074e1baa169204368c3a27520c382752e0d0a0d0a2d20436869e1babf74207875e1baa5742074e1bbab207468e1baa36f2064c6b0e1bba36320746869c3aa6e206e6869c3aa6e2e, '202159f7bb9510ed511794db986b44101631709297.png', 1, '2021-09-15 19:34:57', '2021-09-15 19:36:22'),
-(30, 'Orlistat 120mg Capsules Stada (H/42v)', 348900, 0, 20, 17, 13, 6, 0x43c3b46e672064e1bba56e6720284368e1bb8920c491e1bb8b6e68290d0a4f726c69737461742064c6b0e1bba363206368e1bb8920c491e1bb8b6e682068e1bb97207472e1bba32063c3b96e672076e1bb9b69206368e1babf20c491e1bb9920c4836e206769e1baa36d206e68e1bab92063616c6f2074726f6e6720c49169e1bb8175207472e1bb8b2062e1bb876e68206e68c3a26e2062c3a96f207068c3ac2063c3b3206368e1bb892073e1bb91206b68e1bb91692063c6a1207468e1bb832028424d4920e289a5203330206b672f6dc2b22920686fe1bab7632062e1bb876e68206e68c3a26e207468e1bbab612063c3a26e2028424d4920e289a5203238206b672f6dc2b229206bc3a86d207468656f2063c3a1632079e1babf752074e1bb91206e6775792063c6a120286e68c6b02063616f20687579e1babf7420c3a1702c20c491c3a169207468c3a16f20c491c6b0e1bb9d6e672c2074c4836e67206c6970696420687579e1babf74292e204ec3aa6e206e67c6b06e6720c49169e1bb8175207472e1bb8b2076e1bb9b69206f726c697374617420736175203132207475e1baa76e206ee1babf752062e1bb876e68206e68c3a26e206b68c3b46e67207468e1bb83206769e1baa36d2074e1bb916920746869e1bb8375203525207472e1bb8d6e67206cc6b0e1bba36e672063c6a1207468e1bb8320736f2076e1bb9b69206b6869206de1bb9b692062e1baaf7420c491e1baa77520c49169e1bb8175207472e1bb8b2e, 'name12790-7584115231632796036.png', 1, '2021-09-28 09:27:16', '2021-09-28 09:27:52'),
-(31, 'Stadovas Amlodipin 5mg Stella (H/30v)', 20500, 0, 19, 17, 10, 5, NULL, 'name5766-4551056001632796173.png', 1, '2021-09-28 09:29:33', '2021-09-28 09:29:33'),
-(32, 'Pantostad 40 Pantoprazole 40mg Stella (Hộp/28 Viên Nang)', 46000, 0, 19, 17, 10, 5, NULL, 'name7434-1081516781632796280.png', 1, '2021-09-28 09:31:20', '2021-09-28 09:31:20'),
-(33, 'Nifedipin T20 Retard 20mg Stella (H/100v)', 54200, 0, 10, 21, 14, 4, NULL, 'name3545-4303203571632796337.png', 1, '2021-09-28 09:32:17', '2021-11-19 19:17:42'),
-(34, 'Amoxicillin 500 Brawn (H/100v)', 64000, 0, 16, 12, 14, 4, NULL, 'name4126-3717625361634026305.png', 1, '2021-09-28 09:35:14', '2021-11-19 12:14:34'),
-(35, 'Meloxicam Tablets Bp 7.5mg Brawn (H/100v)', 21000, 0, 9, 20, 14, 4, NULL, 'name8651-3837673881632796597.png', 1, '2021-09-28 09:36:37', '2021-09-28 09:36:37'),
-(36, 'Ampicillin 500 Brawn (H/100v)', 72500, 0, 10, 12, 14, 4, NULL, 'name1046-3806588201632796649.png', 1, '2021-09-28 09:37:29', '2021-09-28 09:37:29'),
-(37, 'Băng Cá Nhân Hansaplast Elastic (H/100m)', 54900, 0, 19, 15, 14, 4, NULL, 'name14184-8877950471632796701.png', 1, '2021-09-28 09:38:21', '2021-09-28 09:38:21'),
-(38, 'Omeprazole 20mg Stada (Hộp/30 Viên)', 25800, 0, 18, 18, 13, 6, NULL, '2021ebe7e4a54731895966bfead34f681632797199.png', 1, '2021-09-28 09:46:39', '2021-09-28 09:46:39'),
-(39, 'Bio Acimin Gold Việt Đức (H/30g)', 129800, 0, 8, 11, 15, 7, NULL, 'name1340-1449777731632797396.png', 1, '2021-09-28 09:49:56', '2021-09-28 09:49:56'),
-(40, 'Bio-Acimin Fiber Việt Đức (H/30g) (Xanh Lá)', 120000, 0, 10, 11, 15, 7, NULL, 'name1496-5262946911632797455.png', 1, '2021-09-28 09:50:55', '2021-09-28 09:50:55'),
-(41, 'Decumar Gel Cvi Pharma (Tuýp/20gr)', 65300, 0, 4, 14, 16, 7, NULL, '20217ccacbfccba4ac213b2ceaf370271632797647.png', 1, '2021-09-28 09:54:07', '2021-09-28 09:54:07'),
-(42, 'Kem Yoosun Rau Má Đại Bắc (Tube/25g) (Xanh)', 19500, 0, 10, 14, 16, 7, NULL, 'name1304-6091326511632797697.png', 1, '2021-09-28 09:54:57', '2021-09-28 09:54:57'),
-(43, 'Sữa Rửa Mặt Cetaphil (C/125ml)', 111900, 0, 5, 14, 17, 7, NULL, 'name1271-8615288091632797815.png', 1, '2021-09-28 09:56:55', '2021-09-28 09:56:55'),
-(44, 'Sữa Tắm Gội Cetaphil Baby Gentle (2 In 1) (C/230ml)', 124000, 0.1, 4, 14, 17, 7, NULL, 'name9236-5261549651632797863.png', 1, '2021-09-28 09:57:43', '2021-10-21 15:37:42'),
-(45, 'Kem Cetaphil Face&Body Cream (H/50gr)', 228000, 0, 4, 14, 17, 7, NULL, '20212319576c6f6de93f8b6c6312a4081632797912.png', 1, '2021-09-28 09:58:32', '2021-09-28 09:58:32'),
-(46, 'Lotion Cetaphil Daily Facial Moist Spf15 (C/118ml)', 400000, 0, 1, 14, 17, 7, NULL, 'name9215-8655821731632797991.png', 1, '2021-09-28 09:59:51', '2021-09-28 09:59:51');
+INSERT INTO `hanghoa` (`MSHH`, `TenHH`, `Gia`, `GiamGia`, `SoLuongHang`, `MaLoaiHang`, `MaNSX`, `MoTa`, `hinhanh1`, `TrangThai`, `TG_Tao`, `TG_CapNhat`) VALUES
+(16, 'Paralmax Extra Boston (H/180v)', 96000, 0.1, 10, 9, 1, 0x3c703e506172616c6d617820457874726120c49169e1bb8175207472e1bb8b206769e1baa36d20c49161752c2068e1baa12073e1bb91742074726f6e672063266161637574653b63207472c6b0e1bb9d6e672068e1bba37020c4916175206e68e1bab920c491e1babf6e2076e1bbab61206e68c6b03a20c491617520c491e1baa7752c20c4916175206ee1bbad6120c491e1baa7752c20c49161752072c4836e672c20c4916175206e68e1bba96320646f2063e1baa36d2063267561637574653b6d2c20c49161752068e1bb8d6e672c20c4916175206e68e1bba9632063c6a12078c6b0c6a16e672c20c491617520646f2076692665636972633b6d206b68e1bb9b702e3c2f703e0d0a0d0a3c703e3c7374726f6e673e5468266167726176653b6e68207068e1baa76e3a3c2f7374726f6e673e266e6273703b70617261636574616d6f6c2c2063616665696e2c207068656e796c65706872696e652e3c2f703e0d0a0d0a3c703e3c7374726f6e673ec490266f61637574653b6e672067266f61637574653b693a3c2f7374726f6e673e266e6273703b48e1bb99702031352076e1bb8920782031322076692665636972633b6e206e266561637574653b6e2062616f207068696d2e3c2f703e0d0a0d0a3c703e3c7374726f6e673e4368e1bb8920c491e1bb8b6e683a266e6273703b3c2f7374726f6e673e4769e1baa36d20c49161752c2068e1baa12073e1bb91742074726f6e672063266161637574653b63207472c6b0e1bb9d6e672068e1bba37020c4916175206e68e1bab920c491e1babf6e2076e1bbab61206e68c6b03a20c491617520c491e1baa7752c20c4916175206ee1bbad6120c491e1baa7752c20c49161752072c4836e672c20c4916175206e68e1bba96320646f2063e1baa36d2063267561637574653b6d2c20c49161752068e1bb8d6e672c20c4916175206e68e1bba9632063c6a12078c6b0c6a16e672c20c491617520646f2076692665636972633b6d206b68e1bb9b702e266e6273703b3c2f703e0d0a0d0a3c703e3c7374726f6e673e43266161637574653b63682064267567726176653b6e673a266e6273703b3c2f7374726f6e673e44267567726176653b6e672062e1bab16e6720c491c6b0e1bb9d6e672075e1bb916e672c2063266f61637574653b207468e1bb832064267567726176653b6e67206368756e672076e1bb9b69207468e1bba96320c4836e2e3c6272202f3e0d0a266e6273703b3c2f703e, 'name646-6879748321631017891.png', 1, '2021-09-07 19:31:31', '2021-10-17 10:28:10'),
+(18, 'Gentrisone Cream Shinpoong', 20000, 0, 10, 13, 4, NULL, 'name2157-5251678401631163176.png', 1, '2021-09-09 11:52:56', '2021-09-10 14:39:06'),
+(20, 'Bông Y Tế Bạch Tuyết 100g', 19200, 0, 50, 15, 5, NULL, 'name2008-8166521601631163639.png', 1, '2021-09-09 12:00:39', '2021-09-09 12:00:39'),
+(21, 'Hapacol 250mg Dhg (H/24g)', 36500, 0.1, 20, 9, 6, NULL, 'name1166-1107908311631163884.png', 1, '2021-09-09 12:04:44', '2021-10-12 16:22:00'),
+(22, 'Hapacol 150mg Dhg (H/24g)', 29500, 0, 20, 9, 6, NULL, 'name70-166180001631163927.png', 1, '2021-09-09 12:05:27', '2021-09-09 12:05:27'),
+(23, 'Alaxan United (H/25v/4v) (Xé)', 116100, 0, 20, 9, 8, NULL, 'name742-408787161631164013.png', 1, '2021-09-09 12:06:53', '2021-09-09 12:06:53'),
+(24, 'Kremil-S United (H/100v)', 102300, 0, 10, 18, 8, NULL, 'name2352-8295972491631164128.png', 1, '2021-09-09 12:08:48', '2021-09-09 12:09:33'),
+(25, 'Decolgen Nd United Pharma (H/100v)', 115000, 0, 20, 19, 8, NULL, 'name1021-8435806961631164252.png', 1, '2021-09-09 12:10:52', '2021-09-09 12:11:34'),
+(26, 'Glotadol 500mg Abbott (Hộp/100viên Nén)(Hồng)', 34900, 0, 20, 9, 9, NULL, 'name1384-7286234041631258196.png', 1, '2021-09-10 14:16:36', '2021-09-10 14:17:40'),
+(27, 'Glotadol 650 Paracetamol (Chai/200viên Nén)', 87100, 0, 20, 9, 9, NULL, 'name6931-8286788751631258322.png', 1, '2021-09-10 14:18:42', '2021-09-10 14:35:51'),
+(28, 'Acyclovir Cream Stella (Tube/5gram)', 14900, 0, 10, 13, 10, 0x3c703e3c7374726f6e673e43c3b46e672044e1bba56e673c2f7374726f6e673e3c2f703e0d0a0d0a3c703e416379636c6f766972206cc3a0206de1bb9974206368e1baa5742074c6b0c6a16e672074e1bbb1206e75636c656f73696420707572696e2074e1bb956e672068e1bba3702076e1bb9b6920686fe1baa1742074c3ad6e6820e1bba963206368e1babf20696e20766974726f2076c3a020696e207669766f207669727573204865727065732073696d706c65782074797020312c2074797020322076c3a0207669727573205661726963656c6c612d7a6f7374653c2f703e, '2021c7d1724b046972a420b758461bab1631708759.png', 1, '2021-09-15 19:25:59', '2021-10-17 09:55:25'),
+(29, 'Kem Dưỡng Ẩm, Tái Tạo Da Rapider Turkey (T/66ml)(Date 08/2022)', 415700, 0, 10, 13, 11, 0x4b656d2062c3b46920646120524150494445520d0a0d0a2d2053e1baa36e207068e1baa96d2073e1bbad2064e1bba56e672063c3b46e67207468e1bba963204d6f666578204f696c20c491e1bb996320717579e1bb816e2e0d0a0d0a2d20c490c6b0e1bba363206cc6b0752068c3a06e682074e1baa169204368c3a27520c382752e0d0a0d0a2d20436869e1babf74207875e1baa5742074e1bbab207468e1baa36f2064c6b0e1bba36320746869c3aa6e206e6869c3aa6e2e, '202159f7bb9510ed511794db986b44101631709297.png', 1, '2021-09-15 19:34:57', '2021-09-15 19:36:22'),
+(30, 'Orlistat 120mg Capsules Stada (H/42v)', 348900, 0, 20, 17, 13, 0x43c3b46e672064e1bba56e6720284368e1bb8920c491e1bb8b6e68290d0a4f726c69737461742064c6b0e1bba363206368e1bb8920c491e1bb8b6e682068e1bb97207472e1bba32063c3b96e672076e1bb9b69206368e1babf20c491e1bb9920c4836e206769e1baa36d206e68e1bab92063616c6f2074726f6e6720c49169e1bb8175207472e1bb8b2062e1bb876e68206e68c3a26e2062c3a96f207068c3ac2063c3b3206368e1bb892073e1bb91206b68e1bb91692063c6a1207468e1bb832028424d4920e289a5203330206b672f6dc2b22920686fe1bab7632062e1bb876e68206e68c3a26e207468e1bbab612063c3a26e2028424d4920e289a5203238206b672f6dc2b229206bc3a86d207468656f2063c3a1632079e1babf752074e1bb91206e6775792063c6a120286e68c6b02063616f20687579e1babf7420c3a1702c20c491c3a169207468c3a16f20c491c6b0e1bb9d6e672c2074c4836e67206c6970696420687579e1babf74292e204ec3aa6e206e67c6b06e6720c49169e1bb8175207472e1bb8b2076e1bb9b69206f726c697374617420736175203132207475e1baa76e206ee1babf752062e1bb876e68206e68c3a26e206b68c3b46e67207468e1bb83206769e1baa36d2074e1bb916920746869e1bb8375203525207472e1bb8d6e67206cc6b0e1bba36e672063c6a1207468e1bb8320736f2076e1bb9b69206b6869206de1bb9b692062e1baaf7420c491e1baa77520c49169e1bb8175207472e1bb8b2e, 'name12790-7584115231632796036.png', 1, '2021-09-28 09:27:16', '2021-09-28 09:27:52'),
+(31, 'Stadovas Amlodipin 5mg Stella (H/30v)', 20500, 0, 20, 17, 10, NULL, 'name5766-4551056001632796173.png', 1, '2021-09-28 09:29:33', '2021-09-28 09:29:33'),
+(32, 'Pantostad 40 Pantoprazole 40mg Stella (Hộp/28 Viên Nang)', 46000, 0, 20, 17, 10, NULL, 'name7434-1081516781632796280.png', 1, '2021-09-28 09:31:20', '2021-09-28 09:31:20'),
+(33, 'Nifedipin T20 Retard 20mg Stella (H/100v)', 54200, 0, 10, 21, 14, NULL, 'name3545-4303203571632796337.png', 1, '2021-09-28 09:32:17', '2021-11-19 19:17:42'),
+(34, 'Amoxicillin 500 Brawn (H/100v)', 64000, 0, 20, 12, 14, NULL, 'name4126-3717625361634026305.png', 1, '2021-09-28 09:35:14', '2021-11-19 12:14:34'),
+(35, 'Meloxicam Tablets Bp 7.5mg Brawn (H/100v)', 21000, 0, 10, 20, 14, NULL, 'name8651-3837673881632796597.png', 1, '2021-09-28 09:36:37', '2021-09-28 09:36:37'),
+(36, 'Ampicillin 500 Brawn (H/100v)', 72500, 0, 10, 12, 14, NULL, 'name1046-3806588201632796649.png', 1, '2021-09-28 09:37:29', '2021-09-28 09:37:29'),
+(37, 'Băng Cá Nhân Hansaplast Elastic (H/100m)', 54900, 0, 20, 15, 14, NULL, 'name14184-8877950471632796701.png', 1, '2021-09-28 09:38:21', '2021-09-28 09:38:21'),
+(38, 'Omeprazole 20mg Stada (Hộp/30 Viên)', 25800, 0, 20, 18, 13, NULL, '2021ebe7e4a54731895966bfead34f681632797199.png', 1, '2021-09-28 09:46:39', '2021-09-28 09:46:39'),
+(39, 'Bio Acimin Gold Việt Đức (H/30g)', 129800, 0, 10, 11, 15, NULL, 'name1340-1449777731632797396.png', 1, '2021-09-28 09:49:56', '2021-09-28 09:49:56'),
+(40, 'Bio-Acimin Fiber Việt Đức (H/30g) (Xanh Lá)', 120000, 0, 10, 11, 15, NULL, 'name1496-5262946911632797455.png', 1, '2021-09-28 09:50:55', '2021-09-28 09:50:55'),
+(41, 'Decumar Gel Cvi Pharma (Tuýp/20gr)', 65300, 0, 3, 14, 16, NULL, '20217ccacbfccba4ac213b2ceaf370271632797647.png', 1, '2021-09-28 09:54:07', '2021-09-28 09:54:07'),
+(42, 'Kem Yoosun Rau Má Đại Bắc (Tube/25g) (Xanh)', 19500, 0, 8, 14, 16, NULL, 'name1304-6091326511632797697.png', 0, '2021-09-28 09:54:57', '2021-09-28 09:54:57'),
+(43, 'Sữa Rửa Mặt Cetaphil (C/125ml)', 111900, 0, 4, 14, 17, NULL, 'name1271-8615288091632797815.png', 1, '2021-09-28 09:56:55', '2021-09-28 09:56:55'),
+(44, 'Sữa Tắm Gội Cetaphil Baby Gentle (2 In 1) (C/230ml)', 124000, 0.1, 4, 14, 17, NULL, 'name9236-5261549651632797863.png', 1, '2021-09-28 09:57:43', '2021-10-21 15:37:42'),
+(45, 'Kem Cetaphil Face&Body Cream (H/50gr)', 228000, 0, 5, 14, 17, NULL, '20212319576c6f6de93f8b6c6312a4081632797912.png', 1, '2021-09-28 09:58:32', '2021-09-28 09:58:32'),
+(46, 'Lotion Cetaphil Daily Facial Moist Spf15 (C/118ml)', 400000, 0, 5, 14, 17, NULL, 'name9215-8655821731632797991.png', 1, '2021-09-28 09:59:51', '2021-09-28 09:59:51');
 
 -- --------------------------------------------------------
 
@@ -450,7 +364,7 @@ INSERT INTO `nhasanxuat` (`MaNSX`, `TenNSX`, `TinhTrang`, `TG_Tao`, `TG_CapNhat`
 
 CREATE TABLE `phieuthu` (
   `MaPhieu` int(11) NOT NULL,
-  `NguoiNP` varchar(60) NOT NULL,
+  `NguoiNP` int(11) NOT NULL,
   `ThanhTien` double DEFAULT NULL,
   `NgayLap` datetime NOT NULL,
   `NCC` text NOT NULL,
@@ -460,17 +374,32 @@ CREATE TABLE `phieuthu` (
   `TG_CapNhat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `phieuthu`
+-- Table structure for table `thanhtoan`
 --
 
-INSERT INTO `phieuthu` (`MaPhieu`, `NguoiNP`, `ThanhTien`, `NgayLap`, `NCC`, `GhiChu`, `TinhTrang`, `TG_Tao`, `TG_CapNhat`) VALUES
-(2, 'Trần Thanh Quang', 4972000, '2021-09-24 12:12:38', 'Nhà Thuốc MT', NULL, 1, '2021-09-24 12:12:38', '2021-09-24 12:12:38'),
-(3, 'Trần Thanh Quang', 10859000, '2021-09-25 15:13:58', 'Công ty Dược Hậu Giang', NULL, 1, '2021-09-25 15:13:58', '2021-09-25 15:13:58'),
-(4, 'Trần Thanh Quang', 3855000, '2021-09-28 09:40:46', 'Công Ty TNHH Brawn Laboratories', NULL, 1, '2021-09-28 09:40:46', '2021-09-28 09:40:46'),
-(5, 'Trần Thanh Quang', 1330000, '2021-09-28 09:42:09', 'Công Ty TNHH Liên Doanh Stellapharm', NULL, 1, '2021-09-28 09:42:09', '2021-09-28 09:42:09'),
-(6, 'Trần Thanh Quang', 7494000, '2021-09-28 09:47:41', 'Công Ty TNHH Stada Việt Nam', NULL, 1, '2021-09-28 09:47:41', '2021-09-28 09:47:41'),
-(7, 'Nguyễn Văn Entony', 7014100, '2021-11-19 12:09:26', 'Công Ty TNHH Stada Việt Nam', NULL, 1, '2021-11-19 12:09:26', '2021-11-19 12:09:26');
+CREATE TABLE `thanhtoan` (
+  `MaThanhToan` int(11) NOT NULL,
+  `TT_Ten` varchar(200) NOT NULL,
+  `TT_DienGiai` text DEFAULT NULL,
+  `TT_TrangThai` tinyint(4) NOT NULL,
+  `TT_BankCode` varchar(255) NOT NULL,
+  `TT_Code` varchar(255) NOT NULL,
+  `TT_ResponseCode` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `thanhtoan`
+--
+
+INSERT INTO `thanhtoan` (`MaThanhToan`, `TT_Ten`, `TT_DienGiai`, `TT_TrangThai`, `TT_BankCode`, `TT_Code`, `TT_ResponseCode`, `created_at`, `updated_at`) VALUES
+(1, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, '2910', 'QT2910', '0', '2022-08-02 14:29:04', '2022-08-02 14:29:04'),
+(16, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 1, 'NCB', 'VNP13809340', '00', '2022-08-02 16:11:25', '2022-08-02 16:11:25'),
+(17, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 1, 'NCB', 'VNP13872193', '00', '2022-11-06 14:36:57', '2022-11-06 14:36:57');
 
 -- --------------------------------------------------------
 
@@ -484,17 +413,6 @@ CREATE TABLE `yeuthich` (
   `MSKH` int(11) NOT NULL,
   `TG_tao` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `yeuthich`
---
-
-INSERT INTO `yeuthich` (`Ma`, `MSHH`, `MSKH`, `TG_tao`) VALUES
-(5, 23, 4, '2021-09-27 09:15:25'),
-(7, 26, 4, '2021-09-27 09:23:33'),
-(13, 41, 4, '2021-11-09 07:30:58'),
-(14, 45, 4, '2021-11-20 14:45:07'),
-(15, 40, 4, '2021-11-20 14:45:10');
 
 --
 -- Indexes for dumped tables
@@ -528,7 +446,8 @@ ALTER TABLE `chitietphieuthu`
 ALTER TABLE `dathang`
   ADD PRIMARY KEY (`SoDonDH`),
   ADD KEY `MSKH` (`MSKH`),
-  ADD KEY `MSNV` (`MSNV`);
+  ADD KEY `MSNV` (`MSNV`),
+  ADD KEY `MaThanhToan` (`MaThanhToan`);
 
 --
 -- Indexes for table `diachikh`
@@ -573,7 +492,14 @@ ALTER TABLE `nhasanxuat`
 -- Indexes for table `phieuthu`
 --
 ALTER TABLE `phieuthu`
-  ADD PRIMARY KEY (`MaPhieu`);
+  ADD PRIMARY KEY (`MaPhieu`),
+  ADD KEY `NguoiNP` (`NguoiNP`);
+
+--
+-- Indexes for table `thanhtoan`
+--
+ALTER TABLE `thanhtoan`
+  ADD PRIMARY KEY (`MaThanhToan`);
 
 --
 -- Indexes for table `yeuthich`
@@ -597,13 +523,13 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `SoDonDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
 --
 ALTER TABLE `diachikh`
-  MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `hanghoa`
@@ -642,6 +568,12 @@ ALTER TABLE `phieuthu`
   MODIFY `MaPhieu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `thanhtoan`
+--
+ALTER TABLE `thanhtoan`
+  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `yeuthich`
 --
 ALTER TABLE `yeuthich`
@@ -677,7 +609,8 @@ ALTER TABLE `chitietphieuthu`
 --
 ALTER TABLE `dathang`
   ADD CONSTRAINT `dathang_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
-  ADD CONSTRAINT `dathang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`);
+  ADD CONSTRAINT `dathang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`),
+  ADD CONSTRAINT `dathang_ibfk_3` FOREIGN KEY (`MaThanhToan`) REFERENCES `thanhtoan` (`MaThanhToan`);
 
 --
 -- Constraints for table `diachikh`
@@ -691,6 +624,12 @@ ALTER TABLE `diachikh`
 ALTER TABLE `hanghoa`
   ADD CONSTRAINT `hanghoa_ibfk_1` FOREIGN KEY (`MaLoaiHang`) REFERENCES `loaihanghoa` (`MaLoaiHang`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `hanghoa_ibfk_2` FOREIGN KEY (`MaNSX`) REFERENCES `nhasanxuat` (`MaNSX`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `phieuthu`
+--
+ALTER TABLE `phieuthu`
+  ADD CONSTRAINT `phieuthu_ibfk_1` FOREIGN KEY (`NguoiNP`) REFERENCES `nhanvien` (`MSNV`);
 
 --
 -- Constraints for table `yeuthich`
