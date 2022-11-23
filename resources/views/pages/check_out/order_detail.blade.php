@@ -53,7 +53,7 @@
                                         <tr>
                                             <td class="pro-thumbnail">
                                                 <a href="">
-                                                    <img class="img-fluid" src="{{URL::to('public/upload/'.$value->hinhanh1)}}" alt="Product" />
+                                                    <img class="img-fluid" src="{{URL::to('public/upload/'.$value->HinhAnh)}}" alt="Product" />
                                                 </a>
                                             </td>
                                             <td class="pro-title">{{$value->TenHH}}<a href=""></a></td>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-5 ml-auto">
+                        <div class="col-lg-7 ml-auto">
                             <!-- Cart Calculation Area -->
                             <div class="cart-calculator-wrapper">
                                 <div class="cart-calculate-items">

@@ -18,13 +18,12 @@
         <div class="card-body table-responsive">
           <table class="table table-hover">
             <thead class="text-warning">
-              <th width="15%">Tên Sản Phẩm</th>
+              <th width="20%">Tên Sản Phẩm</th>
               <th width="10%">Giá</th>
               <th width="10%">Số Lượng</th>
-              <th width="10%">Loại Hàng</th>
               <th width="15%">Nhà Sản Xuất</th>
               <th width="10%">Giảm Giá</th>
-              <th width="10%">Hình Ảnh</th>
+              <th width="15%">Hình Ảnh</th>
               <th width="5%"></th>
               <th width="5%"></th>
             </thead>
@@ -34,17 +33,16 @@
                 <td>{{$value->TenHH}}</td>
                 <td>{{number_format($value->Gia , 0, ',', ' ').'đ';}}</td>
                 <td>{{$value->SoLuongHang}}</td>
-                <td>{{$value->TenLoaiHang}}</td>
                 <td>{{$value->TenNSX}}</td>
                 <td>
                   {{($value->GiamGia*100).'%';}}
                 </td>
-                <td><img src="public/upload/{{$value->hinhanh1}}" width="100"></td>
+                <td><img src="public/upload/{{$value->HinhAnh}}" width="100"></td>
                 <td>
                   <a href="{{URL::to('/update_product/'.$value->MSHH)}}"><i class="material-icons">edit</i></a>
                 </td>
                 <td>
-                  <a href="{{URL::to('/delete_product/'.$value->MSHH.'/'.$value->hinhanh1)}}" onclick="return confirm('Bạn có chắc chắn muốn xoá')">
+                  <a href="{{URL::to('/delete_product/'.$value->MSHH)}}" onclick="return confirm('Bạn có chắc chắn muốn xoá')">
                     <i class="material-icons">delete</i>
                   </a>
                 </td>

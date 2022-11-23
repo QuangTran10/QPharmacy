@@ -50,14 +50,14 @@
                         <div class="col-lg-6">
                             <div class="welcome-message">
                                 <p>Chào mừng 
-                                <b>
-                                    <?php
-                                    $name_user= Session::get('user_name');
-                                    if($name_user){
-                                        echo $name_user;
-                                    }
-                                    ?>
-                                </b> 
+                                    <b>
+                                        <?php
+                                        $name_user= Session::get('user_name');
+                                        if($name_user){
+                                            echo $name_user;
+                                        }
+                                        ?>
+                                    </b> 
                                 đến QPharmacy</p>
                             </div>
                         </div>
@@ -107,48 +107,33 @@
                                     <nav class="desktop-menu">
                                         <ul>
                                             <li class="active"><a href="{{URL::to('/trang_chu')}}">Trang Chủ</a></li>
-                                            <li class="static"><a href="#">Sản Phẩm <i class="fa fa-angle-down"></i></a>
-                                                <ul class="megamenu dropdown">
-                                                    <li class="mega-title"><a href="#">Danh Mục</a>
-                                                        <ul>
-                                                        @foreach($category as $key => $value_cate)
-                                                            @if($value_cate->MaLoaiHang %2 ==0)    
-                                                            <li>
-                                                                <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
-                                                            </li>
-                                                            @endif
-                                                        @endforeach
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-title"><a href="#"></a>
-                                                        <ul>
-                                                        @foreach($category as $key => $value_cate)    
-                                                            @if($value_cate->MaLoaiHang %2 !=0)    
-                                                            <li>
-                                                                <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
-                                                            </li>
-                                                            @endif
-                                                        @endforeach    
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-title"><a href="#">Nhà Sản Xuất</a>
-                                                        <ul>
-                                                        @foreach($producer as $key => $value_pro)    @if($value_pro->MaNSX %2 ==0)
+                                            <li><a href="">Sản Phẩm <i class="fa fa-angle-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Hãng<i class="fa fa-angle-right"></i></a>
+                                                        <ul class="dropdown">
+                                                            @foreach($producer as $key => $value_pro)
                                                             <li>
                                                                 <a href="{{URL::to('/producer_home/'.$value_pro->MaNSX)}}">{{$value_pro->TenNSX}}</a>
                                                             </li>
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach
                                                         </ul>
                                                     </li>
-                                                    <li class="mega-title">
-                                                        <ul>
-                                                        @foreach($producer as $key => $value_pro)    @if($value_pro->MaNSX %2 !=0)
+                                                    <li><a href="#">Danh Mục<i class="fa fa-angle-right"></i></a>
+                                                        <ul class="dropdown">
+                                                            @foreach($category as $key => $value_cate)     
                                                             <li>
-                                                                <a href="{{URL::to('/producer_home/'.$value_pro->MaNSX)}}">{{$value_pro->TenNSX}}</a>
+                                                                <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
                                                             </li>
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach 
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Loại sản phẩm<i class="fa fa-angle-right"></i></a>
+                                                        <ul class="dropdown">
+                                                            @foreach($cate as $key => $value)     
+                                                            <li>
+                                                                <a href="{{-- {{URL::to('/category_home/'.$value_cate->MaLoaiHang)}} --}}">{{$value->TenDanhMuc}}</a>
+                                                            </li>
+                                                            @endforeach 
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -203,390 +188,390 @@
                                                 <i class="lnr lnr-cart"></i>
                                                 <div class="notification" id="minicart">
                                                     <?php 
-                                                        $cart=Session::get('cart');
-                                                        if ($cart) {
-                                                           echo count($cart);
-                                                        }else{
-                                                           echo 0;
-                                                        }
-                                                    ?>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                                    $cart=Session::get('cart');
+                                                    if ($cart) {
+                                                     echo count($cart);
+                                                 }else{
+                                                     echo 0;
+                                                 }
+                                                 ?>
+                                             </div>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                     <!-- mini cart area end -->
+                 </div>
+             </div>
+         </div>
+         <!-- header middle area end -->
+     </div>
+     <!-- main header start -->
+
+     <!-- mobile header start -->
+     <div class="mobile-header d-lg-none d-md-block sticky">
+        <!--mobile header top start -->
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="mobile-main-header">
+                        <div class="mobile-logo">
+                            <a href="{{URL::to('/trang_chu')}}">
+                                <img src="{{asset('public/frontend/assets/img/logo_brand.png')}}" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="mobile-menu-toggler">
+                            <div class="mini-cart-wrap">
+                                <a href="{{URL::to('/cart_shopping')}}">
+                                    <i class="lnr lnr-cart"></i>
+                                </a>
+                            </div>
+                            <div class="mobile-menu-btn">
+                                <div class="off-canvas-btn">
+                                    <i class="lnr lnr-menu"></i>
                                 </div>
                             </div>
                         </div>
-                        <!-- mini cart area end -->
                     </div>
                 </div>
             </div>
-            <!-- header middle area end -->
         </div>
-        <!-- main header start -->
+        <!-- mobile header top start -->
+    </div>
+    <!-- mobile header end -->
+</header>
+<!-- end Header Area -->
 
-        <!-- mobile header start -->
-        <div class="mobile-header d-lg-none d-md-block sticky">
-            <!--mobile header top start -->
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="mobile-main-header">
-                            <div class="mobile-logo">
-                                <a href="{{URL::to('/trang_chu')}}">
-                                    <img src="{{asset('public/frontend/assets/img/logo_brand.png')}}" alt="Brand Logo">
-                                </a>
-                            </div>
-                            <div class="mobile-menu-toggler">
-                                <div class="mini-cart-wrap">
-                                    <a href="{{URL::to('/cart_shopping')}}">
-                                        <i class="lnr lnr-cart"></i>
-                                    </a>
-                                </div>
-                                <div class="mobile-menu-btn">
-                                    <div class="off-canvas-btn">
-                                        <i class="lnr lnr-menu"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- mobile header top start -->
+<!-- off-canvas menu start -->
+<aside class="off-canvas-wrapper">
+    <div class="off-canvas-overlay"></div>
+    <div class="off-canvas-inner-content">
+        <div class="btn-close-off-canvas">
+            <i class="lnr lnr-cross"></i>
         </div>
-        <!-- mobile header end -->
-    </header>
-    <!-- end Header Area -->
 
-    <!-- off-canvas menu start -->
-    <aside class="off-canvas-wrapper">
-        <div class="off-canvas-overlay"></div>
-        <div class="off-canvas-inner-content">
-            <div class="btn-close-off-canvas">
-                <i class="lnr lnr-cross"></i>
+        <div class="off-canvas-inner">
+            <!-- search box start -->
+            <div class="search-box-offcanvas">
+                <form method="get" action="{{URL::to('/search')}}">
+                    {{csrf_field()}}
+                    <input type="text" placeholder="Tìm Kiếm..." name="key_words">
+                    <button class="search-btn"><i class="lnr lnr-magnifier"></i></button>
+                </form>
             </div>
+            <!-- search box end -->
 
-            <div class="off-canvas-inner">
-                <!-- search box start -->
-                <div class="search-box-offcanvas">
-                    <form method="get" action="{{URL::to('/search')}}">
-                        {{csrf_field()}}
-                        <input type="text" placeholder="Tìm Kiếm..." name="key_words">
-                        <button class="search-btn"><i class="lnr lnr-magnifier"></i></button>
-                    </form>
-                </div>
-                <!-- search box end -->
+            <!-- mobile menu start -->
+            <div class="mobile-navigation">
 
-                <!-- mobile menu start -->
-                <div class="mobile-navigation">
-
-                    <!-- mobile menu navigation start -->
-                    <nav>
-                        <ul class="mobile-menu">
-                            <li class="menu-item-has-children"><a href="{{URL::to('/trang_chu')}}">Trang Chủ</a>
-                            </li>
-                            <li class="menu-item-has-children"><a href="#">Sản Phẩm</a>
-                                <ul class="megamenu dropdown">
-                                    <li class="mega-title menu-item-has-children"><a href="#">Danh Mục</a>
-                                        <ul class="dropdown">
-                                            @foreach($category as $key => $value_cate)
-                                            <li>
-                                                <a href="">{{$value_cate->TenLoaiHang}}</a>
-                                            </li>
-                                            @endforeach
-                                            
-                                        </ul>
-                                    </li>
-                                    <li class="mega-title menu-item-has-children"><a href="#">Nhà Sản Xuất</a>
-                                        <ul class="dropdown">
-                                            @foreach($producer as $key => $value_pro)   
-                                            <li><a href="">{{$value_pro->TenNSX}}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
-                            <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
-                        </ul>
-                    </nav>
-                    <!-- mobile menu navigation end -->
-                </div>
-                <!-- mobile menu end -->
-
-                <div class="mobile-settings">
-                    <ul class="nav">
-                        <li>
-                            <div class="dropdown mobile-top-dropdown">
-                                <a href="#" class="dropdown-toggle" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Đơn Vị Tiền Tệ
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="currency">
-                                    <a class="dropdown-item" href="#">đ VND</a>
-                                </div>
-                            </div>
+                <!-- mobile menu navigation start -->
+                <nav>
+                    <ul class="mobile-menu">
+                        <li class="menu-item-has-children"><a href="{{URL::to('/trang_chu')}}">Trang Chủ</a>
                         </li>
-                        <li>
-                            <div class="dropdown mobile-top-dropdown">
-                                <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Tài Khoản
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="myaccount">
-                                    <a class="dropdown-item" href="my-account.html">Tài Khoản Của Tôi</a>
-                                    <a class="dropdown-item" href="{{URL::to('/register_home')}}"> Đăng Nhập</a>
-                                    <a class="dropdown-item" href="">Đăng Xuất</a>
-                                </div>
+                        <li class="menu-item-has-children"><a href="#">Sản Phẩm</a>
+                            <ul class="megamenu dropdown">
+                                <li class="mega-title menu-item-has-children"><a href="#">Danh Mục</a>
+                                    <ul class="dropdown">
+                                        @foreach($category as $key => $value_cate)
+                                        <li>
+                                            <a href="">{{$value_cate->TenLoaiHang}}</a>
+                                        </li>
+                                        @endforeach
+
+                                    </ul>
+                                </li>
+                                <li class="mega-title menu-item-has-children"><a href="#">Nhà Sản Xuất</a>
+                                    <ul class="dropdown">
+                                        @foreach($producer as $key => $value_pro)   
+                                        <li><a href="">{{$value_pro->TenNSX}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
+                        <li><a href="{{URL::to('/contact_us')}}">Giới Thiệu</a></li>
+                    </ul>
+                </nav>
+                <!-- mobile menu navigation end -->
+            </div>
+            <!-- mobile menu end -->
+
+            <div class="mobile-settings">
+                <ul class="nav">
+                    <li>
+                        <div class="dropdown mobile-top-dropdown">
+                            <a href="#" class="dropdown-toggle" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Đơn Vị Tiền Tệ
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="currency">
+                                <a class="dropdown-item" href="#">đ VND</a>
                             </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown mobile-top-dropdown">
+                            <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tài Khoản
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="myaccount">
+                                <a class="dropdown-item" href="my-account.html">Tài Khoản Của Tôi</a>
+                                <a class="dropdown-item" href="{{URL::to('/register_home')}}"> Đăng Nhập</a>
+                                <a class="dropdown-item" href="">Đăng Xuất</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- offcanvas widget area start -->
+            <div class="offcanvas-widget-area">
+                <div class="off-canvas-contact-widget">
+                    <ul>
+                        <li><i class="fa fa-mobile"></i>
+                            <a href="tel:0859083181">(+84) 859083182</a>
+                        </li>
+                        <li><i class="fa fa-envelope-o"></i>
+                            <a href="mailto:qtran8219@gmail.com">qtran8219@gmail.com</a>
                         </li>
                     </ul>
                 </div>
-
-                <!-- offcanvas widget area start -->
-                <div class="offcanvas-widget-area">
-                    <div class="off-canvas-contact-widget">
-                        <ul>
-                            <li><i class="fa fa-mobile"></i>
-                                <a href="tel:0859083181">(+84) 859083182</a>
-                            </li>
-                            <li><i class="fa fa-envelope-o"></i>
-                                <a href="mailto:qtran8219@gmail.com">qtran8219@gmail.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="off-canvas-social-widget">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                    </div>
-                </div>
-                <!-- offcanvas widget area end -->
-            </div>
-        </div>
-    </aside>
-    <!-- off-canvas menu end -->
-
-
-
-    <!-- main wrapper start -->
-    
-    @yield('contend')
-    
-    <!-- main wrapper end -->
-
-    <!-- Start Footer Area Wrapper -->
-    <footer class="footer-wrapper">
-
-        <!-- footer widget area start -->
-        <div class="footer-widget-area">
-            <div class="container">
-                <div class="footer-widget-inner section-space">
-                    <div class="row mbn-30">
-                        <!-- footer widget item start -->
-                        <div class="col-lg-5 col-md-6 col-sm-8">
-                            <div class="footer-widget-item mb-30">
-                                <div class="footer-widget-title">
-                                    <h5>QPharmacy</h5>
-                                </div>
-                                <ul class="footer-widget-body accout-widget">
-                                    <li class="address">
-                                        <em><i class="lnr lnr-map-marker"></i></em>
-                                        27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng 
-                                    </li>
-                                    <li class="email">
-                                        <em><i class="lnr lnr-envelope"></i>Email: </em>
-                                        <a href="mailto:qtran8219@gmail.com">qtran8219@gmail.com</a>
-                                    </li>
-                                    <li class="phone">
-                                        <em><i class="lnr lnr-phone-handset"></i> Số Điện Thoại: </em>
-                                        <a href="tel:0859083181">(+84) 859083182 </a>
-                                    </li>
-                                </ul>
-                                <div class="payment-method">
-                                    <img src="{{asset('public/frontend/assets/img/payment-pic.png')}}" alt="payment method">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- footer widget item end -->
-
-                        <!-- footer widget item start -->
-                        <div class="col-lg-3 col-md-6 col-sm-4">
-                            <div class="footer-widget-item mb-30">
-                                <div class="footer-widget-title">
-                                    <h5>Danh Mục</h5>
-                                </div>
-                                <ul class="footer-widget-body">
-                                    @foreach($category as $key => $value_cate)
-                                    @if($value_cate->MaLoaiHang %2 ==0)    
-                                    <li>
-                                        <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
-                                    </li>
-                                    @endif
-                                    @endforeach   
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- footer widget item end -->
-
-                        <!-- footer widget item start -->
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="footer-widget-item mb-30">
-                                <div class="footer-widget-title">
-                                    <h5></h5>
-                                </div>
-                                <ul class="footer-widget-body">
-                                    @foreach($category as $key => $value_cate)    
-                                    @if($value_cate->MaLoaiHang %2 !=0)    
-                                    <li>
-                                        <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
-                                    </li>
-                                    @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- footer widget item end -->
-                    </div>
+                <div class="off-canvas-social-widget">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
                 </div>
             </div>
+            <!-- offcanvas widget area end -->
         </div>
-        <!-- footer widget area end -->
+    </div>
+</aside>
+<!-- off-canvas menu end -->
 
-        <!-- footer bottom area start -->
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 order-2 order-md-1">
-                        <div class="copyright-text">
-                            <p>Copyright ©All Right Reserved.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 order-1 order-md-2">
-                        <div class="footer-social-link">
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- footer bottom area end -->
 
-    </footer>
-    <!-- End Footer Area Wrapper -->
 
-    <!-- Quick view modal start -->
-    <div class="modal" id="quick_view">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <!-- product details inner end -->
-                    <div class="product-details-inner">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5">
-                                <div class="product-large-slider">
-                                    <div class="pro-large-img img-zoom" id="product-image"></div>
-                                </div>
+<!-- main wrapper start -->
+
+@yield('contend')
+
+<!-- main wrapper end -->
+
+<!-- Start Footer Area Wrapper -->
+<footer class="footer-wrapper">
+
+    <!-- footer widget area start -->
+    <div class="footer-widget-area">
+        <div class="container">
+            <div class="footer-widget-inner section-space">
+                <div class="row mbn-30">
+                    <!-- footer widget item start -->
+                    <div class="col-lg-5 col-md-6 col-sm-8">
+                        <div class="footer-widget-item mb-30">
+                            <div class="footer-widget-title">
+                                <h5>QPharmacy</h5>
                             </div>
-                            <div class="col-lg-7 col-md-7">
-                                <div class="product-details-des quick-details">
-                                    <h3 class="product-name" id="product-name"></h3>
-                                    <div class="ratings d-flex" >
-                                        <div id="product-rating"></div>
-                                        <div class="pro-review" id="product-review"></div>
-                                    </div>
-                                    <div class="price-box">
-                                        <span class="price-regular" id="product-price"></span>
-                                    </div>
-                                    
-                                    <div class="product-countdown" data-countdown="2021/12/25"></div>
-                                    <div class="availability">
-                                        <i class="fa fa-check-circle"></i>
-                                        <span id="product-qty"></span> trong kho
-                                    </div>
-                                    <p class="pro-desc" id="product-desc"></p>
-                                    <div class="useful-links">
-                                        <a href="#" data-toggle="tooltip" title="Wishlist"><i
-                                            class="lnr lnr-heart"></i>Yêu Thích
-                                        </a>
-                                    </div>
-                                    <div class="like-icon">
-                                        <a class="facebook" href="#"><i class="fa fa-facebook"></i>like</a>
-                                        <a class="twitter" href="#"><i class="fa fa-twitter"></i>tweet</a>
-                                        <a class="pinterest" href="#"><i class="fa fa-pinterest"></i>save</a>
-                                        <a class="google" href="#"><i class="fa fa-google-plus"></i>share</a>
-                                    </div>
-                                </div>
+                            <ul class="footer-widget-body accout-widget">
+                                <li class="address">
+                                    <em><i class="lnr lnr-map-marker"></i></em>
+                                    27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng 
+                                </li>
+                                <li class="email">
+                                    <em><i class="lnr lnr-envelope"></i>Email: </em>
+                                    <a href="mailto:qtran8219@gmail.com">qtran8219@gmail.com</a>
+                                </li>
+                                <li class="phone">
+                                    <em><i class="lnr lnr-phone-handset"></i> Số Điện Thoại: </em>
+                                    <a href="tel:0859083181">(+84) 859083182 </a>
+                                </li>
+                            </ul>
+                            <div class="payment-method">
+                                <img src="{{asset('public/frontend/assets/img/payment-pic.png')}}" alt="payment method">
                             </div>
                         </div>
-                    </div> <!-- product details inner end -->
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-lg-3 col-md-6 col-sm-4">
+                        <div class="footer-widget-item mb-30">
+                            <div class="footer-widget-title">
+                                <h5>Danh Mục</h5>
+                            </div>
+                            <ul class="footer-widget-body">
+                                @foreach($category as $key => $value_cate)
+                                @if($value_cate->MaLoaiHang %2 ==0)    
+                                <li>
+                                    <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
+                                </li>
+                                @endif
+                                @endforeach   
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
+
+                    <!-- footer widget item start -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer-widget-item mb-30">
+                            <div class="footer-widget-title">
+                                <h5></h5>
+                            </div>
+                            <ul class="footer-widget-body">
+                                @foreach($category as $key => $value_cate)    
+                                @if($value_cate->MaLoaiHang %2 !=0)    
+                                <li>
+                                    <a href="{{URL::to('/category_home/'.$value_cate->MaLoaiHang)}}">{{$value_cate->TenLoaiHang}}</a>
+                                </li>
+                                @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- footer widget item end -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Quick view modal end -->
+    <!-- footer widget area end -->
 
-            <!-- offcanvas search form start -->
-            <div class="offcanvas-search-wrapper">
-                <div class="offcanvas-search-inner">
-                    <div class="offcanvas-close">
-                        <i class="lnr lnr-cross"></i>
+    <!-- footer bottom area start -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-2 order-md-1">
+                    <div class="copyright-text">
+                        <p>Copyright ©All Right Reserved.</p>
                     </div>
-                    <div class="container">
-                        <div class="offcanvas-search-box">
-                            <form class="d-flex bdr-bottom w-100" method="get" action="{{URL::to('/search')}}">
-                                {{csrf_field()}}
-                                <input type="text" placeholder="Tìm kiếm sản phẩm" name="key_words" >
-                                <button class="search-btn search"><i class="lnr lnr-magnifier"></i>search</button>
-                            </form>
-                        </div>
+                </div>
+                <div class="col-md-6 order-1 order-md-2">
+                    <div class="footer-social-link">
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-            <!-- offcanvas search form end -->
+        </div>
+    </div>
+    <!-- footer bottom area end -->
 
-            <!-- offcanvas mini cart start -->
-            <div class="offcanvas-minicart-wrapper">
-                <div class="minicart-inner">
-                    <div class="offcanvas-overlay"></div>
-                    <div class="minicart-inner-content">
-                        <div class="minicart-close">
-                            <i class="lnr lnr-cross"></i>
+</footer>
+<!-- End Footer Area Wrapper -->
+
+<!-- Quick view modal start -->
+<div class="modal" id="quick_view">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- product details inner end -->
+                <div class="product-details-inner">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5">
+                            <div class="product-large-slider">
+                                <div class="pro-large-img img-zoom" id="product-image"></div>
+                            </div>
                         </div>
-                        @php
-                        $total=0;
-                        @endphp    
-                        <div class="minicart-content-box" id="minicart_cnt"></div>
+                        <div class="col-lg-7 col-md-7">
+                            <div class="product-details-des quick-details">
+                                <h3 class="product-name" id="product-name"></h3>
+                                <div class="ratings d-flex" >
+                                    <div id="product-rating"></div>
+                                    <div class="pro-review" id="product-review"></div>
+                                </div>
+                                <div class="price-box">
+                                    <span class="price-regular" id="product-price"></span>
+                                </div>
+
+                                <div class="product-countdown" data-countdown="2021/12/25"></div>
+                                <div class="availability">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span id="product-qty"></span> trong kho
+                                </div>
+                                <p class="pro-desc" id="product-desc"></p>
+                                <div class="useful-links">
+                                    <a href="#" data-toggle="tooltip" title="Wishlist"><i
+                                        class="lnr lnr-heart"></i>Yêu Thích
+                                    </a>
+                                </div>
+                                <div class="like-icon">
+                                    <a class="facebook" href="#"><i class="fa fa-facebook"></i>like</a>
+                                    <a class="twitter" href="#"><i class="fa fa-twitter"></i>tweet</a>
+                                    <a class="pinterest" href="#"><i class="fa fa-pinterest"></i>save</a>
+                                    <a class="google" href="#"><i class="fa fa-google-plus"></i>share</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div> <!-- product details inner end -->
             </div>
-            <!-- offcanvas mini cart end -->
+        </div>
+    </div>
+</div>
+<!-- Quick view modal end -->
 
-            <!-- Scroll to top start -->
-            <div class="scroll-top not-visible">
-                <i class="fa fa-angle-up"></i>
+<!-- offcanvas search form start -->
+<div class="offcanvas-search-wrapper">
+    <div class="offcanvas-search-inner">
+        <div class="offcanvas-close">
+            <i class="lnr lnr-cross"></i>
+        </div>
+        <div class="container">
+            <div class="offcanvas-search-box">
+                <form class="d-flex bdr-bottom w-100" method="get" action="{{URL::to('/search')}}">
+                    {{csrf_field()}}
+                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="key_words" >
+                    <button class="search-btn search"><i class="lnr lnr-magnifier"></i>search</button>
+                </form>
             </div>
-            <!-- Scroll to Top End -->
+        </div>
+    </div>
+</div>
+<!-- offcanvas search form end -->
 
-            <!-- All vendor & plugins & active js include here -->
-            <!--All Vendor Js -->
-            <script src="{{asset('public/frontend/assets/js/upload.js')}}"></script>
+<!-- offcanvas mini cart start -->
+<div class="offcanvas-minicart-wrapper">
+    <div class="minicart-inner">
+        <div class="offcanvas-overlay"></div>
+        <div class="minicart-inner-content">
+            <div class="minicart-close">
+                <i class="lnr lnr-cross"></i>
+            </div>
+            @php
+            $total=0;
+            @endphp    
+            <div class="minicart-content-box" id="minicart_cnt"></div>
+        </div>
+    </div>
+</div>
+<!-- offcanvas mini cart end -->
 
-            <script src="{{asset('public/frontend/assets/js/vendor.js')}}"></script>
-            <!-- Active Js -->
-            <script src="{{asset('public/frontend/assets/js/active.js')}}"></script>
-            <script src="{{asset('public/frontend/assets/js/sweetalert.min.js')}}"></script>
-            <script src="{{asset('public/frontend/assets/js/jquery.validate.min.js')}}"></script>
-            <script type="text/javascript">
+<!-- Scroll to top start -->
+<div class="scroll-top not-visible">
+    <i class="fa fa-angle-up"></i>
+</div>
+<!-- Scroll to Top End -->
+
+<!-- All vendor & plugins & active js include here -->
+<!--All Vendor Js -->
+<script src="{{asset('public/frontend/assets/js/upload.js')}}"></script>
+
+<script src="{{asset('public/frontend/assets/js/vendor.js')}}"></script>
+<!-- Active Js -->
+<script src="{{asset('public/frontend/assets/js/active.js')}}"></script>
+<script src="{{asset('public/frontend/assets/js/sweetalert.min.js')}}"></script>
+<script src="{{asset('public/frontend/assets/js/jquery.validate.min.js')}}"></script>
+<script type="text/javascript">
                 //Thêm giỏ hàng bằng AJAX
                 $(document).ready(function(){
                     load_minicart();
@@ -624,35 +609,43 @@
                         var cart_product_discount = $('.cart_product_discount_' + id).val();
                         var _token = $('input[name="_token"]').val();
 
-                        $.ajax({
-                            url: '{{url('/add_cart_ajax')}}',
-                            method: 'POST',
-                            dataType: 'JSON',
-                            data:{cart_product_id:cart_product_id,
-                                cart_product_name:cart_product_name,
-                                cart_product_image:cart_product_image,
-                                cart_product_price:cart_product_price,
-                                cart_product_qty:cart_product_qty,
-                                cart_product_discount:cart_product_discount,
-                                _token:_token},
-                            success:function(data){
-                                if(data.error==0){
-                                    $('#minicart').html(data.count);
-                                    load_minicart();
-                                    swal({
-                                        title: "Thêm vào giỏ hàng thành công",
-                                        icon: "success",
-                                        button: "OK",
-                                    });
-                                }else{
-                                    swal({
-                                      title: "Số lượng tồn không đủ",
-                                      icon: "warning",
-                                      button: "OK",
-                                    });
-                                }
-                            }
-                        });
+                        if(cart_product_qty<=0){
+                            swal({
+                                title: "Số lượng không được nhỏ hơn 1",
+                                icon: "warning",
+                                button: "OK",
+                            });
+                        }else{
+                            $.ajax({
+                                url: '{{url('/add_cart_ajax')}}',
+                                method: 'POST',
+                                dataType: 'JSON',
+                                data:{cart_product_id:cart_product_id,
+                                    cart_product_name:cart_product_name,
+                                    cart_product_image:cart_product_image,
+                                    cart_product_price:cart_product_price,
+                                    cart_product_qty:cart_product_qty,
+                                    cart_product_discount:cart_product_discount,
+                                    _token:_token},
+                                    success:function(data){
+                                        if(data.error==0){
+                                            $('#minicart').html(data.count);
+                                            load_minicart();
+                                            swal({
+                                                title: "Thêm vào giỏ hàng thành công",
+                                                icon: "success",
+                                                button: "OK",
+                                            });
+                                        }else{
+                                            swal({
+                                              title: "Số lượng tồn không đủ",
+                                              icon: "warning",
+                                              button: "OK",
+                                          });
+                                        }
+                                    }
+                                });
+                        }
                     });
                 });
                 //Quick view
@@ -693,13 +686,13 @@
                                   title: "Sản phẩm đã được thêm",
                                   icon: "warning",
                                   button: "OK",
-                                });
+                              });
                             }else{
                                 swal({
                                   title: "Bạn chưa đăng nhập",
                                   icon: "warning",
                                   button: "OK",
-                                });
+                              });
                             }
                         }
                     });
@@ -747,16 +740,16 @@
                                 _token:_token,
                                 content:content,
                                 rating: rating},
-                            success:function(data){
-                                load_comment();
-                            },error: function() {
-                               swal({
+                                success:function(data){
+                                    load_comment();
+                                },error: function() {
+                                 swal({
                                   title: "Bạn Chưa Đăng Nhập",
                                   icon: "warning",
                                   button: "OK",
-                                });
-                            }
-                        });
+                              });
+                             }
+                         });
                     });
                     //Lọc sản phẩm
                     $('#sort_by').on('change', function(){  

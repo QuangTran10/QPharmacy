@@ -21,6 +21,14 @@ class OrderManagement extends Controller
             return Redirect::to('admin')->send();
         }
     }
+    public function LoginCheck(){
+        $MSKH=Session::get('user_id');
+        if($MSKH){
+            
+        }else{
+            return Redirect::to('login_home')->send();
+        }
+    }
     public function order_management(){
         $this->AuthLogin();
     	$all_order=DB::table('dathang')->orderBy('SoDonDH','desc')->get();
@@ -104,8 +112,10 @@ class OrderManagement extends Controller
     //USER
 
     public function show_order(Request $re){
+        $this->LoginCheck();
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         $MSKH=Session::get('user_id');
         //Các đơn hàng chưa xử lý
@@ -119,18 +129,20 @@ class OrderManagement extends Controller
 
         $meta_desc="Thông Tin Đơn Hàng";
         $meta_keywords="Show Order";
-        $meta_tittle="QPharmacy";
+        $meta_tittle="HPStore";
         $url=$re->url();
         return view('pages.check_out.show_order')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate)
         ->with('orders_process',$orders_process)->with('orders_shipping',$orders_shipping)
         ->with('orders_delivered',$orders_delivered)->with('orders_cancel',$orders_cancel);
     }
     public function order_detail($id_order, Request $re){
+        $this->LoginCheck();
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         $order_de = DB::table('chitietdathang')
         ->join('hanghoa', 'hanghoa.MSHH', '=', 'chitietdathang.MSHH')
@@ -142,21 +154,31 @@ class OrderManagement extends Controller
 
         $meta_desc="Chi Tiết Đơn Hàng";
         $meta_keywords="Show Order Details - ".$id_order;
-        $meta_tittle="QPharmacy";
+        $meta_tittle="HPStore";
         $url=$re->url();
 
         return view('pages.check_out.order_detail')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('order_details',$order_de)->with('order',$order);
+        ->with('order_details',$order_de)->with('order',$order)->with('cate',$all_cate);
     }
     public function update_order(Request $re){
+        $this->LoginCheck();
         $status = $re->TinhTrang;
         $SoDonDH= $re->SoDonDH;
         $result = DB::table('dathang')->where('SoDonDH',$SoDonDH)->update(['TinhTrang' => $status]);
+
         if ($status==3) {
-            DB::table("chitietdathang")->where('SoDonDH',$SoDonDH)->delete();
+            $order_details = DB::table("chitietdathang")->where('SoDonDH',$SoDonDH)->get();
+
+            foreach ($order_details as $key => $value) {
+                $product = DB::table('hanghoa')->where('MSHH', $value->MSHH)->first();
+
+                $quality = $value->SoLuong + $product->SoLuongHang;
+
+                DB::table('hanghoa')->where('MSHH', $value->MSHH)->update(['SoLuongHang' => $quality]);
+            }
         }
         if($result){
             return Redirect::to('/show_order');

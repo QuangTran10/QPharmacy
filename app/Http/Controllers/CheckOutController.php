@@ -27,6 +27,7 @@ class CheckOutController extends Controller
     	$all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
     	$all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
@@ -38,7 +39,8 @@ class CheckOutController extends Controller
     	return view('pages.check_out.check_out')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('all_address_by_id',$all_address_by_id)->with('meta_desc',$meta_desc)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)
+        ->with('url',$url)->with('cate',$all_cate);
     }
 
     public function vnpay_check_out(Request $re){
@@ -47,6 +49,7 @@ class CheckOutController extends Controller
         $all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
@@ -58,7 +61,8 @@ class CheckOutController extends Controller
         return view('pages.check_out.vnpay_check_out')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('all_address_by_id',$all_address_by_id)->with('meta_desc',$meta_desc)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)
+        ->with('url',$url)->with('cate',$all_cate);
     }
 
     public function save_check_out(Request $re){
@@ -156,17 +160,18 @@ class CheckOutController extends Controller
         $this->LoginCheck();
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
         $meta_keywords="Complete Check Out";
-        $meta_tittle="QPharmacy";
+        $meta_tittle="HPStore";
         $url=$re->url();
         // end seo
 
         return view('pages.check_out.complete_check_out')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate);
     }
 }

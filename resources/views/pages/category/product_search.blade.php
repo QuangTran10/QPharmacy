@@ -128,8 +128,8 @@
                                 <div class="product-item">
                                     <figure class="product-thumb">
                                         <a href="{{URL::to('/product_details/'.$value->MSHH)}}">
-                                            <img class="pri-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
-                                            <img class="sec-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
+                                            <img class="pri-img" src="{{asset('public/upload/'.$value->HinhAnh)}}" alt="product">
+                                            <img class="sec-img" src="{{asset('public/upload/'.$value->HinhAnh)}}" alt="product">
                                         </a>
                                         <div class="product-badge">
                                             @if($value->GiamGia!=0)
@@ -143,7 +143,7 @@
                                             <div class="quantity-cart-box d-flex align-items-center">
                                                 <input type="hidden" name="Id_{{$value->MSHH}}" value="{{$value->MSHH}}" class="cart_product_id_{{$value->MSHH}}">
                                                 <input type="hidden" name="Name" value="{{$value->TenHH}}" class="cart_product_name_{{$value->MSHH}}">
-                                                <input type="hidden" name="Image" value="{{$value->hinhanh1}}" class="cart_product_image_{{$value->MSHH}}">
+                                                <input type="hidden" name="Image" value="{{$value->HinhAnh}}" class="cart_product_image_{{$value->MSHH}}">
                                                 <input type="hidden" name="Price" value="{{$value->Gia}}" class="cart_product_price_{{$value->MSHH}}">
                                                 <input type="hidden" name="Discount" value="{{$value->GiamGia}}" class="cart_product_discount_{{$value->MSHH}}">
                                                 <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_{{$value->MSHH}}">
@@ -185,9 +185,9 @@
                                 <!-- product list item end -->
                                     <div class="product-list-item">
                                         <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
-                                                <img class="sec-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
+                                            <a href="{{URL::to('/product_details/'.$value->MSHH)}}">
+                                                <img class="pri-img" src="{{asset('public/upload/'.$value->HinhAnh)}}" alt="product">
+                                                <img class="sec-img" src="{{asset('public/upload/'.$value->HinhAnh)}}" alt="product">
                                             </a>
                                             <div class="product-badge">
                                                 <div class="product-label new">
@@ -210,7 +210,7 @@
 
                                                 {{-- <span class="price-old"><del>$60.00</del></span> --}}
                                             </div>
-                                            <p>{{$value->MoTa}}</p>
+                                            <p><?php echo $value->MoTa?></p>
                                             <div class="button-group-list">
                                                 <a class="btn-big" href="cart.html" data-toggle="tooltip" ><i class="lnr lnr-cart"></i>Thêm Vào Giỏ Hàng</a>
                                                 <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip"  title="Xem"><i class="lnr lnr-magnifier"></i></span></a>

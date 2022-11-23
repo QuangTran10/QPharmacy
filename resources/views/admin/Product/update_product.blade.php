@@ -35,20 +35,20 @@
               <label class="col-sm-2 col-form-label">Số Lượng</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="number" class="form-control" name="SoLuong" min="1" value="{{$value_pro->SoLuongHang}}" id="SoLuongHang">
+                  <input type="number" class="form-control" name="SoLuong" value="{{$value_pro->SoLuongHang}}" id="SoLuongHang">
                 </div>
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 col-form-label">Loại Hàng</label>
+              <label class="col-sm-2 col-form-label">Danh Mục Hàng</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <select class="form-control selectpicker" data-style="btn btn-link" name="LoaiHang">
+                  <select class="form-control selectpicker" data-style="btn btn-link" name="DanhMuc">
                     @foreach($category as $key => $value_cate)
-                      @if($value_cate->MaLoaiHang == $value_pro->MaLoaiHang)
-                        <option value="{{$value_cate->MaLoaiHang}}" selected>{{$value_cate->TenLoaiHang}}</option>
+                      @if($value_cate->MaDM == $value_pro->MaDM)
+                        <option value="{{$value_cate->MaDM}}" selected>{{$value_cate->TenDanhMuc}}</option>
                       @else
-                        <option value="{{$value_cate->MaLoaiHang}}">{{$value_cate->TenLoaiHang}}</option>
+                        <option value="{{$value_cate->MaDM}}">{{$value_cate->TenDanhMuc}}</option>
                       @endif
                     @endforeach
                   </select>
@@ -113,17 +113,18 @@
             <div class="row">
               <div class="col-md-4 col-sm-4"></div>
               <div class="col-md-4 col-sm-4">
-                <h4 class="title text-center">Hình Ảnh1</h4>
+                <h4 class="title text-center">Hình Ảnh</h4>
+                <p class="title text-center"><i>Có thể chọn nhiều hình ảnh. Chỉ có thể thêm ảnh cho sản phẩm</i></p>
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
-                    <img src="{{asset('public/upload/'.$value_pro->hinhanh1)}}" alt="...">
+                    <img src="{{asset('public/upload/'.$value_pro->HinhAnh)}}" alt="...">
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
                     <span class="btn btn-rose btn-round btn-file">
                       <span class="fileinput-new">Chọn Hình Ảnh</span>
                       <span class="fileinput-exists">Thay Đổi</span>
-                      <input type="file" name="hinhanh1" />
+                      <input type="file" name="HinhAnh[]" />
                     </span>
                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xoá</a>
                   </div>
@@ -152,7 +153,6 @@
         Gia:{
           required: true,
           number: true,
-          digits: true
         },
         SoLuong:{
           required: true,
@@ -163,7 +163,6 @@
         Gia:{
           required: "Giá không để trống",
           number: "Giá phải là số",
-          digits: "Giá không là số âm"
         },
         SoLuong:{
           required: "Số lượng không bỏ trống",

@@ -23,7 +23,7 @@ class ProductController extends Controller
     }
     public function add(){
         $this->AuthLogin();
-    	$all_category = DB::table('loaihanghoa')->get();
+    	$all_category = DB::table('danhmuc')->get();
         $all_producer = DB::table('nhasanxuat')->get();
     	return view('admin.Product.add_product')->with('category',$all_category)->with('producer',$all_producer);
     }
@@ -31,7 +31,6 @@ class ProductController extends Controller
     public function product_management(){
         $this->AuthLogin();
         $all_product = DB::table('hanghoa')
-        ->join('loaihanghoa', 'hanghoa.MaLoaiHang', '=', 'loaihanghoa.MaLoaiHang')
         ->join('nhasanxuat', 'hanghoa.MaNSX', '=', 'nhasanxuat.MaNSX')
         ->simplePaginate(5);
         Session::put('page',2);
@@ -43,38 +42,59 @@ class ProductController extends Controller
         $this->AuthLogin();
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
     	$data = array();
-
-    	$data['TenHH'] = $re->TenHangHoa;
-    	$data['Gia'] = $re->Gia;
-    	$data['SoLuongHang'] = $re->SoLuong;
-    	$data['MaLoaiHang'] = $re->LoaiHang;
-        $data['MaNSX'] = $re->NSX;
-    	$data['MoTa'] = $re->MoTa;
-        $data['GiamGia']=0;
-    	$data['TrangThai'] = $re->TrangThai;
-    	$data['TG_Tao'] = $now;
-    	$data['TG_CapNhat'] = $now;
-    	
         //upload ảnh
-        $get_image = $re->file('hinhanh1');
-        
+        $get_image = $re->file('HinhAnh');
+
+        $data['TenHH'] = $re->TenHangHoa;
+        $data['Gia'] = $re->Gia;
+        $data['SoLuongHang'] = 0;
+        $data['MaDM'] = $re->DanhMuc;
+        $data['MaNSX'] = $re->NSX;
+        $data['MoTa'] = $re->MoTa;
+        $data['GiamGia']=0;
+        $data['TrangThai'] = 0;
+        $data['TG_Tao'] = $now;
+        $data['TG_CapNhat'] = $now;
+
         if($get_image){
-            $get_name = $get_image->getClientOriginalName();
-            $name = current(explode('.', $get_name));
-            $new_image = $name.time() .'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/upload',$new_image);
-            $data['hinhanh1']=$new_image;
-            DB::table('hanghoa')->insert($data);
-            return Redirect::to('product_management');
+            //Upload ảnh lên thư mục
+            $image0 =$get_image[0];
+            $get_name0 = $image0->getClientOriginalName();
+            $name0 = current(explode('.', $get_name0));
+            $new_image0 = $name0.time() .'.'.$image0->getClientOriginalExtension();
+            $get_image[0]->move('public/upload',$new_image0);
+            $data['HinhAnh']=$new_image0;
+        }        
+
+        $MSSP = DB::table('hanghoa')->insertGetId($data);
+        
+
+        if($get_image){
+            foreach ($get_image as $key => $image) {
+                if ($key!=0) {
+                    $img = array();
+                    //Upload ảnh lên thư mục
+                    $get_name = $image->getClientOriginalName();
+                    $name = current(explode('.', $get_name));
+                    $new_image = $name.time() .'.'.$image->getClientOriginalExtension();
+                    //$image->move('public/upload',$new_image);
+                    $image->move('public/upload', $new_image);
+                    //Insert vào csdl
+                    $img['MSHH']=$MSSP;
+                    $img['HinhAnh']=$new_image;
+                    $img['created_at'] = $now;
+                    $img['updated_at'] = $now;
+                    DB::table('hinhanh')->insert($img);
+                }
+            }
         }
-        Session::put('message','Thêm Thất bại');
-        return Redirect::to('add_product');
+        return Redirect::to('product_management');
     }
 
     public function update_product($id){
         $this->AuthLogin();
         $all_product = DB::table('hanghoa')->where('MSHH',$id)->get();
-        $all_category = DB::table('loaihanghoa')->get();
+        $all_category = DB::table('danhmuc')->get();
         $all_producer = DB::table('nhasanxuat')->get();
         return view('admin.Product.update_product')->with('all_product',$all_product)->with('category',$all_category)->with('producer',$all_producer);
     }
@@ -87,31 +107,43 @@ class ProductController extends Controller
         $data['TenHH'] = $re->TenHangHoa;
         $data['Gia'] = $re->Gia;
         $data['SoLuongHang'] = $re->SoLuong;
-        $data['MaLoaiHang'] = $re->LoaiHang;
+        $data['MaDM'] = $re->DanhMuc;
         $data['MaNSX'] = $re->NSX;
         $data['MoTa'] = $re->MoTa;
         $data['GiamGia']=$re->GiamGia;
         $data['TrangThai'] = $re->TrangThai;
         $data['TG_Tao']= $re->TG_Tao;
         $data['TG_CapNhat'] = $now;
+        DB::table('hanghoa')->where('MSHH',$id)->update($data);
 
-        $get_image = $re->file('hinhanh1');
+        //upload ảnh
+        $get_image = $re->file('HinhAnh');
+
+        
         if($get_image){
-            $get_name = $get_image->getClientOriginalName();
-            $name = current(explode('.', $get_name));
-            $new_image = $name.time() .'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/upload',$new_image);
-            $data['hinhanh1']=$new_image;
-            DB::table('hanghoa')->where('MSHH',$id)->update($data);
-            return Redirect::to('product_management');
+            foreach ($get_image as $image) {
+                $img = array();
+                //Upload ảnh lên thư mục
+                $get_name = $image->getClientOriginalName();
+                $name = current(explode('.', $get_name));
+                $new_image = $name.time() .'.'.$image->getClientOriginalExtension();
+                //$image->move('public/upload',$new_image);
+                $image->move('public/upload', $new_image);
+                //Insert vào csdl
+                $img['MSHH']=$id;
+                $img['HinhAnh']=$new_image;
+                $img['created_at'] = $now;
+                $img['updated_at'] = $now;
+                DB::table('hinhanh')->insert($img);
+            }
         }
 
-        DB::table('hanghoa')->where('MSHH',$id)->update($data);
+        
         return Redirect::to('product_management');
     }
 
     //Chuyển trang xoá SP
-    public function delete($id,$hinhanh){
+    public function delete($id){
         $this->AuthLogin();
         DB::table('hanghoa')->where('MSHH',$id)->update(['TrangThai'=>0]);
         return Redirect::to('product_management');
@@ -139,11 +171,27 @@ class ProductController extends Controller
        echo $data = json_encode($chart_data);
     }
 
+    //Ảnh sản phẩm
+    public function images_product(){
+        $product = DB::table('hinhanh')->join('sanpham', 'sanpham.MSSP', '=', 'hinhanh.MSSP')
+        ->select('sanpham.MSSP','HinhAnh', 'TenSP', 'ID')->simplePaginate(5);;
+        return view('admin.Images.images_product')->with('images',$product);
+    }
+
+    public function delete_images($id){
+        $result = DB::table('hinhanh')->where('ID', $id)->delete();
+        if ($result) {
+           return Redirect::to('images_product');
+       }
+
+   }
+
     //END ADMIN
 
     public function show_all_product(Request $re){
-        $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
+         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         $product_all =DB::table('hanghoa')->where('TrangThai',1)->get();
 
@@ -173,9 +221,9 @@ class ProductController extends Controller
         }
 
         //Seo
-        $meta_desc="Tất cả sản phẩm";
+        $meta_desc="HoangPhuc Store";
         $meta_keywords="All Product";
-        $meta_tittle="QPharmacy";
+        $meta_tittle="HP Store";
         $url=$re->url();
         // end seo
 
@@ -184,15 +232,18 @@ class ProductController extends Controller
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('product',$product_all)->with('soluong',$count_product_all)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate);
     }
 
     public function product_detail($id,  Request $re){
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
+
         $product_detail = DB::table('hanghoa')->where('MSHH',$id)->get();
+        $galery_product = DB::table('hinhanh')->where('MSHH',$id)->get();
         foreach ($product_detail as $key => $value) {
-            $MaLoaiHang=$value->MaLoaiHang;
+            $MaDM=$value->MaDM;
             //Seo
             $meta_desc=$value->TenHH;
             $meta_keywords="Product Detail - ". $id;
@@ -213,14 +264,16 @@ class ProductController extends Controller
             $total=round($total/$count);
         }
         
-        $related_product = DB::table('hanghoa')->where('MaLoaiHang',$MaLoaiHang)->whereNotIn('MSHH',[$id])->get();
+        $related_product = DB::table('hanghoa')->where('MaDM',$MaDM)->whereNotIn('MSHH',[$id])->get();
         return view('pages.product.product_details')
         ->with('category',$all_category)
         ->with('producer',$all_producer)
         ->with('product_detail',$product_detail)
         ->with('related_product',$related_product)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('count_reviews',$count)->with('Total',$total);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('count_reviews',$count)->with('Total',$total)
+        ->with('cate',$all_cate)->with('galery_product',$galery_product);
     }
 
     //quick_view

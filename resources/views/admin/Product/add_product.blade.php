@@ -40,20 +40,12 @@
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 col-form-label">Số Lượng</label>
-              <div class="col-sm-10">
-                <div class="form-group">
-                  <input type="number" class="form-control" name="SoLuong" min="1" id="SoLuong">
-                </div>
-              </div>
-            </div>
-            <div class="row">
               <label class="col-sm-2 col-form-label">Loại Hàng</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <select class="form-control selectpicker" data-style="btn btn-link" name="LoaiHang">
+                  <select class="form-control selectpicker" data-style="btn btn-link" name="DanhMuc">
                     @foreach($category as $key => $value_cate)
-                    <option value="{{$value_cate->MaLoaiHang}}">{{$value_cate->TenLoaiHang}}</option>
+                    <option value="{{$value_cate->MaDM}}">{{$value_cate->TenDanhMuc}}</option>
                     @endforeach
                   </select>
                 </div>
@@ -72,17 +64,6 @@
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 col-form-label">Trạng Thái</label>
-              <div class="col-sm-10">
-                <div class="form-group">
-                  <select class="selectpicker" data-style="select-with-transition" name="TrangThai">
-                    <option value="1">Hiện</option>
-                    <option value="0">Ẩn</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
               <label class="col-sm-2 col-form-label">Mô Tả</label>
               <div class="col-sm-10">
                 <div class="form-group">
@@ -93,7 +74,7 @@
             <div class="row">
               <div class="col-md-4 col-sm-4"></div>
               <div class="col-md-4 col-sm-4">
-                <h4 class="title text-center">Hình Ảnh1</h4>
+                <h4 class="title text-center">Hình Ảnh</h4>
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
                     <img src="{{('public/backend/assets/img/image_placeholder.jpg')}}" alt="...">
@@ -103,7 +84,7 @@
                     <span class="btn btn-rose btn-round btn-file">
                       <span class="fileinput-new">Chọn Hình Ảnh</span>
                       <span class="fileinput-exists">Thay Đổi</span>
-                      <input type="file" name="hinhanh1" />
+                      <input type="file" name="HinhAnh[]" multiple/>
                     </span>
                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xoá</a>
                   </div>
@@ -133,9 +114,6 @@
           number: true,
           digits: true
         },
-        SoLuong:{
-          required: true,
-        },
       },
       messages: {
         TenHangHoa: "Tên hàng hoá không được để trống",
@@ -143,9 +121,6 @@
           required: "Giá không để trống",
           number: "Giá phải là số",
           digits: "Giá không là số âm"
-        },
-        SoLuong:{
-          required: "Số lượng không bỏ trống",
         },
       }
     });

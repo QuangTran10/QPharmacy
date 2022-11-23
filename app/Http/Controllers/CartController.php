@@ -152,10 +152,12 @@ class CartController extends Controller
 
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
+        
         return view('pages.cart.cart_shopping')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate);
     }
 
     public function show_mini_cart(){

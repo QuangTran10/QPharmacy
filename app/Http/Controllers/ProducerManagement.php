@@ -80,8 +80,10 @@ class ProducerManagement extends Controller
     public function show_producer_home($id_pro, Request $re){
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
-        $producer_by_id =DB::table('hanghoa')->where('hanghoa.MaNSX',$id_pro)
+        $producer_by_id =DB::table('hanghoa')
+        ->where('TrangThai',1)->where('hanghoa.MaNSX',$id_pro)
         ->join('nhasanxuat', 'hanghoa.MaNSX', '=', 'nhasanxuat.MaNSX')
         ->get();
 
@@ -91,15 +93,15 @@ class ProducerManagement extends Controller
             //Seo
             $meta_desc=$value->TenNSX;
             $meta_keywords="Producer - ". $value->MaNSX;
-            $meta_tittle="QPharmacy";
+            $meta_tittle="HP Store";
             $url=$re->url();
             // end seo
         }
-        $count_producer_by_id=DB::table('hanghoa')->where('MaNSX',$id_pro)->get()->count();
+        $count_producer_by_id=DB::table('hanghoa')->where('TrangThai',1)->where('MaNSX',$id_pro)->get()->count();
         return view('pages.category.show_category')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('product',$producer_by_id)->with('soluong',$count_producer_by_id)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate);
     }
 }

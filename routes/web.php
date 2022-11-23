@@ -155,6 +155,18 @@ Route::post('/save_category','App\Http\Controllers\CategoryManagement@save_categ
 
 Route::post('/edit_category/{category_product_id}','App\Http\Controllers\CategoryManagement@edit_category');
 
+//admin interface -> category management
+
+Route::get('/catechild_management', 'App\Http\Controllers\CateChildController@catechild_management');
+
+Route::get('/add_catechild', 'App\Http\Controllers\CateChildController@add');
+
+Route::get('/update_catechild/{id}','App\Http\Controllers\CateChildController@update_catechild');
+
+Route::post('/edit_catechild/{id}','App\Http\Controllers\CateChildController@edit_catechild');
+
+Route::post('/save_catechild','App\Http\Controllers\CateChildController@save_catechild');
+
 //admin interface -> producer management
 
 Route::get('/producer_management', 'App\Http\Controllers\ProducerManagement@producer_management');
@@ -178,7 +190,7 @@ Route::get('/product_management', 'App\Http\Controllers\ProductController@produc
 
 Route::get('/update_product/{id}','App\Http\Controllers\ProductController@update_product');
 
-Route::get('/delete_product/{id}/{hinhanh}', 'App\Http\Controllers\ProductController@delete');
+Route::get('/delete_product/{id}', 'App\Http\Controllers\ProductController@delete');
 
 Route::post('/save_product', 'App\Http\Controllers\ProductController@save_product');
 
@@ -202,9 +214,11 @@ Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
 
 Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
 
-Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
-
 Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
+
+Route::post('/infor_receipt', 'App\Http\Controllers\ReceiptController@show');
+
+Route::get('/print_receipt/{code}', 'App\Http\Controllers\ReceiptController@print');
 
 //admin interface -> Staff
 
@@ -229,3 +243,13 @@ Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_stati
 Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
 Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
+
+//admin interface -> suppliers
+
+Route::get('/suppliers', 'App\Http\Controllers\SupplierController@show');
+
+Route::post('/add_suppliers', 'App\Http\Controllers\SupplierController@add');
+
+Route::get('/update_suppliers/{id}', 'App\Http\Controllers\SupplierController@update');
+
+Route::post('/edit_suppliers', 'App\Http\Controllers\SupplierController@edit');

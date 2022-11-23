@@ -20,6 +20,15 @@ class UserManagement extends Controller
             return Redirect::to('admin')->send();
         }
     }
+    //Kiểm tra đăng nhập trang user
+    public function LoginCheck(){
+        $MSKH=Session::get('user_id');
+        if($MSKH){
+            
+        }else{
+            return Redirect::to('login_home')->send();
+        }
+    }
     public function user(){
         $this->AuthLogin();
     	$id = Session::get('admin_id');
@@ -87,11 +96,12 @@ class UserManagement extends Controller
         // end seo
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         return view('pages.user.register')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate);
     }
 
     public function user_login(Request $re){
@@ -104,11 +114,12 @@ class UserManagement extends Controller
 
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
 
         return view('pages.user.login_home')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)->with('cate',$all_cate);
     }
 
     public function login(Request $request){
@@ -172,15 +183,17 @@ class UserManagement extends Controller
 
     //Account user
     public function my_account(Request $re){
+        $this->LoginCheck();
         $MSKH=Session::get('user_id');
         //Seo
         $meta_desc="Quản lý tài khoản cá nhân";
         $meta_keywords="My Account";
-        $meta_tittle="QPharmacy";
+        $meta_tittle="HPStore";
         $url=$re->url();
         // end seo
         $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
         $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
+        $all_cate = DB::table('danhmuc')->get();
         //Thông tin cá nhân
         $user_infor= DB::table('khachhang')->where('MSKH', $MSKH)->get();
         //Danh sách địa chỉ nhận hàng
@@ -189,11 +202,12 @@ class UserManagement extends Controller
         return view('pages.user.my_account')
         ->with('category',$all_category)->with('producer',$all_producer)
         ->with('user_infor',$user_infor)->with('address_ship',$address_ship)
-        ->with('meta_desc',$meta_desc)->with('url',$url)
+        ->with('meta_desc',$meta_desc)->with('url',$url)->with('cate',$all_cate)
         ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle);
     }
 
     public function change_password(Request $request){
+        $this->LoginCheck();
         $MSKH=Session::get('user_id');
         $Username=$request->username;
         $New_pass=md5($request->new_pwd);
@@ -209,6 +223,7 @@ class UserManagement extends Controller
     }
 
     public function change_info(Request $request){
+        $this->LoginCheck();
         $data = array();
         $MSKH=Session::get('user_id');
         $now = Carbon::now('Asia/Ho_Chi_Minh');
@@ -237,6 +252,7 @@ class UserManagement extends Controller
     }
 
     public function show_address(Request $re){
+        $this->LoginCheck();
         $MaDC = $re->MaDC;
         $result= DB::table('diachikh')->where('MaDC',$MaDC)->get();
         $output=array();
@@ -250,6 +266,7 @@ class UserManagement extends Controller
     }
 
     public function update_address(Request $re){
+        $this->LoginCheck();
         $data=array();
 
         $MaDC=$re->MaDC;

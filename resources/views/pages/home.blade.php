@@ -7,7 +7,7 @@
             <div class="hero-slider-active slick-arrow-style slick-arrow-style_hero slick-dot-style">
                 <!-- single slider item start -->
                 <div class="hero-single-slide ">
-                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster1.jpg')}}">
+                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster1.png')}}">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -26,7 +26,7 @@
 
                 <!-- single slider item start -->
                 <div class="hero-single-slide">
-                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster4.jpg')}}">
+                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster2.png')}}">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -45,7 +45,7 @@
 
                 <!-- single slider item start -->
                 <div class="hero-single-slide">
-                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster7.jpg')}}">
+                    <div class="hero-slider-item bg-img" data-bg="{{asset('public/frontend/assets/img/slider/poster3.png')}}">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -91,7 +91,7 @@
                         <div class="banner-item mb-30">
                             <figure class="banner-thumb">
                                 <a href="#">
-                                    <img src="{{asset('public/frontend/assets/img/banner/task2.png')}}" alt="">
+                                    <img src="{{asset('public/frontend/assets/img/banner/task2.jpg')}}" alt="">
                                 </a>
                                 {{-- <figcaption class="banner-content text-center">
                                     <h2 class="text1">Chào Tháng 9</h2>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="policy-terms">
                                 <h5>Miễn phí giao hàng</h5>
-                                <p>Miễn phí cho đơn hàng trên 1 triệu</p>
+                                <p>Miễn phí cho đơn hàng khu vực nội ô</p>
                             </div>
                         </div>
                         <!-- end policy single item -->
@@ -202,8 +202,8 @@
                         <div class="product-item mt-40">
                             <figure class="product-thumb">
                                 <a href="{{URL::to('/product_details/'.$value->MSHH.'?new=1')}}">
-                                    <img class="pri-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
-                                    <img class="sec-img" src="{{asset('public/upload/'.$value->hinhanh1)}}" alt="product">
+                                    <img class="pri-img" src="{{asset('public/upload/'.$value->HinhAnh)}}" alt="product">
+                                    <img class="sec-img" src="{{asset('public/upload/'.$value->HinhAnh)}}" alt="product">
                                 </a>
                                 <div class="product-badge">
                                     <div class="product-label new">
@@ -220,7 +220,7 @@
                                     <div class="quantity-cart-box d-flex align-items-center">
                                         <input type="hidden" name="Id_{{$value->MSHH}}" value="{{$value->MSHH}}" class="cart_product_id_{{$value->MSHH}}">
                                         <input type="hidden" name="Name" value="{{$value->TenHH}}" class="cart_product_name_{{$value->MSHH}}">
-                                        <input type="hidden" name="Image" value="{{$value->hinhanh1}}" class="cart_product_image_{{$value->MSHH}}">
+                                        <input type="hidden" name="Image" value="{{$value->HinhAnh}}" class="cart_product_image_{{$value->MSHH}}">
                                         <input type="hidden" name="Price" value="{{$value->Gia}}" class="cart_product_price_{{$value->MSHH}}">
                                         <input type="hidden" name="Discount" value="{{$value->GiamGia}}" class="cart_product_discount_{{$value->MSHH}}">
                                         <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_{{$value->MSHH}}">
@@ -333,8 +333,8 @@
                             <div class="product-item">
                                 <figure class="product-thumb">
                                     <a href="{{URL::to('/product_details/'.$pro_val->MSHH)}}">
-                                        <img class="pri-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
-                                        <img class="sec-img" src="{{asset('public/upload/'.$pro_val->hinhanh1)}}" alt="product">
+                                        <img class="pri-img" src="{{asset('public/upload/'.$pro_val->HinhAnh)}}" alt="product">
+                                        <img class="sec-img" src="{{asset('public/upload/'.$pro_val->HinhAnh)}}" alt="product">
                                     </a>
                                     <div class="product-badge">
                                         @if($pro_val->GiamGia!=0)
@@ -348,7 +348,7 @@
                                         <div class="quantity-cart-box d-flex align-items-center">
                                             <input type="hidden" name="Id_{{$pro_val->MSHH}}" value="{{$pro_val->MSHH}}" class="cart_product_id_{{$pro_val->MSHH}}">
                                             <input type="hidden" name="Name" value="{{$pro_val->TenHH}}" class="cart_product_name_{{$pro_val->MSHH}}">
-                                            <input type="hidden" name="Image" value="{{$pro_val->hinhanh1}}" class="cart_product_image_{{$pro_val->MSHH}}">
+                                            <input type="hidden" name="Image" value="{{$pro_val->HinhAnh}}" class="cart_product_image_{{$pro_val->MSHH}}">
                                             <input type="hidden" name="Price" value="{{$pro_val->Gia}}" class="cart_product_price_{{$pro_val->MSHH}}">
                                             <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_{{$pro_val->MSHH}}">
                                             <input type="hidden" name="Discount" value="{{$pro_val->GiamGia}}" class="cart_product_discount_{{$pro_val->MSHH}}">

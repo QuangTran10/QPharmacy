@@ -40,8 +40,23 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider">
                                         <div class="pro-large-img img-zoom">
-                                            <img src="{{URL::to('public/upload/'.$value_pro->hinhanh1)}}" alt="product-details" />
+                                            <img src="{{URL::to('public/upload/'.$value_pro->HinhAnh)}}" alt="product-details" />
                                         </div>
+                                        @foreach($galery_product as $key => $value)
+                                        <div class="pro-large-img img-zoom">
+                                            <img src="{{URL::to('public/upload/'.$value->HinhAnh)}}" alt="product-details" />
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="pro-nav slick-row-10 slick-arrow-style">
+                                        <div class="pro-nav-thumb">
+                                            <img src="{{URL::to('public/upload/'.$value_pro->HinhAnh)}}" />
+                                        </div>
+                                        @foreach($galery_product as $key => $value)
+                                        <div class="pro-nav-thumb">
+                                            <img src="{{URL::to('public/upload/'.$value->HinhAnh)}}" alt="product-details" />
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
@@ -115,7 +130,7 @@
                                                 <h5>Số Lượng:</h5>
                                                 <input type="hidden" name="Id_{{$value_pro->MSHH}}" value="{{$value_pro->MSHH}}" class="cart_product_id_{{$value_pro->MSHH}}">
                                                 <input type="hidden" name="Name" value="{{$value_pro->TenHH}}" class="cart_product_name_{{$value_pro->MSHH}}">
-                                                <input type="hidden" name="Image" value="{{$value_pro->hinhanh1}}" class="cart_product_image_{{$value_pro->MSHH}}">
+                                                <input type="hidden" name="Image" value="{{$value_pro->HinhAnh}}" class="cart_product_image_{{$value_pro->MSHH}}">
                                                 <input type="hidden" name="Price" value="{{$value_pro->Gia}}" class="cart_product_price_{{$value_pro->MSHH}}">
                                                 <input type="hidden" name="Discount" value="{{$value_pro->GiamGia}}" class="cart_product_discount_{{$value_pro->MSHH}}">
                                                 <div class="quantity">
@@ -251,8 +266,8 @@
                                 {{csrf_field()}}  
                                 <figure class="product-thumb">
                                     <a href="{{URL::to('/product_details/'.$value->MSHH)}}">
-                                        <img class="pri-img" src="{{URL::to('public/upload/'.$value->hinhanh1)}}" alt="product">
-                                        <img class="sec-img" src="{{URL::to('public/upload/'.$value->hinhanh1)}}" alt="product">
+                                        <img class="pri-img" src="{{URL::to('public/upload/'.$value->HinhAnh)}}" alt="product">
+                                        <img class="sec-img" src="{{URL::to('public/upload/'.$value->HinhAnh)}}" alt="product">
                                     </a>
                                     <div class="product-badge">
                                         <div class="product-label new">
